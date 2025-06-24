@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>驾驶舱2.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .demo-container {
+            display: flex;
+            gap: 30px;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        /* 左侧导航 */
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            left: 10px;
+            top: 20px;
+            height: calc(100vh - 40px);
+            z-index: 100;
+        }
+        
+        .sidebar h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-bottom: 8px;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .nav-link i {
+            width: 16px;
+            text-align: center;
+        }
+        
+        /* 手机壳 */
+        .phone-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 手机状态栏 */
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* 页面内容区域 */
+        .page-content {
+            height: calc(100% - 44px);
+            overflow-y: auto;
+            position: relative;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        
+        .page-content::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/WebKit */
+        }
+        
+        .page {
+            display: none;
+            min-height: 100%;
+            background: #f8f9fa;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* 首页样式 */
+        .home-page {
+            padding: 20px;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .header-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .header-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* 核心指标卡片 */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .metric-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .metric-card:nth-child(1) .metric-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .metric-card:nth-child(2) .metric-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .metric-card:nth-child(3) .metric-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .metric-card:nth-child(4) .metric-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        
+        .metric-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .metric-desc {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* 业务模块 */
+        .business-modules {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .module-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .module-more {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .module-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* AI助手悬浮按钮 */
+        .ai-fab {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .ai-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        /* AI聊天界面 */
+        .ai-chat {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65%;
+            background: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ai-chat.active {
+            transform: translateY(0);
+        }
+        
+        .ai-chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .ai-chat-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            flex: 1;
+        }
+        
+        .ai-chat-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        
+        .ai-chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .ai-chat-messages {
+            height: calc(100% - 110px);
+            overflow-y: auto;
+            padding: 12px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        
+        .ai-chat-messages::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/WebKit */
+        }
+        
+        .ai-chat-input {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .ai-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 22px;
+            outline: none;
+            font-size: 16px;
+            min-height: 18px;
+        }
+        
+        .ai-send {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+        }
+        
+        .ai-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* 详情页样式 */
+        .detail-page {
+            padding: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .detail-content {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .item-info p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .item-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-success { background: #e8f5e8; color: #52c41a; }
+        .status-warning { background: #fff7e6; color: #fa8c16; }
+        .status-info { background: #e6f7ff; color: #1890ff; }
+        
+        /* 图表样式 */
+        .chart-container {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        /* 快速问题样式 */
+        .quick-question {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #333;
+            min-height: 42px;
+            touch-action: manipulation;
+        }
+        
+        .quick-question:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .quick-question i {
+            font-size: 16px;
+            color: #667eea;
+            transition: color 0.3s ease;
+        }
+        
+        .quick-question:hover i {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- 左侧导航 -->
+        <div class="sidebar">
+            <h2><i class="fas fa-compass"></i>页面导航</h2>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="projects">
+                        <i class="fas fa-project-diagram"></i>
+                        项目管理
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="finance">
+                        <i class="fas fa-chart-line"></i>
+                        财务分析
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="procurement">
+                        <i class="fas fa-shopping-cart"></i>
+                        采购供应链
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="hr">
+                        <i class="fas fa-users"></i>
+                        人力效能
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="ai-report">
+                        <i class="fas fa-robot"></i>
+                        AI经营报告
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 手机容器 -->
+        <div class="phone-container">
+            <div class="phone-screen">
+                <!-- 状态栏 -->
+                <div class="status-bar">
+                    <div class="status-left">
+                        <span>14:19</span>
+                    </div>
+                    <div class="status-right">
+                        <i class="fas fa-signal"></i>
+                        <i class="fas fa-wifi"></i>
+                        <span>84%</span>
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                </div>
+                
+                <!-- 页面内容 -->
+                <div class="page-content">
+                    <!-- 首页 -->
+                    <div class="page active" id="home">
+                        <div class="home-page">
+                            <div class="page-header">
+                                <h1 class="page-title">经营驾驶舱</h1>
+                                <div class="header-actions">
+                                    <button class="header-btn" onclick="showAiChat()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="header-btn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- 核心指标 -->
+                            <div class="metrics-grid">
+                                <div class="metric-card" onclick="showPage('projects')">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <div class="metric-title">项目总览</div>
+                                    <div class="metric-value">23</div>
+                                    <div class="metric-desc">进行中项目 | 2个逾期风险</div>
+                                </div>
+                                
+                                <div class="metric-card" onclick="showPage('finance')">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="metric-title">资金动态</div>
+                                    <div class="metric-value">1,250万</div>
+                                    <div class="metric-desc">本月回款 | 毛利率 15.8%</div>
+                                </div>
+                                
+                                <div class="metric-card" onclick="showPage('procurement')">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="metric-title">采购库存</div>
+                                    <div class="metric-value">890万</div>
+                                    <div class="metric-desc">库存总值 | 12项在途物资</div>
+                                </div>
+                                
+                                <div class="metric-card" onclick="showPage('hr')">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="metric-title">团队人效</div>
+                                    <div class="metric-value">186人</div>
+                                    <div class="metric-desc">当前总人数 | 3个岗位缺口</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 业务模块 -->
+                            <div class="business-modules">
+                                <div class="module-card" onclick="showPage('projects')">
+                                    <div class="module-header">
+                                        <div class="module-title">
+                                            <i class="fas fa-tasks"></i>
+                                            重点项目进展
+                                        </div>
+                                        <div class="module-more">查看全部 →</div>
+                                    </div>
+                                    <div class="module-content">
+                                        <div class="list-item">
+                                            <div class="item-info">
+                                                <h4>宁陵智慧城市项目</h4>
+                                                <p>负责人：张三 | 进度：75%</p>
+                                            </div>
+                                            <div class="item-status status-success">正常</div>
+                                        </div>
+                                        <div class="list-item">
+                                            <div class="item-info">
+                                                <h4>淮滨数字政务平台</h4>
+                                                <p>负责人：李四 | 进度：45%</p>
+                                            </div>
+                                            <div class="item-status status-warning">延期风险</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="module-card" onclick="showPage('ai-report')">
+                                    <div class="module-header">
+                                        <div class="module-title">
+                                            <i class="fas fa-robot"></i>
+                                            AI经营日报
+                                        </div>
+                                        <div class="module-more">查看详情 →</div>
+                                    </div>
+                                    <div class="module-content">
+                                        <p><strong>今日重点：</strong>宁陵项目回款200万已到账，淮滨项目需关注进度风险，市场部支出超预算30%。</p>
+                                        <p style="margin-top: 8px; color: #999; font-size: 13px;">
+                                            <i class="far fa-clock"></i> 上次更新：今天 09:00
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目管理页面 -->
+                    <div class="page" id="projects">
+                        <div class="detail-page">
+                            <a href="#" class="back-btn" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                                返回首页
+                            </a>
+                            <h2 class="page-title">项目管理</h2>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">项目进度概览</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>宁陵智慧城市项目</h4>
+                                        <p>负责人：张三 | 预算：2000万</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="item-status status-success">75%</div>
+                                </div>
+                                
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>淮滨数字政务平台</h4>
+                                        <p>负责人：李四 | 预算：1500万</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="item-status status-warning">45%</div>
+                                </div>
+                                
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>商丘产业园区系统</h4>
+                                        <p>负责人：王五 | 预算：800万</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="item-status status-info">90%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 财务分析页面 -->
+                    <div class="page" id="finance">
+                        <div class="detail-page">
+                            <a href="#" class="back-btn" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                                返回首页
+                            </a>
+                            <h2 class="page-title">财务分析</h2>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">本月收支明细</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>宁陵项目回款</h4>
+                                        <p>2024年12月20日</p>
+                                    </div>
+                                    <div style="color: #52c41a; font-weight: 600;">+200万</div>
+                                </div>
+                                
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>人力成本支出</h4>
+                                        <p>2024年12月薪资</p>
+                                    </div>
+                                    <div style="color: #f5222d; font-weight: 600;">-156万</div>
+                                </div>
+                                
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>设备采购支出</h4>
+                                        <p>服务器及网络设备</p>
+                                    </div>
+                                    <div style="color: #f5222d; font-weight: 600;">-85万</div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">部门成本排行</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>研发部</h4>
+                                        <p>占总成本 45%</p>
+                                    </div>
+                                    <div>320万</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>市场部</h4>
+                                        <p>占总成本 25%</p>
+                                    </div>
+                                    <div>178万</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>运营部</h4>
+                                        <p>占总成本 20%</p>
+                                    </div>
+                                    <div>142万</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 采购供应链页面 -->
+                    <div class="page" id="procurement">
+                        <div class="detail-page">
+                            <a href="#" class="back-btn" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                                返回首页
+                            </a>
+                            <h2 class="page-title">采购供应链</h2>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">供应商采购额 TOP 5</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>华为技术有限公司</h4>
+                                        <p>网络设备、服务器</p>
+                                    </div>
+                                    <div>285万</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>阿里云计算有限公司</h4>
+                                        <p>云服务、存储</p>
+                                    </div>
+                                    <div>198万</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>联想集团</h4>
+                                        <p>办公设备</p>
+                                    </div>
+                                    <div>125万</div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">项目库存明细</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>宁陵项目</h4>
+                                        <p>交换机×12台，服务器×8台</p>
+                                    </div>
+                                    <div class="item-status status-success">充足</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>淮滨项目</h4>
+                                        <p>光纤模块×50个，机柜×6个</p>
+                                    </div>
+                                    <div class="item-status status-warning">偏低</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>商丘项目</h4>
+                                        <p>监控设备×24套，网线×2000米</p>
+                                    </div>
+                                    <div class="item-status status-success">充足</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 人力效能页面 -->
+                    <div class="page" id="hr">
+                        <div class="detail-page">
+                            <a href="#" class="back-btn" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                                返回首页
+                            </a>
+                            <h2 class="page-title">人力效能</h2>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">团队绩效分布</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>A级绩效</h4>
+                                        <p>优秀员工</p>
+                                    </div>
+                                    <div style="color: #52c41a; font-weight: 600;">45人</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>B级绩效</h4>
+                                        <p>良好员工</p>
+                                    </div>
+                                    <div style="color: #1890ff; font-weight: 600;">125人</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>C级绩效</h4>
+                                        <p>待改进员工</p>
+                                    </div>
+                                    <div style="color: #fa8c16; font-weight: 600;">16人</div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">岗位需求缺口</div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>Java开发工程师</h4>
+                                        <p>研发部 - 急需</p>
+                                    </div>
+                                    <div class="item-status status-warning">缺2人</div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="item-info">
+                                        <h4>产品经理</h4>
+                                        <p>产品部 - 一般</p>
+                                    </div>
+                                    <div class="item-status status-info">缺1人</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI经营报告页面 -->
+                    <div class="page" id="ai-report">
+                        <div class="detail-page">
+                            <a href="#" class="back-btn" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                                返回首页
+                            </a>
+                            <h2 class="page-title">AI经营报告</h2>
+                            
+                            <div class="chart-container">
+                                <div class="chart-title">
+                                    <i class="fas fa-robot"></i>
+                                    TYKJ公司 2024年12月23日 经营日报
+                                </div>
+                                <div style="line-height: 1.8; color: #333;">
+                                    <p><strong>📊 AI摘要：</strong></p>
+                                    <p>昨日公司整体运营稳健，宁陵项目回款200万元已到账，项目进度良好。需要重点关注淮滨项目的进度风险，以及市场部支出超预算的情况。</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>💰 资金动态：</strong></p>
+                                    <p>• 新增回款：200万元（宁陵项目第三期款项）</p>
+                                    <p>• 主要支出：人力成本156万，设备采购85万</p>
+                                    <p>• 当前毛利率：15.8%，较上月提升0.5%</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>📋 项目进展：</strong></p>
+                                    <p>• 宁陵项目：进度75%，按计划推进</p>
+                                    <p>• 淮滨项目：进度45%，存在2项逾期任务</p>
+                                    <p>• 商丘项目：进度90%，即将验收</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>⚠️ 风险预警：</strong></p>
+                                    <p>• 淮滨项目建议加强进度管控</p>
+                                    <p>• 市场部支出超预算30%，需要成本控制</p>
+                                    <p>• Java开发工程师缺口2人，影响项目进度</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI助手悬浮按钮 -->
+                <button class="ai-fab" onclick="showAiChat()">
+                    <i class="fas fa-robot"></i>
+                </button>
+                
+                <!-- AI聊天界面 -->
+                <div class="ai-chat" id="aiChat">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title">
+                <i class="fas fa-robot"></i>
+                AI智能助手
+            </div>
+            <button class="ai-chat-close" onclick="hideAiChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ai-chat-messages" id="chatMessages">
+            <div style="padding: 20px;">
+                <div style="text-align: center; color: #999; margin-bottom: 30px;">
+                    <i class="fas fa-robot" style="font-size: 48px; margin-bottom: 15px; color: #667eea;"></i>
+                    <h3 style="color: #333; margin-bottom: 10px;">你好！我是AI智能助手</h3>
+                    <p>我可以帮您查询各类业务数据，请尝试以下问题：</p>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="quick-question" onclick="askQuestion('今天团队完成了多少个任务？')">
+                        <i class="fas fa-tasks"></i>
+                        今天团队完成了多少个任务？
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('今天回款怎么样？')">
+                        <i class="fas fa-coins"></i>
+                        今天回款怎么样？
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('本周新增客户和新增项目情况如何？')">
+                        <i class="fas fa-chart-line"></i>
+                        本周新增客户和新增项目情况如何？
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('宁陵项目现在怎么样了？')">
+                        <i class="fas fa-project-diagram"></i>
+                        宁陵项目现在怎么样了？
+                    </div>
+                    <div class="quick-question" onclick="askQuestion('上个月公司花了多少钱？')">
+                        <i class="fas fa-money-bill-wave"></i>
+                        上个月公司花了多少钱？
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" class="ai-input" placeholder="请输入您的问题..." onkeypress="handleKeyPress(event)">
+            <button class="ai-send" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // 页面切换功能
+        function showPage(pageId) {
+            // 隐藏所有页面
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示目标页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新导航状态
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        
+        // 导航点击事件
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // AI聊天功能
+        function showAiChat() {
+            document.getElementById('aiChat').classList.add('active');
+        }
+        
+        function hideAiChat() {
+            document.getElementById('aiChat').classList.remove('active');
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.querySelector('.ai-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, 'user');
+                input.value = '';
+                
+                // 模拟AI回复
+                setTimeout(() => {
+                    const response = getAiResponse(message);
+                    addMessage(response, 'ai');
+                }, 1000);
+            }
+        }
+        
+        function addMessage(message, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                margin-bottom: 15px;
+                padding: 14px 18px;
+                border-radius: 20px;
+                max-width: 85%;
+                line-height: 1.6;
+                font-size: 15px;
+                word-wrap: break-word;
+                ${type === 'user' ? 
+                    'background: linear-gradient(135deg, #667eea, #764ba2); color: white; margin-left: auto; text-align: right;' : 
+                    'background: #f5f5f5; color: #333; margin-right: auto;'
+                }
+            `;
+            messageDiv.innerHTML = message;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function getAiResponse(message) {
+            const responses = {
+                '今天团队完成了多少个任务': '📊 今日任务完成情况：<br/>• 宁陵项目团队：完成5个开发任务<br/>• 淮滨项目团队：完成3个测试任务<br/>• 商丘项目团队：完成2个部署任务<br/>• 总计完成：10个任务，完成率85%',
+                '今天回款怎么样': '💰 今日回款情况：<br/>• 宁陵项目：收到第三期回款200万元<br/>• 商丘项目：收到验收款50万元<br/>• 今日总回款：250万元<br/>• 较昨日增长：+125%',
+                '本周新增客户和新增项目情况如何': '📈 本周业务拓展情况：<br/>• 新增客户：2家（郑州市政府、开封科技园）<br/>• 新增项目：3个项目立项<br/>• 预计新增合同额：800万元<br/>• 商机转化率：60%',
+                '宁陵项目': '宁陵智慧城市项目当前状态为【进行中】，整体进度75%。负责人【张三】，本周有3项任务待完成，暂无逾期风险。最新一笔回款200万元已于12月20日到账。',
+                '淮滨项目': '淮滨数字政务平台当前进度45%，负责人【李四】。存在延期风险，有2项任务已逾期，建议加强进度管控。',
+                '上个月公司花了多少钱': '💸 上月支出明细：<br/>• 人力成本：156万元（占比22%）<br/>• 设备采购：85万元（占比12%）<br/>• 运营费用：45万元（占比6%）<br/>• 营销推广：32万元（占比5%）<br/>• 总支出：707万元',
+                '财务': '本月公司总收入1250万元，主要来自宁陵项目回款。总支出707万元，其中人力成本156万，设备采购85万。当前毛利率15.8%。',
+                '人员': '公司当前总人数186人，本月绩效评级：A级45人，B级125人，C级16人。Java开发工程师缺口2人，产品经理缺口1人。'
+            };
+            
+            for (let key in responses) {
+                if (message.includes(key)) {
+                    return responses[key];
+                }
+            }
+            
+            return '我理解您的问题，目前可以查询以下信息：<br/>• 项目进展和状态<br/>• 财务收支情况<br/>• 团队任务完成情况<br/>• 客户和业务拓展<br/>请尝试点击上方的快速问题或重新描述您的需求。';
+        }
+        
+        // 快速问题点击功能
+        function askQuestion(question) {
+            document.querySelector('.ai-input').value = question;
+            sendMessage();
+        }
+        
+        // 初始化聊天界面
+        function initChatMessages() {
+            document.getElementById('chatMessages').innerHTML = `
+                <div style="padding: 12px;">
+                    <div style="text-align: center; color: #999; margin-bottom: 20px;">
+                        <i class="fas fa-robot" style="font-size: 36px; margin-bottom: 10px; color: #667eea;"></i>
+                        <h3 style="color: #333; margin-bottom: 6px; font-size: 16px;">你好！我是AI智能助手</h3>
+                        <p style="font-size: 13px;">我可以帮您查询各类业务数据，请尝试以下问题：</p>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="quick-question" onclick="askQuestion('今天团队完成了多少个任务？')">
+                            <i class="fas fa-tasks"></i>
+                            今天团队完成了多少个任务？
+                        </div>
+                        <div class="quick-question" onclick="askQuestion('今天回款怎么样？')">
+                            <i class="fas fa-coins"></i>
+                            今天回款怎么样？
+                        </div>
+                        <div class="quick-question" onclick="askQuestion('本周新增客户和新增项目情况如何？')">
+                            <i class="fas fa-chart-line"></i>
+                            本周新增客户和新增项目情况如何？
+                        </div>
+                        <div class="quick-question" onclick="askQuestion('宁陵项目现在怎么样了？')">
+                            <i class="fas fa-project-diagram"></i>
+                            宁陵项目现在怎么样了？
+                        </div>
+                        <div class="quick-question" onclick="askQuestion('上个月公司花了多少钱？')">
+                            <i class="fas fa-money-bill-wave"></i>
+                            上个月公司花了多少钱？
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initChatMessages();
+        });
+    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
