@@ -685,23 +685,24 @@
         .y-axis-labels {
             position: absolute;
             left: 0;
-            top: 20px;
+            top: 15px;
             bottom: 40px;
-            width: 30px;
+            width: 45px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-end;
-            font-size: 10px;
+            font-size: 9px;
             color: #999;
-            padding-right: 5px;
+            padding-right: 3px;
+            white-space: nowrap;
         }
         
         /* 主图表区域 */
         .main-chart-area {
-            margin-left: 35px;
+            margin-left: 50px;
             margin-bottom: 25px;
-            height: calc(100% - 45px);
+            height: calc(100% - 40px);
             position: relative;
         }
         
@@ -764,12 +765,13 @@
         
         .point {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 10;
         }
         
         .point.income {
@@ -784,7 +786,7 @@
         .chart-labels {
             position: absolute;
             bottom: 0;
-            left: 35px;
+            left: 50px;
             right: 0;
             display: flex;
             justify-content: space-between;
@@ -1345,11 +1347,11 @@
                                         <div class="chart-container">
                                             <!-- Y轴标签 -->
                                             <div class="y-axis-labels">
-                                                <span>2000万</span>
-                                                <span>1500万</span>
-                                                <span>1000万</span>
-                                                <span>500万</span>
-                                                <span>0万</span>
+                                                <span>2000万元</span>
+                                                <span>1500万元</span>
+                                                <span>1000万元</span>
+                                                <span>500万元</span>
+                                                <span>0万元</span>
                                             </div>
                                             
                                             <!-- 主图表区域 -->
@@ -1358,62 +1360,62 @@
                                                     <div class="chart-grid"></div>
                                                     <svg class="chart-line" viewBox="0 0 100 100" preserveAspectRatio="none">
                                                         <!-- 收入趋势线 -->
-                                                        <path class="line-path line-income" d="M 8,85 L 25,75 L 42,70 L 58,55 L 75,35 L 92,20" />
+                                                        <path class="line-path line-income" d="M 8,75 L 25,65 L 42,60 L 58,45 L 75,25 L 92,10" />
                                                         <!-- 支出趋势线 -->
-                                                        <path class="line-path line-expense" d="M 8,90 L 25,82 L 42,78 L 58,70 L 75,60 L 92,50" />
+                                                        <path class="line-path line-expense" d="M 8,80 L 25,72 L 42,68 L 58,60 L 75,50 L 92,40" />
                                                     </svg>
                                                     
                                                     <!-- 交互式数据点 -->
                                                     <div class="chart-points">
                                                         <!-- 收入数据点 -->
-                                                        <div class="interactive-point" style="left: 8%; top: 85%;" 
+                                                        <div class="interactive-point" style="left: 8%; top: 75%;" 
                                                              data-month="1月" data-type="收入" data-value="450"></div>
-                                                        <div class="point income" style="left: 8%; top: 85%;"></div>
+                                                        <div class="point income" style="left: 8%; top: 75%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 25%; top: 75%;" 
+                                                        <div class="interactive-point" style="left: 25%; top: 65%;" 
                                                              data-month="2月" data-type="收入" data-value="680"></div>
-                                                        <div class="point income" style="left: 25%; top: 75%;"></div>
+                                                        <div class="point income" style="left: 25%; top: 65%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 42%; top: 70%;" 
+                                                        <div class="interactive-point" style="left: 42%; top: 60%;" 
                                                              data-month="3月" data-type="收入" data-value="820"></div>
-                                                        <div class="point income" style="left: 42%; top: 70%;"></div>
+                                                        <div class="point income" style="left: 42%; top: 60%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 58%; top: 55%;" 
+                                                        <div class="interactive-point" style="left: 58%; top: 45%;" 
                                                              data-month="4月" data-type="收入" data-value="1150"></div>
-                                                        <div class="point income" style="left: 58%; top: 55%;"></div>
+                                                        <div class="point income" style="left: 58%; top: 45%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 75%; top: 35%;" 
+                                                        <div class="interactive-point" style="left: 75%; top: 25%;" 
                                                              data-month="5月" data-type="收入" data-value="1520"></div>
-                                                        <div class="point income" style="left: 75%; top: 35%;"></div>
+                                                        <div class="point income" style="left: 75%; top: 25%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 92%; top: 20%;" 
+                                                        <div class="interactive-point" style="left: 92%; top: 10%;" 
                                                              data-month="6月" data-type="收入" data-value="1820"></div>
-                                                        <div class="point income" style="left: 92%; top: 20%;"></div>
+                                                        <div class="point income" style="left: 92%; top: 10%;"></div>
                                                         
                                                         <!-- 支出数据点 -->
-                                                        <div class="interactive-point" style="left: 8%; top: 90%;" 
+                                                        <div class="interactive-point" style="left: 8%; top: 80%;" 
                                                              data-month="1月" data-type="支出" data-value="320"></div>
-                                                        <div class="point" style="background: #52c41a; left: 8%; top: 90%;"></div>
+                                                        <div class="point" style="background: #52c41a; left: 8%; top: 80%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 25%; top: 82%;" 
+                                                        <div class="interactive-point" style="left: 25%; top: 72%;" 
                                                              data-month="2月" data-type="支出" data-value="480"></div>
-                                                        <div class="point" style="background: #52c41a; left: 25%; top: 82%;"></div>
+                                                        <div class="point" style="background: #52c41a; left: 25%; top: 72%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 42%; top: 78%;" 
+                                                        <div class="interactive-point" style="left: 42%; top: 68%;" 
                                                              data-month="3月" data-type="支出" data-value="580"></div>
-                                                        <div class="point" style="background: #52c41a; left: 42%; top: 78%;"></div>
+                                                        <div class="point" style="background: #52c41a; left: 42%; top: 68%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 58%; top: 70%;" 
+                                                        <div class="interactive-point" style="left: 58%; top: 60%;" 
                                                              data-month="4月" data-type="支出" data-value="750"></div>
-                                                        <div class="point" style="background: #52c41a; left: 58%; top: 70%;"></div>
+                                                        <div class="point" style="background: #52c41a; left: 58%; top: 60%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 75%; top: 60%;" 
+                                                        <div class="interactive-point" style="left: 75%; top: 50%;" 
                                                              data-month="5月" data-type="支出" data-value="950"></div>
-                                                        <div class="point" style="background: #52c41a; left: 75%; top: 60%;"></div>
+                                                        <div class="point" style="background: #52c41a; left: 75%; top: 50%;"></div>
                                                         
-                                                        <div class="interactive-point" style="left: 92%; top: 50%;" 
+                                                        <div class="interactive-point" style="left: 92%; top: 40%;" 
                                                              data-month="6月" data-type="支出" data-value="1150"></div>
-                                                        <div class="point" style="background: #52c41a; left: 92%; top: 50%;"></div>
+                                                        <div class="point" style="background: #52c41a; left: 92%; top: 40%;"></div>
                                                     </div>
                                                 </div>
                                             </div>
