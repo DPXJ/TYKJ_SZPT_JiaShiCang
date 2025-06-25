@@ -277,6 +277,597 @@
             gap: 20px;
         }
         
+        /* AI洞察模块 */
+        .ai-insights-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-insights-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .ai-insights-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-insight-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .ai-insight-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .ai-insight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .ai-insight-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ai-insight-icon {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .ai-insight-time {
+            font-size: 11px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .ai-insight-content {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        .ai-insight-summary {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .ai-task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .ai-task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .ai-task-label {
+            color: #666;
+        }
+        
+        .ai-task-count {
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        .ai-task-count.pending {
+            background: #fff7e6;
+            color: #fa8c16;
+        }
+        
+        .ai-task-count.risk {
+            background: #fff2f0;
+            color: #f5222d;
+        }
+        
+        .ai-task-count.opportunity {
+            background: #f6ffed;
+            color: #52c41a;
+        }
+        
+        .ai-insight-action {
+            text-align: right;
+            margin-top: 4px;
+        }
+        
+        .ai-insight-link {
+            color: #667eea;
+            font-size: 11px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .ai-insight-link:hover {
+            color: #764ba2;
+        }
+        
+        /* AI报告页面样式 */
+        .page-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+        
+        .page-header h2 {
+            margin: 0 0 8px 0;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .page-header p {
+            margin: 0;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .report-sections, .action-sections {
+            padding: 15px;
+        }
+        
+        .report-section, .action-section {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .report-section h3, .action-section h3 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .report-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .report-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .report-metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .metric-trend {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .metric-trend.positive {
+            background: #f6ffed;
+            color: #52c41a;
+        }
+        
+        .metric-trend.neutral {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .risk-item {
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .risk-item.high {
+            background: #fff2f0;
+            border-left: 4px solid #f5222d;
+        }
+        
+        .risk-item.medium {
+            background: #fff7e6;
+            border-left: 4px solid #fa8c16;
+        }
+        
+        /* 行动中心样式 */
+        .action-item {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ddd;
+        }
+        
+        .action-item.pending {
+            border-left-color: #fa8c16;
+            background: #fff7e6;
+        }
+        
+        .action-item.risk {
+            border-left-color: #f5222d;
+            background: #fff2f0;
+        }
+        
+        .action-item.opportunity {
+            border-left-color: #52c41a;
+            background: #f6ffed;
+        }
+        
+        .action-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        
+        .action-desc {
+            color: #666;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        
+        .action-time {
+            color: #999;
+            font-size: 10px;
+        }
+
+        /* 财务健康度模块 */
+        .finance-health-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 15px;
+        }
+        
+        .finance-health-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .finance-health-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .finance-health-more {
+            color: #667eea;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* KPI指标矩阵 */
+        .kpi-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .kpi-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 10px 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+        
+        .kpi-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+        
+        .kpi-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-compare {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .kpi-compare.positive {
+            background: #e8f5e8;
+            color: #52c41a;
+        }
+        
+        .kpi-compare.negative {
+            background: #fff2f0;
+            color: #f5222d;
+        }
+        
+        /* 趋势图表区域 */
+        .trend-charts {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 10px -10px 0;
+        }
+        
+        .chart-section {
+            background: transparent;
+            border-radius: 12px;
+            padding: 10px 0;
+        }
+        
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .chart-container {
+            height: 200px;
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            overflow: hidden;
+            width: 100%;
+            max-width: none;
+        }
+        
+        /* Y轴标签 */
+        .y-axis-labels {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            bottom: 40px;
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 10px;
+            color: #999;
+            padding-right: 5px;
+        }
+        
+        /* 主图表区域 */
+        .main-chart-area {
+            margin-left: 35px;
+            margin-bottom: 25px;
+            height: calc(100% - 45px);
+            position: relative;
+        }
+        
+        .trend-chart {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                rgba(102, 126, 234, 0.05) 50%, 
+                rgba(102, 126, 234, 0.1) 100%);
+            border-radius: 4px;
+        }
+        
+        /* 折线图网格线 */
+        .chart-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(0,0,0,0.08) 1px, transparent 1px);
+            background-size: 20% 25%;
+        }
+        
+        /* 折线路径 */
+        .chart-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .line-path {
+            stroke-width: 2px;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .line-income {
+            stroke: #1890ff;
+        }
+        
+        .line-expense {
+            stroke: #52c41a;
+        }
+        
+        /* 数据点 */
+        .chart-points {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .point {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .point.income {
+            background: #1890ff;
+        }
+        
+        .point.expense {
+            background: #52c41a;
+        }
+        
+        /* X轴标签 */
+        .chart-labels {
+            position: absolute;
+            bottom: 0;
+            left: 35px;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #999;
+            padding: 0 10px;
+        }
+        
+        /* 交互提示框 */
+        .chart-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -100%);
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .chart-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -4px;
+            border: 4px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .chart-tooltip.show {
+            opacity: 1;
+        }
+        
+        /* 可点击的数据点区域 */
+        .interactive-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+        }
+        
+        .interactive-point:hover + .point {
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 3px;
+            border-radius: 2px;
+        }
+        
+        .legend-color.income {
+            background: #1890ff;
+        }
+        
+        .legend-color.expense {
+            background: #52c41a;
+        }
+        
         .module-card {
             background: white;
             border-radius: 16px;
@@ -321,7 +912,7 @@
         /* AI助手悬浮按钮 */
         .ai-fab {
             position: absolute;
-            bottom: 80px;
+            bottom: 50px;
             right: 20px;
             width: 50px;
             height: 50px;
@@ -648,42 +1239,211 @@
                                 </div>
                             </div>
                             
-                            <!-- 核心指标 -->
-                            <div class="metrics-grid">
-                                <div class="metric-card" onclick="showPage('projects')">
-                                    <div class="metric-icon">
-                                        <i class="fas fa-project-diagram"></i>
+
+                            
+                            <!-- AI洞察模块 -->
+                            <div class="ai-insights-card">
+                                <div class="ai-insights-container">
+                                    <!-- AI洞察报告 -->
+                                    <div class="ai-insight-item" onclick="showAIReport()">
+                                        <div class="ai-insight-header">
+                                            <div class="ai-insight-title">
+                                                <div class="ai-insight-icon">🤖</div>
+                                                AI洞察报告
+                                            </div>
+                                            <div class="ai-insight-time">今日 09:00 已生成</div>
+                                        </div>
+                                        <div class="ai-insight-content">
+                                            <div class="ai-insight-summary">
+                                                摘要：本月利润已超预期15.8%，但需关注'淮滨项目'存在的回款延期风险，建议优先处理...
+                                            </div>
+                                        </div>
+                                        <div class="ai-insight-action">
+                                            <a href="#" class="ai-insight-link" onclick="event.stopPropagation(); showAIReport();">查看报告 ></a>
+                                        </div>
                                     </div>
-                                    <div class="metric-title">项目总览</div>
-                                    <div class="metric-value">23</div>
-                                    <div class="metric-desc">进行中项目 | 2个逾期风险</div>
+                                    
+                                    <!-- 重点任务与风险 -->
+                                    <div class="ai-insight-item" onclick="showActionCenter()">
+                                        <div class="ai-insight-header">
+                                            <div class="ai-insight-title">
+                                                <div class="ai-insight-icon">⚠️</div>
+                                                重点任务与风险
+                                            </div>
+                                        </div>
+                                        <div class="ai-insight-content">
+                                            <div class="ai-task-list">
+                                                <div class="ai-task-item">
+                                                    <span class="ai-task-label">待您审批：</span>
+                                                    <span class="ai-task-count pending">2 项</span>
+                                                </div>
+                                                <div class="ai-task-item">
+                                                    <span class="ai-task-label">高风险预警：</span>
+                                                    <span class="ai-task-count risk">3 项</span>
+                                                </div>
+                                                <div class="ai-task-item">
+                                                    <span class="ai-task-label">关键机会点：</span>
+                                                    <span class="ai-task-count opportunity">1 项</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ai-insight-action">
+                                            <a href="#" class="ai-insight-link" onclick="event.stopPropagation(); showActionCenter();">立即处理 ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 财务健康度模块 -->
+                            <div class="finance-health-card">
+                                <div class="finance-health-header">
+                                    <div class="finance-health-title">
+                                        <i class="fas fa-chart-pie"></i>
+                                        财务健康度
+                                    </div>
+                                    <a href="#" class="finance-health-more" onclick="showPage('finance')">查看更多 →</a>
                                 </div>
                                 
-                                <div class="metric-card" onclick="showPage('finance')">
-                                    <div class="metric-icon">
-                                        <i class="fas fa-chart-line"></i>
+                                <!-- KPI指标矩阵 -->
+                                <div class="kpi-matrix">
+                                    <div class="kpi-card" onclick="showFinanceDetail('monthly-income')">
+                                        <div class="kpi-label">本月总回款</div>
+                                        <div class="kpi-value">¥1,250万</div>
+                                        <div class="kpi-compare positive">环比 +15.8%</div>
                                     </div>
-                                    <div class="metric-title">资金动态</div>
-                                    <div class="metric-value">1,250万</div>
-                                    <div class="metric-desc">本月回款 | 毛利率 15.8%</div>
+                                    <div class="kpi-card" onclick="showFinanceDetail('monthly-expense')">
+                                        <div class="kpi-label">本月总支出</div>
+                                        <div class="kpi-value">¥707万</div>
+                                        <div class="kpi-compare negative">环比 +8.3%</div>
+                                    </div>
+                                    <div class="kpi-card" onclick="showFinanceDetail('project-income')">
+                                        <div class="kpi-label">项目总回款</div>
+                                        <div class="kpi-value">¥980万</div>
+                                        <div class="kpi-compare positive">环比 +22.1%</div>
+                                    </div>
+                                    <div class="kpi-card" onclick="showFinanceDetail('project-expense')">
+                                        <div class="kpi-label">项目总支出</div>
+                                        <div class="kpi-value">¥485万</div>
+                                        <div class="kpi-compare positive">环比 -5.2%</div>
+                                    </div>
+                                    <div class="kpi-card" onclick="showFinanceDetail('dept-budget')">
+                                        <div class="kpi-label">部门总预算</div>
+                                        <div class="kpi-value">¥800万</div>
+                                        <div class="kpi-compare positive">月度计划</div>
+                                    </div>
+                                    <div class="kpi-card" onclick="showFinanceDetail('dept-expense')">
+                                        <div class="kpi-label">部门总支出</div>
+                                        <div class="kpi-value">¥622万</div>
+                                        <div class="kpi-compare positive">预算内 77.8%</div>
+                                    </div>
                                 </div>
                                 
-                                <div class="metric-card" onclick="showPage('procurement')">
-                                    <div class="metric-icon">
-                                        <i class="fas fa-shopping-cart"></i>
+                                <!-- 趋势分析图表 -->
+                                <div class="trend-charts">
+                                    <div class="chart-section" onclick="showFinanceDetail('trend-analysis')">
+                                        <div class="chart-title">本年度收入/支出趋势</div>
+                                        <div class="chart-container">
+                                            <!-- Y轴标签 -->
+                                            <div class="y-axis-labels">
+                                                <span>2000万</span>
+                                                <span>1500万</span>
+                                                <span>1000万</span>
+                                                <span>500万</span>
+                                                <span>0万</span>
+                                            </div>
+                                            
+                                            <!-- 主图表区域 -->
+                                            <div class="main-chart-area">
+                                                <div class="trend-chart">
+                                                    <div class="chart-grid"></div>
+                                                    <svg class="chart-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                                        <!-- 收入趋势线 -->
+                                                        <path class="line-path line-income" d="M 8,85 L 25,75 L 42,70 L 58,55 L 75,35 L 92,20" />
+                                                        <!-- 支出趋势线 -->
+                                                        <path class="line-path line-expense" d="M 8,90 L 25,82 L 42,78 L 58,70 L 75,60 L 92,50" />
+                                                    </svg>
+                                                    
+                                                    <!-- 交互式数据点 -->
+                                                    <div class="chart-points">
+                                                        <!-- 收入数据点 -->
+                                                        <div class="interactive-point" style="left: 8%; top: 85%;" 
+                                                             data-month="1月" data-type="收入" data-value="450"></div>
+                                                        <div class="point income" style="left: 8%; top: 85%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 25%; top: 75%;" 
+                                                             data-month="2月" data-type="收入" data-value="680"></div>
+                                                        <div class="point income" style="left: 25%; top: 75%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 42%; top: 70%;" 
+                                                             data-month="3月" data-type="收入" data-value="820"></div>
+                                                        <div class="point income" style="left: 42%; top: 70%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 58%; top: 55%;" 
+                                                             data-month="4月" data-type="收入" data-value="1150"></div>
+                                                        <div class="point income" style="left: 58%; top: 55%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 75%; top: 35%;" 
+                                                             data-month="5月" data-type="收入" data-value="1520"></div>
+                                                        <div class="point income" style="left: 75%; top: 35%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 92%; top: 20%;" 
+                                                             data-month="6月" data-type="收入" data-value="1820"></div>
+                                                        <div class="point income" style="left: 92%; top: 20%;"></div>
+                                                        
+                                                        <!-- 支出数据点 -->
+                                                        <div class="interactive-point" style="left: 8%; top: 90%;" 
+                                                             data-month="1月" data-type="支出" data-value="320"></div>
+                                                        <div class="point" style="background: #52c41a; left: 8%; top: 90%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 25%; top: 82%;" 
+                                                             data-month="2月" data-type="支出" data-value="480"></div>
+                                                        <div class="point" style="background: #52c41a; left: 25%; top: 82%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 42%; top: 78%;" 
+                                                             data-month="3月" data-type="支出" data-value="580"></div>
+                                                        <div class="point" style="background: #52c41a; left: 42%; top: 78%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 58%; top: 70%;" 
+                                                             data-month="4月" data-type="支出" data-value="750"></div>
+                                                        <div class="point" style="background: #52c41a; left: 58%; top: 70%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 75%; top: 60%;" 
+                                                             data-month="5月" data-type="支出" data-value="950"></div>
+                                                        <div class="point" style="background: #52c41a; left: 75%; top: 60%;"></div>
+                                                        
+                                                        <div class="interactive-point" style="left: 92%; top: 50%;" 
+                                                             data-month="6月" data-type="支出" data-value="1150"></div>
+                                                        <div class="point" style="background: #52c41a; left: 92%; top: 50%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- X轴标签 -->
+                                            <div class="chart-labels">
+                                                <span>1月</span>
+                                                <span>2月</span>
+                                                <span>3月</span>
+                                                <span>4月</span>
+                                                <span>5月</span>
+                                                <span>6月</span>
+                                            </div>
+                                            
+                                            <!-- 图例 -->
+                                            <div class="chart-legend">
+                                                <div class="legend-item">
+                                                    <div class="legend-color" style="background: #1890ff;"></div>
+                                                    <span>收入</span>
+                                                </div>
+                                                <div class="legend-item">
+                                                    <div class="legend-color" style="background: #52c41a;"></div>
+                                                    <span>支出</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- 提示框 -->
+                                            <div class="chart-tooltip" id="chartTooltip"></div>
+                                        </div>
                                     </div>
-                                    <div class="metric-title">采购库存</div>
-                                    <div class="metric-value">890万</div>
-                                    <div class="metric-desc">库存总值 | 12项在途物资</div>
-                                </div>
-                                
-                                <div class="metric-card" onclick="showPage('hr')">
-                                    <div class="metric-icon">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                    <div class="metric-title">团队人效</div>
-                                    <div class="metric-value">186人</div>
-                                    <div class="metric-desc">当前总人数 | 3个岗位缺口</div>
                                 </div>
                             </div>
                             
@@ -1146,6 +1906,9 @@
                 '宁陵项目': '宁陵智慧城市项目当前状态为【进行中】，整体进度75%。负责人【张三】，本周有3项任务待完成，暂无逾期风险。最新一笔回款200万元已于12月20日到账。',
                 '淮滨项目': '淮滨数字政务平台当前进度45%，负责人【李四】。存在延期风险，有2项任务已逾期，建议加强进度管控。',
                 '上个月公司花了多少钱': '💸 上月支出明细：<br/>• 人力成本：156万元（占比22%）<br/>• 设备采购：85万元（占比12%）<br/>• 运营费用：45万元（占比6%）<br/>• 营销推广：32万元（占比5%）<br/>• 总支出：707万元',
+                '财务健康度': '💊 当前财务健康度评分：<br/>• 综合得分：85分（良好）<br/>• 本月回款：1250万（环比+15.8%）<br/>• 本月支出：707万（环比+8.3%）<br/>• 毛利率：43.4%（同比+3.2%）<br/>• 现金流：健康，预计可维持6个月运营',
+                '回款趋势': '📈 近6个月回款趋势分析：<br/>• 7月：450万 → 12月：1250万<br/>• 增长率：177.8%<br/>• 主要驱动：宁陵项目按期回款<br/>• 预测：下月预计回款800万',
+                '支出趋势': '📉 近6个月支出趋势分析：<br/>• 7月：320万 → 12月：707万<br/>• 增长率：120.9%<br/>• 主要增长：人力成本+设备采购<br/>• 建议：优化运营成本结构',
                 '财务': '本月公司总收入1250万元，主要来自宁陵项目回款。总支出707万元，其中人力成本156万，设备采购85万。当前毛利率15.8%。',
                 '人员': '公司当前总人数186人，本月绩效评级：A级45人，B级125人，C级16人。Java开发工程师缺口2人，产品经理缺口1人。'
             };
@@ -1163,6 +1926,33 @@
         function askQuestion(question) {
             document.querySelector('.ai-input').value = question;
             sendMessage();
+        }
+        
+        // 财务详情下钻功能
+        function showFinanceDetail(type) {
+            // 跳转到财务分析页面，并根据类型显示对应内容
+            showPage('finance');
+            
+            // 可以根据type参数来高亮显示对应的数据区域
+            console.log('查看财务详情:', type);
+            
+            // 模拟数据下钻的反馈
+            setTimeout(() => {
+                const typeNames = {
+                    'monthly-income': '本月总回款详情',
+                    'monthly-expense': '本月总支出详情', 
+                    'project-income': '项目总回款详情',
+                    'project-expense': '项目总支出详情',
+                    'dept-budget': '部门总预算详情',
+                    'dept-expense': '部门总支出详情',
+                    'trend-analysis': '本年度收入/支出趋势分析'
+                };
+                
+                if (typeNames[type]) {
+                    // 可以在这里添加更具体的数据展示逻辑
+                    console.log(`正在查看: ${typeNames[type]}`);
+                }
+            }, 300);
         }
         
         // 初始化聊天界面
@@ -1201,10 +1991,193 @@
             `;
         }
         
+        // AI洞察报告页面
+        function showAIReport() {
+            // 创建AI报告页面内容
+            const reportContent = `
+                <div class="page-header">
+                    <h2><i class="fas fa-robot"></i> AI经营分析报告</h2>
+                    <p>基于数据智能分析生成 - 更新时间：今日 09:00</p>
+                </div>
+                
+                <div class="report-sections">
+                    <div class="report-section">
+                        <h3>📊 核心数据看板</h3>
+                        <div class="report-metrics">
+                            <div class="report-metric">
+                                <span class="metric-label">本月营收</span>
+                                <span class="metric-value">¥1,250万</span>
+                                <span class="metric-trend positive">+15.8%</span>
+                            </div>
+                            <div class="report-metric">
+                                <span class="metric-label">毛利率</span>
+                                <span class="metric-value">43.4%</span>
+                                <span class="metric-trend positive">+3.2%</span>
+                            </div>
+                            <div class="report-metric">
+                                <span class="metric-label">项目进度</span>
+                                <span class="metric-value">75%</span>
+                                <span class="metric-trend neutral">正常</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-section">
+                        <h3>📈 趋势分析</h3>
+                        <p>• 收入趋势：近6个月持续增长，增长率177.8%</p>
+                        <p>• 成本控制：支出增长率120.9%，低于收入增长</p>
+                        <p>• 现金流：健康，可维持6个月运营</p>
+                    </div>
+                    
+                    <div class="report-section">
+                        <h3>⚠️ 风险预警</h3>
+                        <div class="risk-item high">
+                            <strong>高风险：</strong>淮滨项目存在回款延期风险，建议优先处理
+                        </div>
+                        <div class="risk-item medium">
+                            <strong>中风险：</strong>Java开发工程师缺口2人，可能影响项目进度
+                        </div>
+                    </div>
+                    
+                    <div class="report-section">
+                        <h3>💡 AI建议</h3>
+                        <p>1. 加强淮滨项目的回款催收工作</p>
+                        <p>2. 优先招聘Java开发工程师补充团队</p>
+                        <p>3. 继续保持宁陵项目的良好执行节奏</p>
+                    </div>
+                </div>
+            `;
+            
+            // 如果AI报告页面不存在，创建它
+            let aiReportPage = document.getElementById('ai-report');
+            if (!aiReportPage) {
+                aiReportPage = document.createElement('div');
+                aiReportPage.id = 'ai-report';
+                aiReportPage.className = 'page';
+                aiReportPage.innerHTML = reportContent;
+                document.querySelector('.phone-screen').appendChild(aiReportPage);
+            }
+            
+            showPage('ai-report');
+        }
+        
+        // 行动中心页面
+        function showActionCenter() {
+            const actionContent = `
+                <div class="page-header">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 行动中心</h2>
+                    <p>待处理事项和风险预警</p>
+                </div>
+                
+                <div class="action-sections">
+                    <div class="action-section">
+                        <h3>📋 待您审批 (2项)</h3>
+                        <div class="action-item pending">
+                            <div class="action-title">宁陵项目第四期付款申请</div>
+                            <div class="action-desc">申请人：张三 | 金额：300万元</div>
+                            <div class="action-time">2小时前</div>
+                        </div>
+                        <div class="action-item pending">
+                            <div class="action-title">新员工入职审批</div>
+                            <div class="action-desc">申请人：HR部门 | Java开发工程师</div>
+                            <div class="action-time">1天前</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-section">
+                        <h3>🚨 高风险预警 (3项)</h3>
+                        <div class="action-item risk">
+                            <div class="action-title">淮滨项目回款延期</div>
+                            <div class="action-desc">预期回款：500万元 | 已延期：5天</div>
+                            <div class="action-time">紧急</div>
+                        </div>
+                        <div class="action-item risk">
+                            <div class="action-title">商丘项目进度滞后</div>
+                            <div class="action-desc">当前进度：30% | 应达进度：50%</div>
+                            <div class="action-time">3天前</div>
+                        </div>
+                        <div class="action-item risk">
+                            <div class="action-title">关键人员离职风险</div>
+                            <div class="action-desc">技术总监提交离职申请</div>
+                            <div class="action-time">1天前</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-section">
+                        <h3>🎯 关键机会点 (1项)</h3>
+                        <div class="action-item opportunity">
+                            <div class="action-title">郑州市政府新项目机会</div>
+                            <div class="action-desc">预计合同额：1200万元 | 投标截止：7天</div>
+                            <div class="action-time">机会</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            let actionCenterPage = document.getElementById('action-center');
+            if (!actionCenterPage) {
+                actionCenterPage = document.createElement('div');
+                actionCenterPage.id = 'action-center';
+                actionCenterPage.className = 'page';
+                actionCenterPage.innerHTML = actionContent;
+                document.querySelector('.phone-screen').appendChild(actionCenterPage);
+            }
+            
+            showPage('action-center');
+        }
+
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function() {
             initChatMessages();
+            initChartInteraction();
         });
+        
+        // 初始化图表交互功能
+        function initChartInteraction() {
+            const interactivePoints = document.querySelectorAll('.interactive-point');
+            const tooltip = document.getElementById('chartTooltip');
+            
+            interactivePoints.forEach(point => {
+                // 鼠标进入显示提示框
+                point.addEventListener('mouseenter', function(e) {
+                    const month = this.getAttribute('data-month');
+                    const type = this.getAttribute('data-type');
+                    const value = this.getAttribute('data-value');
+                    
+                    tooltip.innerHTML = `
+                        <div>${month} ${type}</div>
+                        <div style="font-weight: bold; color: #ffd700;">¥${value}万</div>
+                    `;
+                    
+                    const rect = this.getBoundingClientRect();
+                    const containerRect = this.closest('.chart-container').getBoundingClientRect();
+                    
+                    tooltip.style.left = (rect.left - containerRect.left + rect.width / 2) + 'px';
+                    tooltip.style.top = (rect.top - containerRect.top - 10) + 'px';
+                    tooltip.classList.add('show');
+                });
+                
+                // 鼠标离开隐藏提示框
+                point.addEventListener('mouseleave', function() {
+                    tooltip.classList.remove('show');
+                });
+                
+                // 点击显示详细信息
+                point.addEventListener('click', function(e) {
+                    e.stopPropagation(); // 阻止事件冒泡
+                    
+                    const month = this.getAttribute('data-month');
+                    const type = this.getAttribute('data-type');
+                    const value = this.getAttribute('data-value');
+                    
+                    // 模拟显示详细信息
+                    alert(`${month} ${type}详情:\n金额: ¥${value}万\n\n点击确定查看更多详细数据...`);
+                    
+                    // 这里可以添加更复杂的交互，比如弹出详细的数据面板
+                    console.log(`查看详情: ${month} ${type} - ¥${value}万`);
+                });
+            });
+        }
     </script>
                 </div>
             </div>
