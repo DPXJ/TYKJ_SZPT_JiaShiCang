@@ -1786,6 +1786,779 @@
             font-size: 10px;
         }
 
+        /* 团队与人效洞察模块 */
+        .team-efficiency-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .team-efficiency-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .team-efficiency-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .team-efficiency-title i {
+            color: #667eea;
+        }
+        
+        .team-efficiency-more {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .team-efficiency-more:hover {
+            color: #764ba2;
+        }
+        
+        /* 人力资源概览 */
+        .hr-overview {
+            margin-bottom: 15px;
+        }
+        
+        .hr-overview-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .hr-overview-title i {
+            color: #667eea;
+            font-size: 14px;
+        }
+        
+        .hr-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        
+        .hr-metric-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e9ecef;
+        }
+        
+        .hr-metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .hr-metric-label {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        
+        .hr-metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+        
+        .hr-metric-trend {
+            font-size: 10px;
+            padding: 1px 4px;
+            border-radius: 8px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .hr-metric-trend.positive {
+            background: #f6ffed;
+            color: #52c41a;
+        }
+        
+        .hr-metric-trend.negative {
+            background: #fff2f0;
+            color: #ff4d4f;
+        }
+        
+        .hr-metric-trend.neutral {
+            background: #f0f8ff;
+            color: #1890ff;
+        }
+        
+        /* 任务健康度总览 */
+        .task-health-overview {
+            margin-bottom: 15px;
+        }
+        
+        .task-health-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .task-health-title i {
+            color: #52c41a;
+            font-size: 14px;
+        }
+        
+        .task-health-card {
+            background: linear-gradient(135deg, #f6ffed 0%, #f0f8ff 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #d9f7be;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .task-health-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(82, 196, 26, 0.15);
+        }
+        
+        .task-total {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .task-total-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .task-total-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .task-breakdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .task-breakdown-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .task-breakdown-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .task-breakdown-icon.normal {
+            background: #52c41a;
+        }
+        
+        .task-breakdown-icon.delayed {
+            background: #ff4d4f;
+        }
+        
+        .task-breakdown-text {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .task-progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        
+        .task-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #52c41a 0%, #ff4d4f 100%);
+            transition: width 0.3s ease;
+        }
+        
+        /* 部门效能分析 */
+        .dept-efficiency {
+            margin-bottom: 15px;
+        }
+        
+        .dept-efficiency-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dept-efficiency-title i {
+            color: #1890ff;
+            font-size: 14px;
+        }
+        
+        .dept-chart {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .dept-chart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dept-chart-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            padding: 8px;
+            margin: 4px 0;
+        }
+        
+        .dept-chart-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dept-name {
+            width: 60px;
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .dept-bar-container {
+            flex: 1;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .dept-bar {
+            height: 100%;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .dept-bar-normal {
+            background: #52c41a;
+            transition: width 0.3s ease;
+        }
+        
+        .dept-bar-delayed {
+            background: #ff4d4f;
+            transition: width 0.3s ease;
+        }
+        
+        .dept-count {
+            font-size: 12px;
+            color: #333;
+            font-weight: 500;
+            min-width: 40px;
+            text-align: right;
+        }
+        
+        /* 关键绩效排行 */
+        .performance-rankings {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .performance-section {
+            width: 100%;
+        }
+        
+        .performance-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .performance-title i {
+            color: #fa8c16;
+            font-size: 14px;
+        }
+        
+        .performance-list {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .performance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .performance-item:hover {
+            background: rgba(250, 140, 22, 0.05);
+            border-radius: 8px;
+            padding: 12px 8px;
+            margin: 0 -8px;
+        }
+        
+        .performance-item:last-child {
+            border-bottom: none;
+        }
+        
+        .performance-rank {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rank-number {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rank-number.top3 {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+        }
+        
+        .performance-name {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .performance-value {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .performance-extra {
+            font-size: 12px;
+            color: #999;
+            margin-top: 2px;
+        }
+        
+        /* 紧凑型绩效排行样式 */
+        .performance-list-compact {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .performance-item-compact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .performance-item-compact:hover {
+            background: rgba(250, 140, 22, 0.05);
+            border-radius: 6px;
+            padding: 8px 6px;
+            margin: 0 -6px;
+        }
+        
+        .performance-item-compact:last-child {
+            border-bottom: none;
+        }
+        
+        .performance-rank-compact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rank-number-compact {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rank-number-compact.top3 {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+        }
+        
+        .performance-info-compact {
+            flex: 1;
+        }
+        
+        .performance-name-compact {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        
+        .performance-extra-compact {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .performance-value-compact {
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        /* 紧凑型部门绩效图表 */
+        .dept-performance-chart-compact {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .dept-performance-item-compact {
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        
+        .dept-performance-item-compact:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .dept-performance-item-compact:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dept-performance-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        
+        .dept-performance-name-compact {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .dept-performance-score-compact {
+            font-size: 13px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .dept-performance-bar-container-compact {
+            position: relative;
+            height: 16px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .dept-performance-bar-compact {
+            height: 100%;
+            position: relative;
+            border-radius: 8px;
+            transition: width 0.3s ease;
+        }
+        
+        .dept-performance-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+        }
+        
+        .dept-performance-percentage {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        /* 可折叠绩效排行样式 */
+        .performance-title-collapsible {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 3px;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .performance-title-collapsible:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .performance-title-content {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .performance-title-content i {
+            font-size: 12px;
+        }
+        
+        .performance-toggle-icon {
+            font-size: 12px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .performance-toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* 折叠状态样式 */
+        .collapsed {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .expanded {
+            max-height: 500px;
+            opacity: 1;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        /* 绩效排行区域间距调整 */
+        .performance-section {
+            margin-bottom: 4px;
+        }
+        
+        .performance-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 部门绩效图表 */
+        .dept-performance-chart {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .dept-performance-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dept-performance-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            padding: 8px;
+            margin: 7px 0;
+        }
+        
+        .dept-performance-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dept-performance-name {
+            width: 50px;
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .dept-performance-bar-container {
+            flex: 1;
+            height: 24px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .dept-performance-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+        
+        .dept-performance-target {
+            position: absolute;
+            right: 15%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ff4d4f;
+            opacity: 0.8;
+        }
+        
+        .dept-performance-score {
+            font-size: 13px;
+            color: #333;
+            font-weight: 600;
+            min-width: 35px;
+            text-align: right;
+        }
+        
+        /* 重点项目进展 */
+        .key-project-progress {
+            margin-bottom: 20px;
+        }
+        
+        .key-project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .key-project-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .key-project-title i {
+            color: #667eea;
+            font-size: 14px;
+        }
+        
+        .key-project-more {
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .key-project-more:hover {
+            color: #764ba2;
+        }
+        
+        .key-project-content {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .key-project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .key-project-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            padding: 12px 8px;
+            margin: 0 -8px;
+        }
+        
+        .key-project-item:last-child {
+            border-bottom: none;
+        }
+        
+        .key-project-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .key-project-info p {
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .key-project-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
         /* 财务健康度模块 */
         .finance-health-card {
             background: white;
@@ -2568,6 +3341,33 @@
                                     </div>
                                 </div>
                                 
+                                <!-- 重点项目进展 -->
+                                <div class="key-project-progress">
+                                    <div class="key-project-header">
+                                        <div class="key-project-title">
+                                            <i class="fas fa-tasks"></i>
+                                            重点项目进展
+                                        </div>
+                                        <div class="key-project-more">查看全部 →</div>
+                                    </div>
+                                    <div class="key-project-content">
+                                        <div class="key-project-item" onclick="showProjectDetail('ningling')">
+                                            <div class="key-project-info">
+                                                <h4>宁陵智慧城市项目</h4>
+                                                <p>负责人：张三 | 进度：75%</p>
+                                            </div>
+                                            <div class="key-project-status status-success">正常</div>
+                                        </div>
+                                        <div class="key-project-item" onclick="showProjectDetail('huaibin')">
+                                            <div class="key-project-info">
+                                                <h4>淮滨数字政务平台</h4>
+                                                <p>负责人：李四 | 进度：45%</p>
+                                            </div>
+                                            <div class="key-project-status status-warning">延期风险</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <!-- 核心项目排行 -->
                                 <div class="project-rankings">
                                     <div class="project-rankings-header">
@@ -2612,24 +3412,7 @@
                                                 <div class="project-value">¥800万</div>
                                             </div>
                                         </div>
-                                        <div class="project-item" onclick="showProjectDetail('kaifeng')">
-                                            <div class="project-info">
-                                                <div class="project-name">开封科技园项目</div>
-                                                <div class="project-client">开封科技园 | KF2024004</div>
-                                            </div>
-                                            <div class="project-metric">
-                                                <div class="project-value">¥600万</div>
-                                            </div>
-                                        </div>
-                                        <div class="project-item" onclick="showProjectDetail('zhengzhou')">
-                                            <div class="project-info">
-                                                <div class="project-name">郑州智能交通系统</div>
-                                                <div class="project-client">郑州市交通局 | ZZ2024005</div>
-                                            </div>
-                                            <div class="project-metric">
-                                                <div class="project-value">¥500万</div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     
                                     <div class="project-view-all">
@@ -2797,6 +3580,239 @@
                                 </div>
                             </div>
                             
+                            <!-- 团队与人效洞察模块 -->
+                            <div class="team-efficiency-card">
+                                <div class="team-efficiency-header">
+                                    <div class="team-efficiency-title">
+                                        <i class="fas fa-users"></i>
+                                        团队与人效洞察
+                                    </div>
+                                    <a href="#" class="team-efficiency-more" onclick="showTeamAnalytics()">查看详情 →</a>
+                                </div>
+                                
+                                <!-- 人力资源概览 -->
+                                <div class="hr-overview">
+                                    <div class="hr-overview-title">
+                                        <i class="fas fa-user-friends"></i>
+                                        人力资源概览
+                                    </div>
+                                    <div class="hr-metrics-grid">
+                                        <div class="hr-metric-card" onclick="showHRDetail('current-staff')">
+                                            <div class="hr-metric-label">当前在职人数</div>
+                                            <div class="hr-metric-value">186人</div>
+                                            <div class="hr-metric-trend neutral">稳定</div>
+                                        </div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('talent-gap')">
+                                            <div class="hr-metric-label">人才缺口数</div>
+                                            <div class="hr-metric-value">3人</div>
+                                            <div class="hr-metric-trend negative">招聘中</div>
+                                        </div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('new-employees')">
+                                            <div class="hr-metric-label">本月新增员工</div>
+                                            <div class="hr-metric-value">5人</div>
+                                            <div class="hr-metric-trend positive">+25%</div>
+                                        </div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('resigned-employees')">
+                                            <div class="hr-metric-label">本月离职人数</div>
+                                            <div class="hr-metric-value">2人</div>
+                                            <div class="hr-metric-trend positive">-50%</div>
+                                        </div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('core-talent-loss')">
+                                            <div class="hr-metric-label">核心人才流失率</div>
+                                            <div class="hr-metric-value">1.2%</div>
+                                            <div class="hr-metric-trend positive">健康</div>
+                                        </div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('avg-tenure')">
+                                            <div class="hr-metric-label">团队平均司龄</div>
+                                            <div class="hr-metric-value">2.8年</div>
+                                            <div class="hr-metric-trend positive">+0.3年</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 任务健康度总览 -->
+                                <div class="task-health-overview">
+                                    <div class="task-health-title">
+                                        <i class="fas fa-heartbeat"></i>
+                                        任务健康度总览
+                                    </div>
+                                    <div class="task-health-card" onclick="showTaskHealth()">
+                                        <div class="task-total">
+                                            <div class="task-total-label">总任务数</div>
+                                            <div class="task-total-value">156</div>
+                                        </div>
+                                        <div class="task-breakdown">
+                                            <div class="task-breakdown-item">
+                                                <div class="task-breakdown-icon normal"></div>
+                                                <div class="task-breakdown-text">正常任务：142</div>
+                                            </div>
+                                            <div class="task-breakdown-item">
+                                                <div class="task-breakdown-icon delayed"></div>
+                                                <div class="task-breakdown-text">延期任务：14</div>
+                                            </div>
+                                        </div>
+                                        <div class="task-progress-bar">
+                                            <div class="task-progress-fill" style="width: 91%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 部门效能分析 -->
+                                <div class="dept-efficiency">
+                                    <div class="dept-efficiency-title">
+                                        <i class="fas fa-chart-bar"></i>
+                                        各部门任务分布与健康度
+                                    </div>
+                                    <div class="dept-chart">
+                                        <div class="dept-chart-item" onclick="showDeptTasks('research')">
+                                            <div class="dept-name">研发部</div>
+                                            <div class="dept-bar-container">
+                                                <div class="dept-bar">
+                                                    <div class="dept-bar-normal" style="width: 75%;"></div>
+                                                    <div class="dept-bar-delayed" style="width: 25%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-count">68个</div>
+                                        </div>
+                                        <div class="dept-chart-item" onclick="showDeptTasks('market')">
+                                            <div class="dept-name">市场部</div>
+                                            <div class="dept-bar-container">
+                                                <div class="dept-bar">
+                                                    <div class="dept-bar-normal" style="width: 85%;"></div>
+                                                    <div class="dept-bar-delayed" style="width: 15%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-count">32个</div>
+                                        </div>
+                                        <div class="dept-chart-item" onclick="showDeptTasks('operations')">
+                                            <div class="dept-name">运营部</div>
+                                            <div class="dept-bar-container">
+                                                <div class="dept-bar">
+                                                    <div class="dept-bar-normal" style="width: 90%;"></div>
+                                                    <div class="dept-bar-delayed" style="width: 10%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-count">28个</div>
+                                        </div>
+                                        <div class="dept-chart-item" onclick="showDeptTasks('sales')">
+                                            <div class="dept-name">销售部</div>
+                                            <div class="dept-bar-container">
+                                                <div class="dept-bar">
+                                                    <div class="dept-bar-normal" style="width: 95%;"></div>
+                                                    <div class="dept-bar-delayed" style="width: 5%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-count">18个</div>
+                                        </div>
+                                        <div class="dept-chart-item" onclick="showDeptTasks('admin')">
+                                            <div class="dept-name">行政部</div>
+                                            <div class="dept-bar-container">
+                                                <div class="dept-bar">
+                                                    <div class="dept-bar-normal" style="width: 100%;"></div>
+                                                    <div class="dept-bar-delayed" style="width: 0%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-count">10个</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 关键绩效排行 -->
+                                <div class="performance-rankings" style="margin-top: 6px;">
+                                    <!-- 研发工时排行 -->
+                                    <div class="performance-section">
+                                        <div class="performance-title-collapsible" onclick="togglePerformanceSection('workHours')">
+                                            <div class="performance-title-content">
+                                                <i class="fas fa-clock"></i>
+                                                研发工时排行 (TOP 3)
+                                            </div>
+                                            <i class="fas fa-chevron-down performance-toggle-icon" id="workHoursToggle"></i>
+                                        </div>
+                                        <div class="performance-list-compact collapsed" id="workHoursList">
+                                            <div class="performance-item-compact" onclick="showEmployeeDetail('zhangsan')">
+                                                <div class="performance-rank-compact">
+                                                    <div class="rank-number-compact top3">1</div>
+                                                    <div class="performance-info-compact">
+                                                        <div class="performance-name-compact">张三</div>
+                                                        <div class="performance-extra-compact">完成任务：15个</div>
+                                                    </div>
+                                                </div>
+                                                <div class="performance-value-compact">180h</div>
+                                            </div>
+                                            <div class="performance-item-compact" onclick="showEmployeeDetail('lisi')">
+                                                <div class="performance-rank-compact">
+                                                    <div class="rank-number-compact top3">2</div>
+                                                    <div class="performance-info-compact">
+                                                        <div class="performance-name-compact">李四</div>
+                                                        <div class="performance-extra-compact">完成任务：12个</div>
+                                                    </div>
+                                                </div>
+                                                <div class="performance-value-compact">165h</div>
+                                            </div>
+                                            <div class="performance-item-compact" onclick="showEmployeeDetail('wangwu')">
+                                                <div class="performance-rank-compact">
+                                                    <div class="rank-number-compact top3">3</div>
+                                                    <div class="performance-info-compact">
+                                                        <div class="performance-name-compact">王五</div>
+                                                        <div class="performance-extra-compact">完成任务：11个</div>
+                                                    </div>
+                                                </div>
+                                                <div class="performance-value-compact">158h</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 部门绩效得分 -->
+                                    <div class="performance-section">
+                                        <div class="performance-title-collapsible" onclick="togglePerformanceSection('deptScore')">
+                                            <div class="performance-title-content">
+                                                <i class="fas fa-trophy"></i>
+                                                各部门绩效得分
+                                            </div>
+                                            <i class="fas fa-chevron-down performance-toggle-icon" id="deptScoreToggle"></i>
+                                        </div>
+                                        <div class="dept-performance-chart-compact collapsed" id="deptScoreChart">
+                                            <div class="dept-performance-item-compact" onclick="showDeptPerformance('research')">
+                                                <div class="dept-performance-info">
+                                                    <div class="dept-performance-name-compact">研发</div>
+                                                    <div class="dept-performance-score-compact">92分</div>
+                                                </div>
+                                                <div class="dept-performance-bar-container-compact">
+                                                    <div class="dept-performance-bar-compact" style="width: 92%;">
+                                                        <div class="dept-performance-fill"></div>
+                                                    </div>
+                                                    <div class="dept-performance-percentage">92%</div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-performance-item-compact" onclick="showDeptPerformance('sales')">
+                                                <div class="dept-performance-info">
+                                                    <div class="dept-performance-name-compact">销售</div>
+                                                    <div class="dept-performance-score-compact">88分</div>
+                                                </div>
+                                                <div class="dept-performance-bar-container-compact">
+                                                    <div class="dept-performance-bar-compact" style="width: 88%;">
+                                                        <div class="dept-performance-fill"></div>
+                                                    </div>
+                                                    <div class="dept-performance-percentage">88%</div>
+                                                </div>
+                                            </div>
+                                            <div class="dept-performance-item-compact" onclick="showDeptPerformance('market')">
+                                                <div class="dept-performance-info">
+                                                    <div class="dept-performance-name-compact">市场</div>
+                                                    <div class="dept-performance-score-compact">85分</div>
+                                                </div>
+                                                <div class="dept-performance-bar-container-compact">
+                                                    <div class="dept-performance-bar-compact" style="width: 85%;">
+                                                        <div class="dept-performance-fill"></div>
+                                                    </div>
+                                                    <div class="dept-performance-percentage">85%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <!-- 财务健康度模块 -->
                             <div class="finance-health-card">
                                 <div class="finance-health-header">
@@ -2950,50 +3966,7 @@
                                 </div>
                             </div>
                             
-                            <!-- 业务模块 -->
-                            <div class="business-modules">
-                                <div class="module-card" onclick="showPage('projects')">
-                                    <div class="module-header">
-                                        <div class="module-title">
-                                            <i class="fas fa-tasks"></i>
-                                            重点项目进展
-                                        </div>
-                                        <div class="module-more">查看全部 →</div>
-                                    </div>
-                                    <div class="module-content">
-                                        <div class="list-item">
-                                            <div class="item-info">
-                                                <h4>宁陵智慧城市项目</h4>
-                                                <p>负责人：张三 | 进度：75%</p>
-                                            </div>
-                                            <div class="item-status status-success">正常</div>
-                                        </div>
-                                        <div class="list-item">
-                                            <div class="item-info">
-                                                <h4>淮滨数字政务平台</h4>
-                                                <p>负责人：李四 | 进度：45%</p>
-                                            </div>
-                                            <div class="item-status status-warning">延期风险</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="module-card" onclick="showPage('ai-report')">
-                                    <div class="module-header">
-                                        <div class="module-title">
-                                            <i class="fas fa-robot"></i>
-                                            AI经营日报
-                                        </div>
-                                        <div class="module-more">查看详情 →</div>
-                                    </div>
-                                    <div class="module-content">
-                                        <p><strong>今日重点：</strong>宁陵项目回款200万已到账，淮滨项目需关注进度风险，市场部支出超预算30%。</p>
-                                        <p style="margin-top: 8px; color: #999; font-size: 13px;">
-                                            <i class="far fa-clock"></i> 上次更新：今天 09:00
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     
@@ -3464,6 +4437,79 @@
                     document.body.removeChild(toast);
                 }, 300);
             }, 3000);
+        }
+        
+        // 团队与人效相关功能
+        function showTeamAnalytics() {
+            showToast('正在跳转到团队效能分析页面');
+            // 这里可以添加跳转到详细分析页面的逻辑
+        }
+        
+        function showHRDetail(type) {
+            const typeNames = {
+                'current-staff': '当前在职人数详情',
+                'talent-gap': '人才缺口详情',
+                'new-employees': '新增员工详情',
+                'resigned-employees': '离职员工详情',
+                'core-talent-loss': '核心人才流失率详情',
+                'avg-tenure': '平均司龄详情'
+            };
+            showToast(`正在查看：${typeNames[type] || '人力资源详情'}`);
+        }
+        
+        function showTaskHealth() {
+            showToast('正在查看任务健康度详情');
+        }
+        
+        function showDeptTasks(dept) {
+            const deptNames = {
+                'research': '研发部',
+                'market': '市场部', 
+                'operations': '运营部',
+                'sales': '销售部',
+                'admin': '行政部'
+            };
+            showToast(`正在查看${deptNames[dept] || '部门'}任务详情`);
+        }
+        
+        function showEmployeeDetail(employee) {
+            const employeeNames = {
+                'zhangsan': '张三',
+                'lisi': '李四',
+                'wangwu': '王五',
+                'zhaoliu': '赵六',
+                'sunqi': '孙七'
+            };
+            showToast(`正在查看${employeeNames[employee] || '员工'}工作详情`);
+        }
+        
+        function showDeptPerformance(dept) {
+            const deptNames = {
+                'research': '研发部',
+                'market': '市场部',
+                'operations': '运营部', 
+                'sales': '销售部',
+                'admin': '行政部'
+            };
+            showToast(`正在查看${deptNames[dept] || '部门'}绩效详情`);
+        }
+        
+        // 切换绩效排行折叠状态
+        function togglePerformanceSection(sectionId) {
+            const contentElement = document.getElementById(sectionId === 'workHours' ? 'workHoursList' : 'deptScoreChart');
+            const toggleIcon = document.getElementById(sectionId === 'workHours' ? 'workHoursToggle' : 'deptScoreToggle');
+            
+            if (contentElement.classList.contains('collapsed')) {
+                // 展开
+                contentElement.classList.remove('collapsed');
+                contentElement.classList.add('expanded');
+                toggleIcon.classList.add('rotated');
+            } else {
+                // 折叠
+                contentElement.classList.remove('expanded');
+                contentElement.classList.add('collapsed');
+                toggleIcon.classList.remove('rotated');
+            }
         }
         
         // 财务详情下钻功能
