@@ -422,6 +422,247 @@
             color: #764ba2;
         }
         
+        /* 项目价值洞察模块 */
+        .project-insights-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .project-insights-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .project-insights-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .project-insights-title i {
+            color: #667eea;
+        }
+        
+        /* 时间范围切换器 */
+        .time-range-toggle {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 2px;
+            font-size: 11px;
+        }
+        
+        .time-range-option {
+            padding: 4px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .time-range-option.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* 项目状态矩阵 */
+        .project-status-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .project-status-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 10px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .project-status-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+        
+        .project-status-card.warning {
+            border-color: #f5222d;
+            background: #fff2f0;
+        }
+        
+        .project-status-label {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .project-status-main {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        
+        .project-status-main.warning {
+            color: #f5222d;
+        }
+        
+        .project-status-sub {
+            font-size: 9px;
+            color: #999;
+        }
+        
+        /* 核心项目排行 */
+        .project-rankings {
+            margin-top: 15px;
+        }
+        
+        .project-rankings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .project-rankings-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* 标签页导航 */
+        .project-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 2px;
+            margin-bottom: 10px;
+            overflow-x: auto;
+        }
+        
+        .project-tab {
+            flex: 1;
+            padding: 6px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+            font-size: 10px;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .project-tab.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* 项目列表 */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .project-item:hover {
+            background: #f0f8ff;
+            transform: translateX(3px);
+        }
+        
+        .project-info {
+            flex: 1;
+        }
+        
+        .project-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        
+        .project-client {
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .project-metric {
+            text-align: right;
+        }
+        
+        .project-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .project-progress {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .progress-bar-mini {
+            width: 40px;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill-mini {
+            height: 100%;
+            background: #52c41a;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .project-view-all {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .project-view-all-link {
+            color: #667eea;
+            font-size: 11px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .project-view-all-link:hover {
+            color: #764ba2;
+        }
+        
         /* AI报告页面样式 */
         .page-header {
             padding: 20px;
@@ -1296,6 +1537,123 @@
                                 </div>
                             </div>
                             
+                            <!-- 项目价值洞察模块 -->
+                            <div class="project-insights-card">
+                                <div class="project-insights-header">
+                                    <div class="project-insights-title">
+                                        <i class="fas fa-project-diagram"></i>
+                                        项目价值洞察
+                                    </div>
+                                    <div class="time-range-toggle">
+                                        <div class="time-range-option active" onclick="switchTimeRange('current')">当月</div>
+                                        <div class="time-range-option" onclick="switchTimeRange('all')">全部</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 项目状态矩阵 -->
+                                <div class="project-status-matrix">
+                                    <div class="project-status-card" onclick="showProjectCenter('new')">
+                                        <div class="project-status-label">新签订项目</div>
+                                        <div class="project-status-main">5个</div>
+                                        <div class="project-status-sub">¥2,500万</div>
+                                    </div>
+                                    <div class="project-status-card" onclick="showProjectCenter('ongoing')">
+                                        <div class="project-status-label">进行中项目</div>
+                                        <div class="project-status-main">25个</div>
+                                        <div class="project-status-sub">¥1.2亿</div>
+                                    </div>
+                                    <div class="project-status-card" onclick="showProjectCenter('acceptance')">
+                                        <div class="project-status-label">验收中项目</div>
+                                        <div class="project-status-main">3个</div>
+                                        <div class="project-status-sub">¥800万</div>
+                                    </div>
+                                    <div class="project-status-card warning" onclick="showProjectCenter('overdue')">
+                                        <div class="project-status-label">已逾期项目</div>
+                                        <div class="project-status-main warning">2个</div>
+                                        <div class="project-status-sub">¥500万</div>
+                                    </div>
+                                    <div class="project-status-card" onclick="showProjectCenter('pending-payment')">
+                                        <div class="project-status-label">待回款项目</div>
+                                        <div class="project-status-main">8个</div>
+                                        <div class="project-status-sub">¥1,800万</div>
+                                    </div>
+                                    <div class="project-status-card" onclick="showProjectCenter('completed-payment')">
+                                        <div class="project-status-label">已回款项目</div>
+                                        <div class="project-status-main">12个</div>
+                                        <div class="project-status-sub">¥3,200万</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 核心项目排行 -->
+                                <div class="project-rankings">
+                                    <div class="project-rankings-header">
+                                        <div class="project-rankings-title">核心项目排行</div>
+                                    </div>
+                                    
+                                    <!-- 标签页导航 -->
+                                    <div class="project-tabs">
+                                        <div class="project-tab active" onclick="switchProjectTab('amount')">按项目金额</div>
+                                        <div class="project-tab" onclick="switchProjectTab('progress')">按当前进度</div>
+                                        <div class="project-tab" onclick="switchProjectTab('tasks')">按任务数量</div>
+                                        <div class="project-tab" onclick="switchProjectTab('date')">按签订时间</div>
+                                    </div>
+                                    
+                                    <!-- 项目列表 -->
+                                    <div class="project-list" id="projectList">
+                                        <!-- 默认按金额排序 -->
+                                        <div class="project-item" onclick="showProjectDetail('huaibin')">
+                                            <div class="project-info">
+                                                <div class="project-name">淮滨智慧农业项目</div>
+                                                <div class="project-client">淮滨县政府 | HB2024001</div>
+                                            </div>
+                                            <div class="project-metric">
+                                                <div class="project-value">¥1,500万</div>
+                                            </div>
+                                        </div>
+                                        <div class="project-item" onclick="showProjectDetail('ningling')">
+                                            <div class="project-info">
+                                                <div class="project-name">宁陵智慧城市项目</div>
+                                                <div class="project-client">宁陵县政府 | NL2024002</div>
+                                            </div>
+                                            <div class="project-metric">
+                                                <div class="project-value">¥1,200万</div>
+                                            </div>
+                                        </div>
+                                        <div class="project-item" onclick="showProjectDetail('shangqiu')">
+                                            <div class="project-info">
+                                                <div class="project-name">商丘数字政务平台</div>
+                                                <div class="project-client">商丘市政府 | SQ2024003</div>
+                                            </div>
+                                            <div class="project-metric">
+                                                <div class="project-value">¥800万</div>
+                                            </div>
+                                        </div>
+                                        <div class="project-item" onclick="showProjectDetail('kaifeng')">
+                                            <div class="project-info">
+                                                <div class="project-name">开封科技园项目</div>
+                                                <div class="project-client">开封科技园 | KF2024004</div>
+                                            </div>
+                                            <div class="project-metric">
+                                                <div class="project-value">¥600万</div>
+                                            </div>
+                                        </div>
+                                        <div class="project-item" onclick="showProjectDetail('zhengzhou')">
+                                            <div class="project-info">
+                                                <div class="project-name">郑州智能交通系统</div>
+                                                <div class="project-client">郑州市交通局 | ZZ2024005</div>
+                                            </div>
+                                            <div class="project-metric">
+                                                <div class="project-value">¥500万</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-view-all">
+                                        <a href="#" class="project-view-all-link" onclick="showProjectCenter('all')">查看全部 ></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <!-- 财务健康度模块 -->
                             <div class="finance-health-card">
                                 <div class="finance-health-header">
@@ -2126,6 +2484,137 @@
             }
             
             showPage('action-center');
+        }
+
+        // 项目价值洞察交互功能
+        
+        // 时间范围切换
+        function switchTimeRange(range) {
+            // 更新切换器状态
+            document.querySelectorAll('.time-range-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 模拟数据刷新
+            console.log('切换时间范围:', range);
+            
+            // 这里可以添加数据刷新逻辑
+            if (range === 'current') {
+                // 当月数据
+                updateProjectData('current');
+            } else {
+                // 全部数据  
+                updateProjectData('all');
+            }
+        }
+        
+        // 项目标签页切换
+        function switchProjectTab(tabType) {
+            // 更新标签页状态
+            document.querySelectorAll('.project-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 更新项目列表内容
+            updateProjectList(tabType);
+        }
+        
+        // 更新项目列表
+        function updateProjectList(sortType) {
+            const projectList = document.getElementById('projectList');
+            let listContent = '';
+            
+            const projectData = {
+                amount: [
+                    { name: '淮滨智慧农业项目', client: '淮滨县政府 | HB2024001', value: '¥1,500万', id: 'huaibin' },
+                    { name: '宁陵智慧城市项目', client: '宁陵县政府 | NL2024002', value: '¥1,200万', id: 'ningling' },
+                    { name: '商丘数字政务平台', client: '商丘市政府 | SQ2024003', value: '¥800万', id: 'shangqiu' },
+                    { name: '开封科技园项目', client: '开封科技园 | KF2024004', value: '¥600万', id: 'kaifeng' },
+                    { name: '郑州智能交通系统', client: '郑州市交通局 | ZZ2024005', value: '¥500万', id: 'zhengzhou' }
+                ],
+                progress: [
+                    { name: '商丘数字政务平台', client: '商丘市政府 | SQ2024003', progress: 85, id: 'shangqiu' },
+                    { name: '宁陵智慧城市项目', client: '宁陵县政府 | NL2024002', progress: 75, id: 'ningling' },
+                    { name: '开封科技园项目', client: '开封科技园 | KF2024004', progress: 65, id: 'kaifeng' },
+                    { name: '郑州智能交通系统', client: '郑州市交通局 | ZZ2024005', progress: 45, id: 'zhengzhou' },
+                    { name: '淮滨智慧农业项目', client: '淮滨县政府 | HB2024001', progress: 35, id: 'huaibin' }
+                ],
+                tasks: [
+                    { name: '淮滨智慧农业项目', client: '淮滨县政府 | HB2024001', tasks: 45, id: 'huaibin' },
+                    { name: '宁陵智慧城市项目', client: '宁陵县政府 | NL2024002', tasks: 38, id: 'ningling' },
+                    { name: '商丘数字政务平台', client: '商丘市政府 | SQ2024003', tasks: 32, id: 'shangqiu' },
+                    { name: '郑州智能交通系统', client: '郑州市交通局 | ZZ2024005', tasks: 28, id: 'zhengzhou' },
+                    { name: '开封科技园项目', client: '开封科技园 | KF2024004', tasks: 25, id: 'kaifeng' }
+                ],
+                date: [
+                    { name: '郑州智能交通系统', client: '郑州市交通局 | ZZ2024005', date: '2024-12-15', id: 'zhengzhou' },
+                    { name: '开封科技园项目', client: '开封科技园 | KF2024004', date: '2024-11-20', id: 'kaifeng' },
+                    { name: '商丘数字政务平台', client: '商丘市政府 | SQ2024003', date: '2024-10-10', id: 'shangqiu' },
+                    { name: '宁陵智慧城市项目', client: '宁陵县政府 | NL2024002', date: '2024-09-05', id: 'ningling' },
+                    { name: '淮滨智慧农业项目', client: '淮滨县政府 | HB2024001', date: '2024-08-15', id: 'huaibin' }
+                ]
+            };
+            
+            const data = projectData[sortType] || projectData.amount;
+            
+            data.forEach(project => {
+                let metricContent = '';
+                
+                switch(sortType) {
+                    case 'amount':
+                        metricContent = `<div class="project-value">${project.value}</div>`;
+                        break;
+                    case 'progress':
+                        metricContent = `
+                            <div class="project-progress">
+                                <div class="progress-bar-mini">
+                                    <div class="progress-fill-mini" style="width: ${project.progress}%"></div>
+                                </div>
+                                <div class="progress-text">${project.progress}%</div>
+                            </div>`;
+                        break;
+                    case 'tasks':
+                        metricContent = `<div class="project-value">${project.tasks}个任务</div>`;
+                        break;
+                    case 'date':
+                        metricContent = `<div class="project-value">${project.date}</div>`;
+                        break;
+                }
+                
+                listContent += `
+                    <div class="project-item" onclick="showProjectDetail('${project.id}')">
+                        <div class="project-info">
+                            <div class="project-name">${project.name}</div>
+                            <div class="project-client">${project.client}</div>
+                        </div>
+                        <div class="project-metric">
+                            ${metricContent}
+                        </div>
+                    </div>`;
+            });
+            
+            projectList.innerHTML = listContent;
+        }
+        
+        // 更新项目数据（时间范围切换时调用）
+        function updateProjectData(timeRange) {
+            // 这里可以根据时间范围更新状态矩阵的数据
+            console.log('更新项目数据:', timeRange);
+        }
+        
+        // 显示项目中心
+        function showProjectCenter(filterType) {
+            console.log('跳转到项目中心，筛选类型:', filterType);
+            showPage('projects');
+        }
+        
+        // 显示项目详情
+        function showProjectDetail(projectId) {
+            console.log('查看项目详情:', projectId);
+            // 这里可以跳转到具体项目详情页
+            alert(`查看${projectId}项目详情\n\n功能开发中...`);
         }
 
         // 页面加载完成后初始化
