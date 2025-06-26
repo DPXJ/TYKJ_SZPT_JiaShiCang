@@ -2746,6 +2746,33 @@
             max-width: none;
         }
         
+        /* 经营日报专用样式 - 全屏高度可滚动 */
+        #ai-report .chart-container {
+            height: calc(100vh - 140px); /* 屏幕高度减去顶部状态栏、标题栏和返回按钮区域 */
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-bottom: 0;
+        }
+        
+        /* 美化滚动条 */
+        #ai-report .chart-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        #ai-report .chart-container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+        }
+        
+        #ai-report .chart-container::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 2px;
+        }
+        
+        #ai-report .chart-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.5);
+        }
+        
         /* Y轴标签 */
         .y-axis-labels {
             position: absolute;
@@ -4273,7 +4300,7 @@
                                     <i class="fas fa-robot"></i>
                                     TYKJ公司 2024年12月23日 经营日报
                                 </div>
-                                <div style="line-height: 1.8; color: #333;">
+                                <div style="line-height: 1.8; color: #333; padding-bottom: 20px;">
                                     <p><strong>📊 AI摘要：</strong></p>
                                     <p>昨日公司整体运营稳健，宁陵项目回款200万元已到账，项目进度良好。需要重点关注淮滨项目的进度风险，以及市场部支出超预算的情况。</p>
                                     
@@ -4281,16 +4308,48 @@
                                     <p>• 新增回款：200万元（宁陵项目第三期款项）</p>
                                     <p>• 主要支出：人力成本156万，设备采购85万</p>
                                     <p>• 当前毛利率：15.8%，较上月提升0.5%</p>
+                                    <p>• 现金流状况：良好，预计可维持运营6个月</p>
+                                    <p>• 应收账款：预计12月底前回款500万元</p>
                                     
                                     <p style="margin-top: 20px;"><strong>📋 项目进展：</strong></p>
                                     <p>• 宁陵项目：进度75%，按计划推进</p>
                                     <p>• 淮滨项目：进度45%，存在2项逾期任务</p>
                                     <p>• 商丘项目：进度90%，即将验收</p>
+                                    <p>• 开封项目：新签约项目，预计1月启动</p>
+                                    <p>• 郑州项目：前期调研阶段，进展顺利</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>👥 人力资源：</strong></p>
+                                    <p>• 当前总人数：186人</p>
+                                    <p>• 本月新增：3人（2名Java开发，1名UI设计师）</p>
+                                    <p>• 离职人数：1人</p>
+                                    <p>• 招聘计划：Java开发工程师2人，产品经理1人</p>
+                                    <p>• 绩效评级：A级45人，B级125人，C级16人</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>📈 市场表现：</strong></p>
+                                    <p>• 新增客户：2家（郑州市政府、开封科技园）</p>
+                                    <p>• 商机跟进：15个潜在项目</p>
+                                    <p>• 市场推广：参加河南省数字化转型峰会</p>
+                                    <p>• 品牌影响：获得省级优秀软件企业认证</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>🔧 技术研发：</strong></p>
+                                    <p>• 核心平台：智慧城市平台v3.0版本开发完成</p>
+                                    <p>• 新技术：引入AI大模型技术</p>
+                                    <p>• 专利申请：提交3项软件著作权</p>
+                                    <p>• 技术团队：研发人员占比65%</p>
                                     
                                     <p style="margin-top: 20px;"><strong>⚠️ 风险预警：</strong></p>
                                     <p>• 淮滨项目建议加强进度管控</p>
                                     <p>• 市场部支出超预算30%，需要成本控制</p>
                                     <p>• Java开发工程师缺口2人，影响项目进度</p>
+                                    <p>• 年底客户回款集中，需要做好资金规划</p>
+                                    <p>• 竞争对手价格战激烈，需要差异化策略</p>
+                                    
+                                    <p style="margin-top: 20px;"><strong>📝 明日重点：</strong></p>
+                                    <p>• 淮滨项目进度会议（9:00-10:00）</p>
+                                    <p>• 新员工入职培训（14:00-17:00）</p>
+                                    <p>• 商丘项目验收准备</p>
+                                    <p>• 年度预算制定会议</p>
+                                    <p>• 客户回访电话（重点客户3家）</p>
                                 </div>
                             </div>
                         </div>
