@@ -136,9 +136,59 @@
             gap: 5px;
         }
         
+        /* 顶部标题栏 */
+        .app-header {
+            background: #667eea;
+            padding: 12px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .app-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        /* 轮播消息样式 */
+        .message-carousel {
+            flex: 1;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+        
+        .message-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            animation: carousel 20s linear infinite;
+        }
+        
+        .message-content i {
+            color: #667eea;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .message-content span {
+            color: #333;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-20%); }
+        }
+        
         /* 页面内容区域 */
         .page-content {
-            height: calc(100% - 44px);
+            height: calc(100% - 88px);
             overflow-y: auto;
             position: relative;
             scrollbar-width: none; /* Firefox */
@@ -3221,17 +3271,24 @@
                     </div>
                 </div>
                 
+                <!-- 顶部标题栏 -->
+                <div class="app-header">
+                    <h1 class="app-title">经营驾驶舱</h1>
+                </div>
+                
                 <!-- 页面内容 -->
                 <div class="page-content">
                     <!-- 首页 -->
                     <div class="page active" id="home">
                         <div class="home-page">
                             <div class="page-header">
-                                <h1 class="page-title">经营驾驶舱</h1>
+                                <div class="message-carousel">
+                                    <div class="message-content">
+                                        <i class="fas fa-bell"></i>
+                                        <span id="carouselText">📊 本月利润超预期15.8%，建议关注淮滨项目回款风险</span>
+                                    </div>
+                                </div>
                                 <div class="header-actions">
-                                    <button class="header-btn" onclick="showAiChat()">
-                                        <i class="fas fa-search"></i>
-                                    </button>
                                     <button class="header-btn task-create-btn" onclick="showCreateTask()">
                                         <i class="fas fa-plus"></i>
                                         <span>临时任务</span>
@@ -3310,7 +3367,7 @@
                                 <!-- 项目状态矩阵 -->
                                 <div class="project-status-matrix">
                                     <div class="project-status-card" onclick="showProjectCenter('new')">
-                                        <div class="project-status-label">新签订项目</div>
+                                        <div class="project-status-label">新创建项目</div>
                                         <div class="project-status-main">5个</div>
                                         <div class="project-status-sub">¥2,500万</div>
                                     </div>
@@ -3324,9 +3381,9 @@
                                         <div class="project-status-main">3个</div>
                                         <div class="project-status-sub">¥800万</div>
                                     </div>
-                                    <div class="project-status-card warning" onclick="showProjectCenter('overdue')">
-                                        <div class="project-status-label">已逾期项目</div>
-                                        <div class="project-status-main warning">2个</div>
+                                    <div class="project-status-card" onclick="showProjectCenter('approved')">
+                                        <div class="project-status-label">验收通过项目</div>
+                                        <div class="project-status-main">2个</div>
                                         <div class="project-status-sub">¥500万</div>
                                     </div>
                                     <div class="project-status-card" onclick="showProjectCenter('pending-payment')">
@@ -4511,6 +4568,32 @@
                 toggleIcon.classList.remove('rotated');
             }
         }
+        
+        // 轮播消息功能
+        function initMessageCarousel() {
+            const messages = [
+                '📊 本月利润超预期15.8%，建议关注淮滨项目回款风险',
+                '⚠️ 淮滨项目进度延期，需要您的关注和处理',
+                '💰 本周新增3个商机，总价值¥800万',
+                '👥 研发部本月工时效率提升12%，表现优秀',
+                '📈 客户满意度达到95%，创历史新高'
+            ];
+            
+            let currentIndex = 0;
+            const carouselText = document.getElementById('carouselText');
+            
+            if (carouselText) {
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % messages.length;
+                    carouselText.textContent = messages[currentIndex];
+                }, 5000); // 每5秒切换一次
+            }
+        }
+        
+        // 页面加载完成后初始化轮播
+        document.addEventListener('DOMContentLoaded', function() {
+            initMessageCarousel();
+        });
         
         // 财务详情下钻功能
         function showFinanceDetail(type) {
