@@ -455,13 +455,21 @@
         
         .ai-task-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             font-size: 12px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .ai-task-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .ai-task-label {
             color: #666;
+            flex: 1;
         }
         
         .ai-task-count {
@@ -484,6 +492,17 @@
         .ai-task-count.opportunity {
             background: #f6ffed;
             color: #52c41a;
+        }
+        
+        .ai-task-arrow {
+            color: #667eea;
+            font-size: 10px;
+            margin-left: 4px;
+            transition: color 0.2s ease;
+        }
+        
+        .ai-task-item:hover .ai-task-arrow {
+            color: #764ba2;
         }
         
         .ai-insight-action {
@@ -3330,22 +3349,22 @@
                                         </div>
                                         <div class="ai-insight-content">
                                             <div class="ai-task-list">
-                                                <div class="ai-task-item">
+                                                <div class="ai-task-item" onclick="event.stopPropagation(); showActionCenter('pending');">
                                                     <span class="ai-task-label">待您审批：</span>
                                                     <span class="ai-task-count pending">2 项</span>
+                                                    <i class="fas fa-chevron-right ai-task-arrow"></i>
                                                 </div>
-                                                <div class="ai-task-item">
+                                                <div class="ai-task-item" onclick="event.stopPropagation(); showActionCenter('risk');">
                                                     <span class="ai-task-label">高风险预警：</span>
                                                     <span class="ai-task-count risk">3 项</span>
+                                                    <i class="fas fa-chevron-right ai-task-arrow"></i>
                                                 </div>
-                                                <div class="ai-task-item">
+                                                <div class="ai-task-item" onclick="event.stopPropagation(); showActionCenter('opportunity');">
                                                     <span class="ai-task-label">关键机会点：</span>
                                                     <span class="ai-task-count opportunity">1 项</span>
+                                                    <i class="fas fa-chevron-right ai-task-arrow"></i>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="ai-insight-action">
-                                            <a href="#" class="ai-insight-link" onclick="event.stopPropagation(); showActionCenter();">立即处理 ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -3622,19 +3641,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- 查看更多入口 -->
-                                <div class="customer-more-actions">
-                                    <div class="more-action-item" onclick="showCustomerCenter('all')">
-                                        <i class="fas fa-users"></i>
-                                        <span>客户管理中心</span>
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                    <div class="more-action-item" onclick="showCustomerAnalytics()">
-                                        <i class="fas fa-chart-line"></i>
-                                        <span>客户分析报告</span>
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </div>
+
                             </div>
                             
                             <!-- 团队与人效洞察模块 -->
@@ -3674,15 +3681,15 @@
                                             <div class="hr-metric-value">2人</div>
                                             <div class="hr-metric-trend positive">-50%</div>
                                         </div>
-                                        <div class="hr-metric-card" onclick="showHRDetail('core-talent-loss')">
-                                            <div class="hr-metric-label">核心人才流失率</div>
-                                            <div class="hr-metric-value">1.2%</div>
-                                            <div class="hr-metric-trend positive">健康</div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('turnover-ratio')">
+                                            <div class="hr-metric-label">人员流动比</div>
+                                            <div class="hr-metric-value">40%</div>
+                                            <div class="hr-metric-trend positive">健康扩张</div>
                                         </div>
-                                        <div class="hr-metric-card" onclick="showHRDetail('avg-tenure')">
-                                            <div class="hr-metric-label">团队平均司龄</div>
-                                            <div class="hr-metric-value">2.8年</div>
-                                            <div class="hr-metric-trend positive">+0.3年</div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('task-completion')">
+                                            <div class="hr-metric-label">任务完成率</div>
+                                            <div class="hr-metric-value">92.8%</div>
+                                            <div class="hr-metric-trend positive">+3.2%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -4729,7 +4736,7 @@
         }
         
         // 行动中心页面
-        function showActionCenter() {
+        function showActionCenter(type) {
             const actionContent = `
                 <div class="page-header">
                     <h2><i class="fas fa-exclamation-triangle"></i> 行动中心</h2>
