@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目风险预警 - 驾驶舱2.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* 手机壳 */
+        .phone-container {
+            width: 375px;
+            height: 753px;
+            background: #000;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 手机状态栏 */
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #667eea;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .page-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        /* 页面内容区域 */
+        .page-content {
+            height: calc(100% - 88px);
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 20px 15px;
+        }
+        
+        .page-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .page-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-content::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 2px;
+        }
+        
+        /* 风险概览卡片 */
+        .risk-overview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .overview-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .overview-stats {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .stat-item.warning {
+            border-left-color: #ffc107;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc3545;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 风险分类 */
+        .risk-section {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .section-header.warning {
+            background: linear-gradient(135deg, #ffc107, #ffb300);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .risk-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        /* 项目列表 */
+        .project-list {
+            padding: 0;
+        }
+        
+        .project-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .project-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .project-item:last-child {
+            border-bottom: none;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .project-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .project-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-ongoing {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-pending {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .status-reviewing {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .project-details {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .risk-indicator {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .warning-indicator {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        /* 刷新按钮 */
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .refresh-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* 动画效果 */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .risk-section {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .risk-section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        
+        .risk-section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <!-- 状态栏 -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span>9:41</span>
+                </div>
+                <div class="status-right">
+                    <i class="fas fa-signal"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-battery-three-quarters"></i>
+                </div>
+            </div>
+            
+            <!-- 页面标题栏 -->
+            <div class="page-header">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    返回
+                </a>
+                <h1 class="page-title">项目风险预警</h1>
+            </div>
+            
+            <!-- 页面内容 -->
+            <div class="page-content">
+                <!-- 风险概览 -->
+                <div class="risk-overview">
+                    <div class="overview-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        风险概览
+                    </div>
+                    <div class="overview-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">逾期风险</div>
+                        </div>
+                        <div class="stat-item warning">
+                            <div class="stat-number">1</div>
+                            <div class="stat-label">延期启动风险</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 逾期风险项目 -->
+                <div class="risk-section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-clock"></i>
+                            逾期风险项目
+                        </div>
+                        <div class="risk-count">2项</div>
+                    </div>
+                    <div class="project-list">
+                        <div class="project-item" onclick="goToProjectDetail('淮滨项目')">
+                            <div class="project-header">
+                                <div class="project-name">淮滨数字政务平台</div>
+                                <div class="project-status status-ongoing">进行中</div>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>截止：2024-12-15</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>负责人：李四</span>
+                                </div>
+                                <div class="detail-item risk-indicator">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>已逾期8天</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-item" onclick="goToProjectDetail('平顶山项目')">
+                            <div class="project-header">
+                                <div class="project-name">平顶山智慧交通</div>
+                                <div class="project-status status-reviewing">验收中</div>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>截止：2024-12-20</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>负责人：王五</span>
+                                </div>
+                                <div class="detail-item risk-indicator">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>已逾期3天</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 延期启动风险项目 -->
+                <div class="risk-section">
+                    <div class="section-header warning">
+                        <div class="section-title">
+                            <i class="fas fa-pause-circle"></i>
+                            延期启动风险项目
+                        </div>
+                        <div class="risk-count">1项</div>
+                    </div>
+                    <div class="project-list">
+                        <div class="project-item" onclick="goToProjectDetail('焦作项目')">
+                            <div class="project-header">
+                                <div class="project-name">焦作智慧园区</div>
+                                <div class="project-status status-pending">待启动</div>
+                            </div>
+                            <div class="project-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>计划启动：2024-11-25</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>负责人：赵六</span>
+                                </div>
+                                <div class="detail-item warning-indicator">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>延期启动28天</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 刷新按钮 -->
+    <button class="refresh-btn" onclick="refreshData()">
+        <i class="fas fa-sync-alt"></i>
+    </button>
+    
+    <script>
+        // 项目详情跳转
+        function goToProjectDetail(projectName) {
+            alert(`跳转到${projectName}详情页面\n（项目详情页面开发中...）`);
+        }
+        
+        // 刷新数据
+        function refreshData() {
+            const refreshBtn = document.querySelector('.refresh-btn');
+            const icon = refreshBtn.querySelector('i');
+            
+            // 添加旋转动画
+            icon.style.animation = 'spin 1s linear';
+            
+            // 模拟数据刷新
+            setTimeout(() => {
+                icon.style.animation = '';
+                console.log('数据已刷新');
+            }, 1000);
+        }
+        
+        // 添加旋转动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('项目风险预警页面加载完成');
+            
+            // 模拟实时数据更新
+            setInterval(() => {
+                console.log('检查风险数据更新...');
+            }, 30000);
+        });
+    </script>
+</body>
+</html> 
