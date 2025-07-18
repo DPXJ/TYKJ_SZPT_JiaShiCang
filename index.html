@@ -550,29 +550,7 @@
             color: #667eea;
         }
         
-        /* 时间范围切换器 */
-        .time-range-toggle {
-            display: flex;
-            background: #f5f5f5;
-            border-radius: 8px;
-            padding: 2px;
-            font-size: 11px;
-        }
-        
-        .time-range-option {
-            padding: 4px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .time-range-option.active {
-            background: #667eea;
-            color: white;
-            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
-        }
+
         
         /* 项目状态矩阵 */
         .project-status-matrix {
@@ -1975,7 +1953,7 @@
             color: #1890ff;
         }
         
-        /* 任务健康度总览 */
+        /* 任务反馈度总览 */
         .task-health-overview {
             margin-bottom: 15px;
         }
@@ -2149,6 +2127,16 @@
         }
         
         .dept-bar-delayed {
+            background: #ff4d4f;
+            transition: width 0.3s ease;
+        }
+        
+        .dept-bar-feedback {
+            background: #52c41a;
+            transition: width 0.3s ease;
+        }
+        
+        .dept-bar-unfeedback {
             background: #ff4d4f;
             transition: width 0.3s ease;
         }
@@ -2660,57 +2648,161 @@
             cursor: pointer;
         }
         
-        /* KPI指标矩阵 */
-        .kpi-matrix {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+        /* 财务数据机密性提示 */
+        .finance-notice {
+            background: #f0f8ff;
+            border: 1px solid #d6e7ff;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
             gap: 8px;
+        }
+        
+        .finance-notice i {
+            color: #1890ff;
+            font-size: 14px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .finance-notice span {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        /* 时间切换按钮 */
+        .finance-time-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 2px;
             margin-bottom: 15px;
         }
         
-        .kpi-card {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 12px;
-            padding: 10px 6px;
+        .finance-tab {
+            flex: 1;
             text-align: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
-        .kpi-card:hover {
+        .finance-tab.active {
+            background: white;
+            color: #333;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 回款总额统计 */
+        .receivables-summary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        .summary-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .summary-amount {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        /* 应收账款回款记录 */
+        .receivables-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .receivable-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .receivable-item:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border-color: #667eea;
         }
         
-        .kpi-label {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 6px;
+        .receivable-info {
+            flex: 1;
         }
         
-        .kpi-value {
-            font-size: 14px;
-            font-weight: 700;
+        .receivable-project {
+            font-size: 13px;
+            font-weight: 600;
             color: #333;
             margin-bottom: 4px;
         }
         
-        .kpi-compare {
+        .receivable-follower {
             font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 4px;
+            color: #666;
+            margin-bottom: 2px;
         }
         
-        .kpi-compare.positive {
-            background: #e8f5e8;
+        .receivable-time {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .receivable-amount {
+            font-size: 14px;
+            font-weight: 700;
             color: #52c41a;
+            text-align: right;
         }
         
-        .kpi-compare.negative {
-            background: #fff2f0;
-            color: #f5222d;
+        /* 展开/折叠按钮 */
+        .receivables-toggle {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .receivables-toggle span {
+            font-size: 12px;
+            color: #667eea;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .receivables-toggle span:hover {
+            color: #4a67d6;
+        }
+        
+        .receivables-toggle i {
+            transition: transform 0.3s ease;
+        }
+        
+        .receivables-toggle.expanded i {
+            transform: rotate(180deg);
         }
         
         /* 趋势图表区域 */
@@ -3404,16 +3496,12 @@
                                         <i class="fas fa-project-diagram"></i>
                                         项目价值洞察
                                     </div>
-                                    <div class="time-range-toggle">
-                                        <div class="time-range-option active" onclick="switchTimeRange('current')">当月</div>
-                                        <div class="time-range-option" onclick="switchTimeRange('all')">全部</div>
-                                    </div>
                                 </div>
                                 
                                 <!-- 项目状态矩阵 -->
                                 <div class="project-status-matrix">
                                     <div class="project-status-card" onclick="showProjectCenter('new')">
-                                        <div class="project-status-label">新创建项目</div>
+                                        <div class="project-status-label">本月新增项目</div>
                                         <div class="project-status-main">5个</div>
                                         <div class="project-status-sub">¥2,500万</div>
                                     </div>
@@ -3531,42 +3619,39 @@
                                         <i class="fas fa-users-cog"></i>
                                         客户洞察
                                     </div>
-                                    <div class="time-range-toggle">
-                                        <div class="time-range-option active" onclick="switchCustomerTimeRange('new')">当月新增</div>
-                                        <div class="time-range-option" onclick="switchCustomerTimeRange('total')">累计数量</div>
-                                    </div>
+
                                 </div>
                                 
                                 <!-- 客户增长矩阵 -->
                                 <div class="customer-growth-matrix">
                                     <div class="customer-growth-card" onclick="showCustomerCenter('leads')">
                                         <div class="customer-growth-label">线索数量</div>
-                                        <div class="customer-growth-main">150个</div>
-                                        <div class="customer-growth-sub">新增</div>
+                                        <div class="customer-growth-main">2,850个</div>
+                                        <div class="customer-growth-sub">累计</div>
                                     </div>
                                     <div class="customer-growth-card" onclick="showCustomerCenter('opportunities')">
                                         <div class="customer-growth-label">商机数量</div>
-                                        <div class="customer-growth-main">45个</div>
+                                        <div class="customer-growth-main">865个</div>
                                         <div class="customer-growth-sub">¥8,000万</div>
                                     </div>
                                     <div class="customer-growth-card" onclick="showCustomerCenter('new-customers')">
                                         <div class="customer-growth-label">新建客户数</div>
-                                        <div class="customer-growth-main">30家</div>
-                                        <div class="customer-growth-sub">新增</div>
+                                        <div class="customer-growth-main">580家</div>
+                                        <div class="customer-growth-sub">累计</div>
                                     </div>
                                     <div class="customer-growth-card" onclick="showCustomerCenter('intent-customers')">
                                         <div class="customer-growth-label">意向客户数</div>
-                                        <div class="customer-growth-main">18家</div>
+                                        <div class="customer-growth-main">342家</div>
                                         <div class="customer-growth-sub">¥5,000万</div>
                                     </div>
                                     <div class="customer-growth-card" onclick="showCustomerCenter('signed-customers')">
                                         <div class="customer-growth-label">签约客户数</div>
-                                        <div class="customer-growth-main">6家</div>
+                                        <div class="customer-growth-main">126家</div>
                                         <div class="customer-growth-sub">¥1,800万</div>
                                     </div>
                                     <div class="customer-growth-card" onclick="showCustomerCenter('completed-customers')">
                                         <div class="customer-growth-label">成单客户数</div>
-                                        <div class="customer-growth-main">4家</div>
+                                        <div class="customer-growth-main">89家</div>
                                         <div class="customer-growth-sub">¥950万</div>
                                     </div>
                                 </div>
@@ -3713,19 +3798,19 @@
                                             <div class="hr-metric-value">40%</div>
                                             <div class="hr-metric-trend positive">健康扩张</div>
                                         </div>
-                                        <div class="hr-metric-card" onclick="showHRDetail('task-completion')">
-                                            <div class="hr-metric-label">任务完成率</div>
-                                            <div class="hr-metric-value">92.8%</div>
-                                            <div class="hr-metric-trend positive">+3.2%</div>
+                                        <div class="hr-metric-card" onclick="showHRDetail('task-feedback')">
+                                            <div class="hr-metric-label">任务反馈度</div>
+                                            <div class="hr-metric-value">87.5%</div>
+                                            <div class="hr-metric-trend positive">+5.2%</div>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <!-- 任务健康度总览 -->
+                                <!-- 任务反馈度总览 -->
                                 <div class="task-health-overview">
                                     <div class="task-health-title">
                                         <i class="fas fa-heartbeat"></i>
-                                        任务健康度总览
+                                        任务反馈度总览
                                     </div>
                                     <div class="task-health-card" onclick="showTaskHealth()">
                                         <div class="task-total">
@@ -3735,11 +3820,11 @@
                                         <div class="task-breakdown">
                                             <div class="task-breakdown-item">
                                                 <div class="task-breakdown-icon normal"></div>
-                                                <div class="task-breakdown-text">正常任务：142</div>
+                                                <div class="task-breakdown-text">已反馈任务：142</div>
                                             </div>
                                             <div class="task-breakdown-item">
                                                 <div class="task-breakdown-icon delayed"></div>
-                                                <div class="task-breakdown-text">延期任务：14</div>
+                                                <div class="task-breakdown-text">未反馈任务：14</div>
                                             </div>
                                         </div>
                                         <div class="task-progress-bar">
@@ -3752,15 +3837,15 @@
                                 <div class="dept-efficiency">
                                     <div class="dept-efficiency-title">
                                         <i class="fas fa-chart-bar"></i>
-                                        各部门任务分布与健康度
+                                        各部门任务分布与反馈度
                                     </div>
                                     <div class="dept-chart">
                                         <div class="dept-chart-item" onclick="showDeptTasks('research')">
                                             <div class="dept-name">研发部</div>
                                             <div class="dept-bar-container">
                                                 <div class="dept-bar">
-                                                    <div class="dept-bar-normal" style="width: 75%;"></div>
-                                                    <div class="dept-bar-delayed" style="width: 25%;"></div>
+                                                    <div class="dept-bar-feedback" style="width: 75%;"></div>
+                                                    <div class="dept-bar-unfeedback" style="width: 25%;"></div>
                                                 </div>
                                             </div>
                                             <div class="dept-count">68个</div>
@@ -3769,8 +3854,8 @@
                                             <div class="dept-name">市场部</div>
                                             <div class="dept-bar-container">
                                                 <div class="dept-bar">
-                                                    <div class="dept-bar-normal" style="width: 85%;"></div>
-                                                    <div class="dept-bar-delayed" style="width: 15%;"></div>
+                                                    <div class="dept-bar-feedback" style="width: 85%;"></div>
+                                                    <div class="dept-bar-unfeedback" style="width: 15%;"></div>
                                                 </div>
                                             </div>
                                             <div class="dept-count">32个</div>
@@ -3779,8 +3864,8 @@
                                             <div class="dept-name">运营部</div>
                                             <div class="dept-bar-container">
                                                 <div class="dept-bar">
-                                                    <div class="dept-bar-normal" style="width: 90%;"></div>
-                                                    <div class="dept-bar-delayed" style="width: 10%;"></div>
+                                                    <div class="dept-bar-feedback" style="width: 90%;"></div>
+                                                    <div class="dept-bar-unfeedback" style="width: 10%;"></div>
                                                 </div>
                                             </div>
                                             <div class="dept-count">28个</div>
@@ -3789,8 +3874,8 @@
                                             <div class="dept-name">销售部</div>
                                             <div class="dept-bar-container">
                                                 <div class="dept-bar">
-                                                    <div class="dept-bar-normal" style="width: 95%;"></div>
-                                                    <div class="dept-bar-delayed" style="width: 5%;"></div>
+                                                    <div class="dept-bar-feedback" style="width: 95%;"></div>
+                                                    <div class="dept-bar-unfeedback" style="width: 5%;"></div>
                                                 </div>
                                             </div>
                                             <div class="dept-count">18个</div>
@@ -3799,8 +3884,8 @@
                                             <div class="dept-name">行政部</div>
                                             <div class="dept-bar-container">
                                                 <div class="dept-bar">
-                                                    <div class="dept-bar-normal" style="width: 100%;"></div>
-                                                    <div class="dept-bar-delayed" style="width: 0%;"></div>
+                                                    <div class="dept-bar-feedback" style="width: 100%;"></div>
+                                                    <div class="dept-bar-unfeedback" style="width: 0%;"></div>
                                                 </div>
                                             </div>
                                             <div class="dept-count">10个</div>
@@ -3810,55 +3895,12 @@
                                 
                                 <!-- 关键绩效排行 -->
                                 <div class="performance-rankings" style="margin-top: 6px;">
-                                    <!-- 研发工时排行 -->
-                                    <div class="performance-section">
-                                        <div class="performance-title-collapsible" onclick="togglePerformanceSection('workHours')">
-                                            <div class="performance-title-content">
-                                                <i class="fas fa-clock"></i>
-                                                研发工时排行 (TOP 3)
-                                            </div>
-                                            <i class="fas fa-chevron-down performance-toggle-icon" id="workHoursToggle"></i>
-                                        </div>
-                                        <div class="performance-list-compact collapsed" id="workHoursList">
-                                            <div class="performance-item-compact" onclick="showEmployeeDetail('zhangsan')">
-                                                <div class="performance-rank-compact">
-                                                    <div class="rank-number-compact top3">1</div>
-                                                    <div class="performance-info-compact">
-                                                        <div class="performance-name-compact">张三</div>
-                                                        <div class="performance-extra-compact">完成任务：15个</div>
-                                                    </div>
-                                                </div>
-                                                <div class="performance-value-compact">180h</div>
-                                            </div>
-                                            <div class="performance-item-compact" onclick="showEmployeeDetail('lisi')">
-                                                <div class="performance-rank-compact">
-                                                    <div class="rank-number-compact top3">2</div>
-                                                    <div class="performance-info-compact">
-                                                        <div class="performance-name-compact">李四</div>
-                                                        <div class="performance-extra-compact">完成任务：12个</div>
-                                                    </div>
-                                                </div>
-                                                <div class="performance-value-compact">165h</div>
-                                            </div>
-                                            <div class="performance-item-compact" onclick="showEmployeeDetail('wangwu')">
-                                                <div class="performance-rank-compact">
-                                                    <div class="rank-number-compact top3">3</div>
-                                                    <div class="performance-info-compact">
-                                                        <div class="performance-name-compact">王五</div>
-                                                        <div class="performance-extra-compact">完成任务：11个</div>
-                                                    </div>
-                                                </div>
-                                                <div class="performance-value-compact">158h</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- 部门绩效得分 -->
+                                    <!-- 反馈任务分值 -->
                                     <div class="performance-section">
                                         <div class="performance-title-collapsible" onclick="togglePerformanceSection('deptScore')">
                                             <div class="performance-title-content">
                                                 <i class="fas fa-trophy"></i>
-                                                各部门绩效得分
+                                                反馈任务分值
                                             </div>
                                             <i class="fas fa-chevron-down performance-toggle-icon" id="deptScoreToggle"></i>
                                         </div>
@@ -3866,7 +3908,7 @@
                                             <div class="dept-performance-item-compact" onclick="showDeptPerformance('research')">
                                                 <div class="dept-performance-info">
                                                     <div class="dept-performance-name-compact">研发</div>
-                                                    <div class="dept-performance-score-compact">92分</div>
+                                                    <div class="dept-performance-score-compact">1,250分</div>
                                                 </div>
                                                 <div class="dept-performance-bar-container-compact">
                                                     <div class="dept-performance-bar-compact" style="width: 92%;">
@@ -3878,7 +3920,7 @@
                                             <div class="dept-performance-item-compact" onclick="showDeptPerformance('sales')">
                                                 <div class="dept-performance-info">
                                                     <div class="dept-performance-name-compact">销售</div>
-                                                    <div class="dept-performance-score-compact">88分</div>
+                                                    <div class="dept-performance-score-compact">980分</div>
                                                 </div>
                                                 <div class="dept-performance-bar-container-compact">
                                                     <div class="dept-performance-bar-compact" style="width: 88%;">
@@ -3890,7 +3932,7 @@
                                             <div class="dept-performance-item-compact" onclick="showDeptPerformance('market')">
                                                 <div class="dept-performance-info">
                                                     <div class="dept-performance-name-compact">市场</div>
-                                                    <div class="dept-performance-score-compact">85分</div>
+                                                    <div class="dept-performance-score-compact">850分</div>
                                                 </div>
                                                 <div class="dept-performance-bar-container-compact">
                                                     <div class="dept-performance-bar-compact" style="width: 85%;">
@@ -3904,48 +3946,90 @@
                                 </div>
                             </div>
                             
-                            <!-- 财务健康度模块 -->
+                            <!-- 项目应收账款回款模块 -->
                             <div class="finance-health-card">
                                 <div class="finance-health-header">
                                     <div class="finance-health-title">
-                                        <i class="fas fa-chart-pie"></i>
-                                        财务健康度
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        项目应收账款回款
                                     </div>
-                                    <a href="#" class="finance-health-more" onclick="showPage('finance')">查看更多 →</a>
                                 </div>
                                 
-                                <!-- KPI指标矩阵 -->
-                                <div class="kpi-matrix">
-                                    <div class="kpi-card" onclick="showFinanceDetail('monthly-income')">
-                                        <div class="kpi-label">本月总回款</div>
-                                        <div class="kpi-value">¥1,250万</div>
-                                        <div class="kpi-compare positive">环比 +15.8%</div>
+                                <!-- 财务数据机密性提示 -->
+                                <div class="finance-notice">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>因财务数据高度机密，考虑安全性及现有财务数据管理机制，本期财务数据重点从项目角度考虑，来源暂时为项目应收款项、采购申请费用。</span>
+                                </div>
+                                
+                                <!-- 时间切换按钮 -->
+                                <div class="finance-time-tabs">
+                                    <div class="finance-tab active" onclick="switchFinanceTab('month')">本月</div>
+                                    <div class="finance-tab" onclick="switchFinanceTab('year')">本年</div>
+                                </div>
+                                
+                                <!-- 回款总额统计 -->
+                                <div class="receivables-summary" id="receivablesSummary">
+                                    <div class="summary-label">回款总额</div>
+                                    <div class="summary-amount" id="summaryAmount">¥ 556,000.00</div>
+                                </div>
+                                
+                                <!-- 应收账款回款记录 -->
+                                <div class="receivables-list" id="receivablesList">
+                                    <!-- 默认显示的3个回款记录 -->
+                                    <div class="receivable-item" onclick="showReceivableDetail('ningling-001')">
+                                        <div class="receivable-info">
+                                            <div class="receivable-project">宁陵智慧城市项目</div>
+                                            <div class="receivable-follower">跟进人：李四</div>
+                                            <div class="receivable-time">回款时间：2025-07-17</div>
+                                        </div>
+                                        <div class="receivable-amount">¥ 150,000.00</div>
                                     </div>
-                                    <div class="kpi-card" onclick="showFinanceDetail('monthly-expense')">
-                                        <div class="kpi-label">本月总支出</div>
-                                        <div class="kpi-value">¥707万</div>
-                                        <div class="kpi-compare negative">环比 +8.3%</div>
+                                    
+                                    <div class="receivable-item" onclick="showReceivableDetail('xxx-002')">
+                                        <div class="receivable-info">
+                                            <div class="receivable-project">XXX数字乡村建设项目</div>
+                                            <div class="receivable-follower">跟进人：王五</div>
+                                            <div class="receivable-time">回款时间：2025-07-15</div>
+                                        </div>
+                                        <div class="receivable-amount">¥ 86,000.00</div>
                                     </div>
-                                    <div class="kpi-card" onclick="showFinanceDetail('project-income')">
-                                        <div class="kpi-label">项目总回款</div>
-                                        <div class="kpi-value">¥980万</div>
-                                        <div class="kpi-compare positive">环比 +22.1%</div>
+                                    
+                                    <div class="receivable-item" onclick="showReceivableDetail('huaibin-003')">
+                                        <div class="receivable-info">
+                                            <div class="receivable-project">淮滨数字政务平台</div>
+                                            <div class="receivable-follower">跟进人：张三</div>
+                                            <div class="receivable-time">回款时间：2025-07-12</div>
+                                        </div>
+                                        <div class="receivable-amount">¥ 200,000.00</div>
                                     </div>
-                                    <div class="kpi-card" onclick="showFinanceDetail('project-expense')">
-                                        <div class="kpi-label">项目总支出</div>
-                                        <div class="kpi-value">¥485万</div>
-                                        <div class="kpi-compare positive">环比 -5.2%</div>
+                                    
+                                    <!-- 折叠的回款记录 -->
+                                    <div class="receivables-collapsed" id="receivablesCollapsed" style="display: none;">
+                                        <div class="receivable-item" onclick="showReceivableDetail('shangqiu-004')">
+                                            <div class="receivable-info">
+                                                <div class="receivable-project">商丘产业园区系统</div>
+                                                <div class="receivable-follower">跟进人：赵六</div>
+                                                <div class="receivable-time">回款时间：2025-07-10</div>
+                                            </div>
+                                            <div class="receivable-amount">¥ 120,000.00</div>
+                                        </div>
+                                        
+                                        <div class="receivable-item" onclick="showReceivableDetail('kaifeng-005')">
+                                            <div class="receivable-info">
+                                                <div class="receivable-project">开封科技园项目</div>
+                                                <div class="receivable-follower">跟进人：孙七</div>
+                                                <div class="receivable-time">回款时间：2025-07-08</div>
+                                            </div>
+                                            <div class="receivable-amount">¥ 95,000.00</div>
+                                        </div>
                                     </div>
-                                    <div class="kpi-card" onclick="showFinanceDetail('dept-budget')">
-                                        <div class="kpi-label">部门总预算</div>
-                                        <div class="kpi-value">¥800万</div>
-                                        <div class="kpi-compare positive">月度计划</div>
-                                    </div>
-                                    <div class="kpi-card" onclick="showFinanceDetail('dept-expense')">
-                                        <div class="kpi-label">部门总支出</div>
-                                        <div class="kpi-value">¥622万</div>
-                                        <div class="kpi-compare positive">预算内 77.8%</div>
-                                    </div>
+                                </div>
+                                
+                                <!-- 展开/折叠按钮 -->
+                                <div class="receivables-toggle">
+                                    <span onclick="toggleReceivables()" id="receivablesToggleBtn">
+                                        <i class="fas fa-chevron-down"></i> 展开更多
+                                    </span>
                                 </div>
                                 
                                 <!-- 趋势分析图表 -->
@@ -4313,7 +4397,7 @@
                                     
                                     <p style="margin-top: 20px;"><strong>📋 项目进展：</strong></p>
                                     <p>• 宁陵项目：进度75%，按计划推进</p>
-                                    <p>• 淮滨项目：进度45%，存在2项逾期任务</p>
+                                    <p>• 淮滨项目：进度45%，存在2项未反馈任务</p>
                                     <p>• 商丘项目：进度90%，即将验收</p>
                                     <p>• 开封项目：新签约项目，预计1月启动</p>
                                     <p>• 郑州项目：前期调研阶段，进展顺利</p>
@@ -4499,17 +4583,17 @@
         
         function getAiResponse(message) {
             const responses = {
-                '今天团队完成了多少个任务': '📊 今日任务完成情况：<br/>• 宁陵项目团队：完成5个开发任务<br/>• 淮滨项目团队：完成3个测试任务<br/>• 商丘项目团队：完成2个部署任务<br/>• 总计完成：10个任务，完成率85%',
-                '今天回款怎么样': '💰 今日回款情况：<br/>• 宁陵项目：收到第三期回款200万元<br/>• 商丘项目：收到验收款50万元<br/>• 今日总回款：250万元<br/>• 较昨日增长：+125%',
+                '今天团队完成了多少个任务': '📊 今日任务反馈情况：<br/>• 宁陵项目团队：已反馈5个开发任务<br/>• 淮滨项目团队：已反馈3个测试任务<br/>• 商丘项目团队：已反馈2个部署任务<br/>• 总计已反馈：10个任务，反馈度85%',
+                '今天回款怎么样': '💰 今日回款情况：<br/>• 宁陵智慧城市项目：收到回款15万元<br/>• XXX数字乡村建设项目：收到回款8.6万元<br/>• 淮滨数字政务平台：收到回款20万元<br/>• 今日总回款：43.6万元',
                 '本周新增客户和新增项目情况如何': '📈 本周业务拓展情况：<br/>• 新增客户：2家（郑州市政府、开封科技园）<br/>• 新增项目：3个项目立项<br/>• 预计新增合同额：800万元<br/>• 商机转化率：60%',
-                '宁陵项目': '宁陵智慧城市项目当前状态为【进行中】，整体进度75%。负责人【张三】，本周有3项任务待完成，暂无逾期风险。最新一笔回款200万元已于12月20日到账。',
-                '淮滨项目': '淮滨数字政务平台当前进度45%，负责人【李四】。存在延期风险，有2项任务已逾期，建议加强进度管控。',
+                '宁陵项目': '宁陵智慧城市项目当前状态为【进行中】，整体进度75%。负责人【张三】，本周有3项任务待反馈，暂无逾期风险。最新一笔回款200万元已于12月20日到账。',
+                '淮滨项目': '淮滨数字政务平台当前进度45%，负责人【李四】。存在延期风险，有2项任务未反馈，建议加强进度管控。',
                 '上个月公司花了多少钱': '💸 上月支出明细：<br/>• 人力成本：156万元（占比22%）<br/>• 设备采购：85万元（占比12%）<br/>• 运营费用：45万元（占比6%）<br/>• 营销推广：32万元（占比5%）<br/>• 总支出：707万元',
-                '财务健康度': '💊 当前财务健康度评分：<br/>• 综合得分：85分（良好）<br/>• 本月回款：1250万（环比+15.8%）<br/>• 本月支出：707万（环比+8.3%）<br/>• 毛利率：43.4%（同比+3.2%）<br/>• 现金流：健康，预计可维持6个月运营',
+                '财务': '💰 项目应收账款回款情况：<br/>• 本月回款：宁陵项目15万、XXX项目8.6万、淮滨项目20万<br/>• 本年累计：各项目总回款约556万元<br/>• 主要跟进人：李四、王五、张三、赵六等<br/>• 数据来源：应收款明细（考虑数据安全性）',
                 '回款趋势': '📈 近6个月回款趋势分析：<br/>• 7月：450万 → 12月：1250万<br/>• 增长率：177.8%<br/>• 主要驱动：宁陵项目按期回款<br/>• 预测：下月预计回款800万',
                 '支出趋势': '📉 近6个月支出趋势分析：<br/>• 7月：320万 → 12月：707万<br/>• 增长率：120.9%<br/>• 主要增长：人力成本+设备采购<br/>• 建议：优化运营成本结构',
                 '财务': '本月公司总收入1250万元，主要来自宁陵项目回款。总支出707万元，其中人力成本156万，设备采购85万。当前毛利率15.8%。',
-                '人员': '公司当前总人数186人，本月绩效评级：A级45人，B级125人，C级16人。Java开发工程师缺口2人，产品经理缺口1人。'
+                '人员': '公司当前总人数186人，本月反馈任务分值：研发部1,250分，销售部980分，市场部850分。Java开发工程师缺口2人，产品经理缺口1人。'
             };
             
             for (let key in responses) {
@@ -4574,14 +4658,14 @@
                 'talent-gap': '人才缺口详情',
                 'new-employees': '新增员工详情',
                 'resigned-employees': '离职员工详情',
-                'core-talent-loss': '核心人才流失率详情',
-                'avg-tenure': '平均司龄详情'
+                'turnover-ratio': '人员流动比详情',
+                'task-feedback': '任务反馈度详情'
             };
             showToast(`正在查看：${typeNames[type] || '人力资源详情'}`);
         }
         
         function showTaskHealth() {
-            showToast('正在查看任务健康度详情');
+            showToast('正在查看任务反馈度详情');
         }
         
         function showDeptTasks(dept) {
@@ -4614,13 +4698,13 @@
                 'sales': '销售部',
                 'admin': '行政部'
             };
-            showToast(`正在查看${deptNames[dept] || '部门'}绩效详情`);
+            showToast(`正在查看${deptNames[dept] || '部门'}反馈任务分值详情`);
         }
         
         // 切换绩效排行折叠状态
         function togglePerformanceSection(sectionId) {
-            const contentElement = document.getElementById(sectionId === 'workHours' ? 'workHoursList' : 'deptScoreChart');
-            const toggleIcon = document.getElementById(sectionId === 'workHours' ? 'workHoursToggle' : 'deptScoreToggle');
+            const contentElement = document.getElementById('deptScoreChart');
+            const toggleIcon = document.getElementById('deptScoreToggle');
             
             if (contentElement.classList.contains('collapsed')) {
                 // 展开
@@ -4638,10 +4722,10 @@
         // 轮播消息功能
         function initMessageCarousel() {
             const messages = [
-                '📊 本月利润超预期15.8%，建议关注淮滨项目回款风险',
+                '💰 本月项目应收账款回款43.6万元，宁陵项目回款正常',
                 '⚠️ 淮滨项目进度延期，需要您的关注和处理',
                 '💰 本周新增3个商机，总价值¥800万',
-                '👥 研发部本月工时效率提升12%，表现优秀',
+                '👥 研发部反馈任务分值达1,250分，表现优秀',
                 '📈 客户满意度达到95%，创历史新高'
             ];
             
@@ -4661,31 +4745,187 @@
             initMessageCarousel();
         });
         
-        // 财务详情下钻功能
-        function showFinanceDetail(type) {
-            // 跳转到财务分析页面，并根据类型显示对应内容
-            showPage('finance');
+        // 财务时间切换功能
+        function switchFinanceTab(timeType) {
+            // 移除所有active类
+            document.querySelectorAll('.finance-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
             
-            // 可以根据type参数来高亮显示对应的数据区域
-            console.log('查看财务详情:', type);
+            // 添加active类到当前选中的tab
+            event.target.classList.add('active');
             
-            // 模拟数据下钻的反馈
-            setTimeout(() => {
-                const typeNames = {
-                    'monthly-income': '本月总回款详情',
-                    'monthly-expense': '本月总支出详情', 
-                    'project-income': '项目总回款详情',
-                    'project-expense': '项目总支出详情',
-                    'dept-budget': '部门总预算详情',
-                    'dept-expense': '部门总支出详情',
-                    'trend-analysis': '本年度收入/支出趋势分析'
-                };
-                
-                if (typeNames[type]) {
-                    // 可以在这里添加更具体的数据展示逻辑
-                    console.log(`正在查看: ${typeNames[type]}`);
-                }
-            }, 300);
+            // 根据时间类型显示不同的数据
+            const receivablesList = document.getElementById('receivablesList');
+            const summaryAmount = document.getElementById('summaryAmount');
+            
+            if (timeType === 'month') {
+                // 更新本月回款总额
+                summaryAmount.textContent = '¥ 556,000.00';
+                // 显示本月数据
+                receivablesList.innerHTML = `
+                    <!-- 默认显示的3个回款记录 -->
+                    <div class="receivable-item" onclick="showReceivableDetail('ningling-001')">
+                        <div class="receivable-info">
+                            <div class="receivable-project">宁陵智慧城市项目</div>
+                            <div class="receivable-follower">跟进人：李四</div>
+                            <div class="receivable-time">回款时间：2025-07-17</div>
+                        </div>
+                        <div class="receivable-amount">¥ 150,000.00</div>
+                    </div>
+                    
+                    <div class="receivable-item" onclick="showReceivableDetail('xxx-002')">
+                        <div class="receivable-info">
+                            <div class="receivable-project">XXX数字乡村建设项目</div>
+                            <div class="receivable-follower">跟进人：王五</div>
+                            <div class="receivable-time">回款时间：2025-07-15</div>
+                        </div>
+                        <div class="receivable-amount">¥ 86,000.00</div>
+                    </div>
+                    
+                    <div class="receivable-item" onclick="showReceivableDetail('huaibin-003')">
+                        <div class="receivable-info">
+                            <div class="receivable-project">淮滨数字政务平台</div>
+                            <div class="receivable-follower">跟进人：张三</div>
+                            <div class="receivable-time">回款时间：2025-07-12</div>
+                        </div>
+                        <div class="receivable-amount">¥ 200,000.00</div>
+                    </div>
+                    
+                    <!-- 折叠的回款记录 -->
+                    <div class="receivables-collapsed" id="receivablesCollapsed" style="display: none;">
+                        <div class="receivable-item" onclick="showReceivableDetail('shangqiu-004')">
+                            <div class="receivable-info">
+                                <div class="receivable-project">商丘产业园区系统</div>
+                                <div class="receivable-follower">跟进人：赵六</div>
+                                <div class="receivable-time">回款时间：2025-07-10</div>
+                            </div>
+                            <div class="receivable-amount">¥ 120,000.00</div>
+                        </div>
+                        
+                        <div class="receivable-item" onclick="showReceivableDetail('kaifeng-005')">
+                            <div class="receivable-info">
+                                <div class="receivable-project">开封科技园项目</div>
+                                <div class="receivable-follower">跟进人：孙七</div>
+                                <div class="receivable-time">回款时间：2025-07-08</div>
+                            </div>
+                            <div class="receivable-amount">¥ 95,000.00</div>
+                        </div>
+                    </div>
+                `;
+            } else if (timeType === 'year') {
+                // 更新本年回款总额
+                summaryAmount.textContent = '¥ 1,560,000.00';
+                // 显示本年数据
+                receivablesList.innerHTML = `
+                    <!-- 默认显示的3个回款记录 -->
+                    <div class="receivable-item" onclick="showReceivableDetail('ningling-001')">
+                        <div class="receivable-info">
+                            <div class="receivable-project">宁陵智慧城市项目</div>
+                            <div class="receivable-follower">跟进人：李四</div>
+                            <div class="receivable-time">回款时间：2025-07-17</div>
+                        </div>
+                        <div class="receivable-amount">¥ 150,000.00</div>
+                    </div>
+                    
+                    <div class="receivable-item" onclick="showReceivableDetail('kaifeng-005')">
+                        <div class="receivable-info">
+                            <div class="receivable-project">开封科技园项目</div>
+                            <div class="receivable-follower">跟进人：孙七</div>
+                            <div class="receivable-time">回款时间：2025-06-28</div>
+                        </div>
+                        <div class="receivable-amount">¥ 300,000.00</div>
+                    </div>
+                    
+                    <div class="receivable-item" onclick="showReceivableDetail('zhengzhou-006')">
+                        <div class="receivable-info">
+                            <div class="receivable-project">郑州智能交通系统</div>
+                            <div class="receivable-follower">跟进人：钱八</div>
+                            <div class="receivable-time">回款时间：2025-05-15</div>
+                        </div>
+                        <div class="receivable-amount">¥ 450,000.00</div>
+                    </div>
+                    
+                    <!-- 折叠的回款记录 -->
+                    <div class="receivables-collapsed" id="receivablesCollapsed" style="display: none;">
+                        <div class="receivable-item" onclick="showReceivableDetail('luoyang-007')">
+                            <div class="receivable-info">
+                                <div class="receivable-project">洛阳智慧医疗项目</div>
+                                <div class="receivable-follower">跟进人：周九</div>
+                                <div class="receivable-time">回款时间：2025-04-20</div>
+                            </div>
+                            <div class="receivable-amount">¥ 380,000.00</div>
+                        </div>
+                        
+                        <div class="receivable-item" onclick="showReceivableDetail('xinyang-008')">
+                            <div class="receivable-info">
+                                <div class="receivable-project">信阳智慧教育项目</div>
+                                <div class="receivable-follower">跟进人：吴十</div>
+                                <div class="receivable-time">回款时间：2025-03-25</div>
+                            </div>
+                            <div class="receivable-amount">¥ 280,000.00</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // 重置展开/折叠按钮状态
+            const toggleBtn = document.getElementById('receivablesToggleBtn');
+            let toggleContainer = document.querySelector('.receivables-toggle');
+            if (toggleBtn) {
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> 展开更多';
+                toggleContainer.classList.remove('expanded');
+            }
+            
+            showToast(`切换到${timeType === 'month' ? '本月' : '本年'}数据`);
+            
+            // 确保展开/折叠按钮存在
+            const receivablesContainer = document.querySelector('.finance-health-card');
+            toggleContainer = receivablesContainer.querySelector('.receivables-toggle');
+            if (!toggleContainer) {
+                toggleContainer = document.createElement('div');
+                toggleContainer.className = 'receivables-toggle';
+                toggleContainer.innerHTML = `
+                    <span onclick="toggleReceivables()" id="receivablesToggleBtn">
+                        <i class="fas fa-chevron-down"></i> 展开更多
+                    </span>
+                `;
+                receivablesContainer.appendChild(toggleContainer);
+            }
+        }
+        
+        // 应收账款详情查看
+        function showReceivableDetail(receivableId) {
+            const receivableNames = {
+                'ningling-001': '宁陵智慧城市项目回款详情',
+                'xxx-002': 'XXX数字乡村建设项目回款详情',
+                'huaibin-003': '淮滨数字政务平台回款详情',
+                'shangqiu-004': '商丘产业园区系统回款详情',
+                'kaifeng-005': '开封科技园项目回款详情',
+                'zhengzhou-006': '郑州智能交通系统回款详情',
+                'luoyang-007': '洛阳智慧医疗项目回款详情'
+            };
+            
+            showToast(`正在查看：${receivableNames[receivableId] || '回款详情'}`);
+        }
+        
+        // 展开/折叠应收账款记录
+        function toggleReceivables() {
+            const collapsedSection = document.getElementById('receivablesCollapsed');
+            const toggleBtn = document.getElementById('receivablesToggleBtn');
+            const toggleContainer = document.querySelector('.receivables-toggle');
+            
+            if (collapsedSection.style.display === 'none') {
+                // 展开
+                collapsedSection.style.display = 'block';
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> 收起';
+                toggleContainer.classList.add('expanded');
+            } else {
+                // 折叠
+                collapsedSection.style.display = 'none';
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> 展开更多';
+                toggleContainer.classList.remove('expanded');
+            }
         }
         
         // 初始化聊天界面
@@ -4861,26 +5101,7 @@
 
         // 项目价值洞察交互功能
         
-        // 时间范围切换
-        function switchTimeRange(range) {
-            // 更新切换器状态
-            document.querySelectorAll('.time-range-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // 模拟数据刷新
-            console.log('切换时间范围:', range);
-            
-            // 这里可以添加数据刷新逻辑
-            if (range === 'current') {
-                // 当月数据
-                updateProjectData('current');
-            } else {
-                // 全部数据  
-                updateProjectData('all');
-            }
-        }
+
         
         // 项目标签页切换
         function switchProjectTab(tabType) {
@@ -4971,11 +5192,7 @@
             projectList.innerHTML = listContent;
         }
         
-        // 更新项目数据（时间范围切换时调用）
-        function updateProjectData(timeRange) {
-            // 这里可以根据时间范围更新状态矩阵的数据
-            console.log('更新项目数据:', timeRange);
-        }
+
         
         // 显示项目中心
         function showProjectCenter(filterType) {
@@ -5045,42 +5262,7 @@
         
         // 客户洞察模块交互功能
         
-        // 切换客户时间范围
-        function switchCustomerTimeRange(range) {
-            // 更新按钮状态
-            document.querySelectorAll('.customer-insights-card .time-range-option').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // 模拟数据更新
-            const newData = range === 'new' ? {
-                leads: '150个',
-                opportunities: '45个',
-                newCustomers: '30家',
-                intentCustomers: '18家',
-                signedCustomers: '6家',
-                completedCustomers: '4家'
-            } : {
-                leads: '2,850个',
-                opportunities: '865个',
-                newCustomers: '580家',
-                intentCustomers: '342家',
-                signedCustomers: '126家',
-                completedCustomers: '89家'
-            };
-            
-            // 更新数据显示
-            const cards = document.querySelectorAll('.customer-growth-card .customer-growth-main');
-            cards[0].textContent = newData.leads;
-            cards[1].textContent = newData.opportunities;
-            cards[2].textContent = newData.newCustomers;
-            cards[3].textContent = newData.intentCustomers;
-            cards[4].textContent = newData.signedCustomers;
-            cards[5].textContent = newData.completedCustomers;
-            
-            showToast(range === 'new' ? '已切换到当月新增数据' : '已切换到累计数量数据');
-        }
+
         
         // 显示客户管理中心
         function showCustomerCenter(type) {
