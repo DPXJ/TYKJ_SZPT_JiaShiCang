@@ -2805,6 +2805,492 @@
             transform: rotate(180deg);
         }
         
+        /* 采购付款数据统计 */
+        .procurement-payment-section {
+            margin-top: 20px;
+        }
+        
+        .procurement-header {
+            margin-bottom: 15px;
+        }
+        
+        .procurement-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .procurement-title i {
+            color: #667eea;
+            font-size: 14px;
+        }
+        
+        /* 采购时间切换按钮 */
+        .procurement-time-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .procurement-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .procurement-tab.active {
+            background: white;
+            color: #333;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 数据统计 */
+        .procurement-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .stat-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        /* 付款卡片列表 */
+        .payment-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .payment-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+        
+        .payment-contract {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .payment-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+        
+        .payment-detail-item {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.3;
+        }
+        
+        /* 已付款金额显示为绿色 */
+        .payment-detail-item:nth-child(3) {
+            color: #52c41a;
+            font-weight: 600;
+        }
+        
+        /* 已付款金额的特殊样式类 */
+        .payment-amount-paid {
+            color: #52c41a !important;
+            font-weight: 600 !important;
+        }
+        
+        /* 展开/折叠按钮 */
+        .payment-cards-toggle {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .payment-cards-toggle span {
+            font-size: 12px;
+            color: #667eea;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .payment-cards-toggle span:hover {
+            color: #4a67d6;
+        }
+        
+        /* 月度柱状趋势图 */
+        .monthly-trend-chart {
+            margin-bottom: 15px;
+        }
+        
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .bar-chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            height: 160px;
+            position: relative;
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            height: calc(100% - 40px);
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+        
+        /* Y轴标签 */
+        .bar-y-axis {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            bottom: 40px;
+            width: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 9px;
+            color: #999;
+            padding-right: 5px;
+        }
+        
+        /* X轴标签 */
+        .bar-x-axis {
+            position: absolute;
+            bottom: 0;
+            left: 40px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #666;
+            padding-top: 5px;
+        }
+        
+        /* Y轴标题 */
+        .bar-y-title {
+            position: absolute;
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-size: 10px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        .bar-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        
+        .bar-column {
+            width: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px 2px 0 0;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .bar-column:hover {
+            opacity: 0.8;
+        }
+        
+        /* 项目已付款总额排行横向条形图 */
+        .project-expense-ranking {
+            margin-bottom: 15px;
+        }
+        
+        .horizontal-bar-chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            height: 200px;
+            position: relative;
+        }
+        
+        .horizontal-bar-chart {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: calc(100% - 20px);
+            margin-bottom: 15px;
+        }
+        
+        .horizontal-bar-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            height: 20px;
+        }
+        
+        .horizontal-bar-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .horizontal-bar-label {
+            width: 80px;
+            font-size: 11px;
+            color: #666;
+            text-align: left;
+            margin-right: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .horizontal-bar-container {
+            flex: 1;
+            height: 16px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 8px;
+            position: relative;
+        }
+        
+        .horizontal-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .horizontal-bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.1);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .horizontal-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .horizontal-bar-value {
+            font-size: 10px;
+            color: #333;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* 支出分类占比饼状图 */
+        .expense-category-chart {
+            margin-bottom: 15px;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .chart-time-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 6px;
+            padding: 2px;
+            gap: 2px;
+        }
+        
+        .chart-tab {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .chart-tab.active {
+            background: #667eea;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .pie-chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .pie-chart-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .pie-chart {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #667eea 0deg 234deg,
+                #764ba2 234deg 360deg
+            );
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .pie-chart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .pie-chart::before {
+            content: '';
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+        
+        .pie-center {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .pie-total {
+            font-size: 9px;
+            color: #999;
+            margin-bottom: 2px;
+        }
+        
+        .pie-amount {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .pie-legend {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .legend-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(2px);
+        }
+        
+        .legend-item.highlighted {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        
+        .legend-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .legend-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .legend-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
         /* 趋势图表区域 */
         .trend-charts {
             display: flex;
@@ -4032,110 +4518,251 @@
                                     </span>
                                 </div>
                                 
-                                <!-- 趋势分析图表 -->
-                                <div class="trend-charts">
-                                    <div class="chart-section" onclick="showFinanceDetail('trend-analysis')">
-                                        <div class="chart-title">本年度收入/支出趋势</div>
-                                        <div class="chart-container">
+                                <!-- 采购付款数据统计 -->
+                                <div class="procurement-payment-section">
+                                    <div class="procurement-header">
+                                        <div class="procurement-title">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            采购付款数据统计
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 时间筛选 -->
+                                    <div class="procurement-time-tabs">
+                                        <div class="procurement-tab active" onclick="switchProcurementTab('month')">本月</div>
+                                        <div class="procurement-tab" onclick="switchProcurementTab('year')">本年度</div>
+                                    </div>
+                                    
+                                    <!-- 数据统计 -->
+                                    <div class="procurement-stats" id="procurementStats">
+                                        <div class="stat-item">
+                                            <div class="stat-label">合同总额</div>
+                                            <div class="stat-value">¥ 2,850,000</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-label">已付款总额</div>
+                                            <div class="stat-value">¥ 1,680,000</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-label">未付款总额</div>
+                                            <div class="stat-value">¥ 1,170,000</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-label">审批总进度</div>
+                                            <div class="stat-value">58.9%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 付款卡片列表 -->
+                                    <div class="payment-cards-list" id="paymentCardsList">
+                                        <!-- 默认显示的3个付款记录 -->
+                                        <div class="payment-card" onclick="showPaymentDetail('contract-001')">
+                                            <div class="payment-info">
+                                                <div class="payment-contract">宁陵智慧城市设备采购</div>
+                                                <div class="payment-details">
+                                                    <div class="payment-detail-item">合同总金额：¥ 850,000</div>
+                                                    <div class="payment-detail-item">申请付款金额：¥ 680,000</div>
+                                                    <div class="payment-detail-item">已付款金额：¥ 510,000</div>
+                                                    <div class="payment-detail-item">未付款金额：¥ 170,000</div>
+                                                    <div class="payment-detail-item">申请付款时间：2025-07-15</div>
+                                                    <div class="payment-detail-item">审批通过时间：2025-07-16</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="payment-card" onclick="showPaymentDetail('contract-002')">
+                                            <div class="payment-info">
+                                                <div class="payment-contract">淮滨数字政务平台硬件</div>
+                                                <div class="payment-details">
+                                                    <div class="payment-detail-item">合同总金额：¥ 650,000</div>
+                                                    <div class="payment-detail-item">申请付款金额：¥ 390,000</div>
+                                                    <div class="payment-detail-item">已付款金额：¥ 260,000</div>
+                                                    <div class="payment-detail-item">未付款金额：¥ 390,000</div>
+                                                    <div class="payment-detail-item">申请付款时间：2025-07-12</div>
+                                                    <div class="payment-detail-item">审批通过时间：2025-07-14</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="payment-card" onclick="showPaymentDetail('contract-003')">
+                                            <div class="payment-info">
+                                                <div class="payment-contract">商丘产业园区网络设备</div>
+                                                <div class="payment-details">
+                                                    <div class="payment-detail-item">合同总金额：¥ 450,000</div>
+                                                    <div class="payment-detail-item">申请付款金额：¥ 315,000</div>
+                                                    <div class="payment-detail-item">已付款金额：¥ 225,000</div>
+                                                    <div class="payment-detail-item">未付款金额：¥ 225,000</div>
+                                                    <div class="payment-detail-item">申请付款时间：2025-07-10</div>
+                                                    <div class="payment-detail-item">审批通过时间：2025-07-11</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 折叠的付款记录 -->
+                                        <div class="payment-cards-collapsed" id="paymentCardsCollapsed" style="display: none;">
+                                            <div class="payment-card" onclick="showPaymentDetail('contract-004')">
+                                                <div class="payment-info">
+                                                    <div class="payment-contract">开封科技园服务器采购</div>
+                                                    <div class="payment-details">
+                                                        <div class="payment-detail-item">合同总金额：¥ 380,000</div>
+                                                        <div class="payment-detail-item">申请付款金额：¥ 304,000</div>
+                                                        <div class="payment-detail-item">已付款金额：¥ 190,000</div>
+                                                        <div class="payment-detail-item">未付款金额：¥ 190,000</div>
+                                                        <div class="payment-detail-item">申请付款时间：2025-07-08</div>
+                                                        <div class="payment-detail-item">审批通过时间：2025-07-09</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 展开/折叠按钮 -->
+                                    <div class="payment-cards-toggle">
+                                        <span onclick="togglePaymentCards()" id="paymentCardsToggleBtn">
+                                            <i class="fas fa-chevron-down"></i> 展开更多
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- 月度柱状趋势图 -->
+                                    <div class="monthly-trend-chart">
+                                        <div class="chart-title">月度支出趋势</div>
+                                        <div class="bar-chart-container">
+                                            <!-- Y轴标题 -->
+                                            <div class="bar-y-title">已付款金额（万元）</div>
+                                            
                                             <!-- Y轴标签 -->
-                                            <div class="y-axis-labels">
-                                                <span>2000万元</span>
-                                                <span>1500万元</span>
-                                                <span>1000万元</span>
-                                                <span>500万元</span>
-                                                <span>0万元</span>
+                                            <div class="bar-y-axis">
+                                                <span>125</span>
+                                                <span>100</span>
+                                                <span>75</span>
+                                                <span>50</span>
+                                                <span>25</span>
+                                                <span>0</span>
                                             </div>
                                             
-                                            <!-- 主图表区域 -->
-                                            <div class="main-chart-area">
-                                                <div class="trend-chart">
-                                                    <div class="chart-grid"></div>
-                                                    <svg class="chart-line" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                                        <!-- 收入趋势线 -->
-                                                        <path class="line-path line-income" d="M 8,75 L 25,65 L 42,60 L 58,45 L 75,25 L 92,10" />
-                                                        <!-- 支出趋势线 -->
-                                                        <path class="line-path line-expense" d="M 8,80 L 25,72 L 42,68 L 58,60 L 75,50 L 92,40" />
-                                                    </svg>
-                                                    
-                                                    <!-- 交互式数据点 -->
-                                                    <div class="chart-points">
-                                                        <!-- 收入数据点 -->
-                                                        <div class="interactive-point" style="left: 8%; top: 75%;" 
-                                                             data-month="1月" data-type="收入" data-value="450"></div>
-                                                        <div class="point income" style="left: 8%; top: 75%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 25%; top: 65%;" 
-                                                             data-month="2月" data-type="收入" data-value="680"></div>
-                                                        <div class="point income" style="left: 25%; top: 65%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 42%; top: 60%;" 
-                                                             data-month="3月" data-type="收入" data-value="820"></div>
-                                                        <div class="point income" style="left: 42%; top: 60%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 58%; top: 45%;" 
-                                                             data-month="4月" data-type="收入" data-value="1150"></div>
-                                                        <div class="point income" style="left: 58%; top: 45%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 75%; top: 25%;" 
-                                                             data-month="5月" data-type="收入" data-value="1520"></div>
-                                                        <div class="point income" style="left: 75%; top: 25%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 92%; top: 10%;" 
-                                                             data-month="6月" data-type="收入" data-value="1820"></div>
-                                                        <div class="point income" style="left: 92%; top: 10%;"></div>
-                                                        
-                                                        <!-- 支出数据点 -->
-                                                        <div class="interactive-point" style="left: 8%; top: 80%;" 
-                                                             data-month="1月" data-type="支出" data-value="320"></div>
-                                                        <div class="point" style="background: #52c41a; left: 8%; top: 80%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 25%; top: 72%;" 
-                                                             data-month="2月" data-type="支出" data-value="480"></div>
-                                                        <div class="point" style="background: #52c41a; left: 25%; top: 72%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 42%; top: 68%;" 
-                                                             data-month="3月" data-type="支出" data-value="580"></div>
-                                                        <div class="point" style="background: #52c41a; left: 42%; top: 68%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 58%; top: 60%;" 
-                                                             data-month="4月" data-type="支出" data-value="750"></div>
-                                                        <div class="point" style="background: #52c41a; left: 58%; top: 60%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 75%; top: 50%;" 
-                                                             data-month="5月" data-type="支出" data-value="950"></div>
-                                                        <div class="point" style="background: #52c41a; left: 75%; top: 50%;"></div>
-                                                        
-                                                        <div class="interactive-point" style="left: 92%; top: 40%;" 
-                                                             data-month="6月" data-type="支出" data-value="1150"></div>
-                                                        <div class="point" style="background: #52c41a; left: 92%; top: 40%;"></div>
-                                                    </div>
+                                            <!-- 柱状图 -->
+                                            <div class="bar-chart">
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 30%;" data-value="45万"></div>
+                                                </div>
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 40%;" data-value="58万"></div>
+                                                </div>
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 60%;" data-value="82万"></div>
+                                                </div>
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 80%;" data-value="95万"></div>
+                                                </div>
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 100%;" data-value="125万"></div>
+                                                </div>
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 70%;" data-value="88万"></div>
+                                                </div>
+                                                <div class="bar-item">
+                                                    <div class="bar-column" style="height: 90%;" data-value="108万"></div>
                                                 </div>
                                             </div>
                                             
                                             <!-- X轴标签 -->
-                                            <div class="chart-labels">
+                                            <div class="bar-x-axis">
                                                 <span>1月</span>
                                                 <span>2月</span>
                                                 <span>3月</span>
                                                 <span>4月</span>
                                                 <span>5月</span>
                                                 <span>6月</span>
+                                                <span>7月</span>
                                             </div>
-                                            
-                                            <!-- 图例 -->
-                                            <div class="chart-legend">
-                                                <div class="legend-item">
-                                                    <div class="legend-color" style="background: #1890ff;"></div>
-                                                    <span>收入</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 项目已付款总额排行横向条形图 -->
+                                    <div class="project-expense-ranking">
+                                        <div class="chart-title">已付款项目 · 总额排行</div>
+                                        <div class="horizontal-bar-chart-container">
+                                            <div class="horizontal-bar-chart">
+                                                <div class="horizontal-bar-item">
+                                                    <div class="horizontal-bar-label">淮滨项目</div>
+                                                    <div class="horizontal-bar-container">
+                                                        <div class="horizontal-bar" style="width: 100%; background: linear-gradient(135deg, #ff6b6b, #ee5a52);" data-value="285万"></div>
+                                                    </div>
+                                                    <div class="horizontal-bar-value">285万</div>
                                                 </div>
-                                                <div class="legend-item">
-                                                    <div class="legend-color" style="background: #52c41a;"></div>
-                                                    <span>支出</span>
+                                                <div class="horizontal-bar-item">
+                                                    <div class="horizontal-bar-label">智慧园区</div>
+                                                    <div class="horizontal-bar-container">
+                                                        <div class="horizontal-bar" style="width: 82%; background: linear-gradient(135deg, #667eea, #764ba2);" data-value="235万"></div>
+                                                    </div>
+                                                    <div class="horizontal-bar-value">235万</div>
+                                                </div>
+                                                <div class="horizontal-bar-item">
+                                                    <div class="horizontal-bar-label">数字化转型</div>
+                                                    <div class="horizontal-bar-container">
+                                                        <div class="horizontal-bar" style="width: 65%; background: linear-gradient(135deg, #4facfe, #00f2fe);" data-value="185万"></div>
+                                                    </div>
+                                                    <div class="horizontal-bar-value">185万</div>
+                                                </div>
+                                                <div class="horizontal-bar-item">
+                                                    <div class="horizontal-bar-label">云平台建设</div>
+                                                    <div class="horizontal-bar-container">
+                                                        <div class="horizontal-bar" style="width: 52%; background: linear-gradient(135deg, #43e97b, #38f9d7);" data-value="148万"></div>
+                                                    </div>
+                                                    <div class="horizontal-bar-value">148万</div>
+                                                </div>
+                                                <div class="horizontal-bar-item">
+                                                    <div class="horizontal-bar-label">安全防护</div>
+                                                    <div class="horizontal-bar-container">
+                                                        <div class="horizontal-bar" style="width: 35%; background: linear-gradient(135deg, #f093fb, #f5576c);" data-value="98万"></div>
+                                                    </div>
+                                                    <div class="horizontal-bar-value">98万</div>
+                                                </div>
+                                                <div class="horizontal-bar-item">
+                                                    <div class="horizontal-bar-label">移动应用</div>
+                                                    <div class="horizontal-bar-container">
+                                                        <div class="horizontal-bar" style="width: 28%; background: linear-gradient(135deg, #ffa726, #ffcc02);" data-value="82万"></div>
+                                                    </div>
+                                                    <div class="horizontal-bar-value">82万</div>
                                                 </div>
                                             </div>
-                                            
-                                            <!-- 提示框 -->
-                                            <div class="chart-tooltip" id="chartTooltip"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 支出分类占比饼状图 -->
+                                    <div class="expense-category-chart">
+                                        <div class="chart-header">
+                                            <div class="chart-title">已付款项目 · 分类占比</div>
+                                            <div class="chart-time-tabs">
+                                                <div class="chart-tab active" onclick="switchPieChartTab('month')">本月</div>
+                                                <div class="chart-tab" onclick="switchPieChartTab('year')">本年</div>
+                                            </div>
+                                        </div>
+                                        <div class="pie-chart-container">
+                                            <div class="pie-chart-wrapper">
+                                                <div class="pie-chart">
+                                                    <div class="pie-center">
+                                                        <div class="pie-total">总计</div>
+                                                        <div class="pie-amount" id="pieTotal">520万</div>
+                                                    </div>
+                                                </div>
+                                                <div class="pie-legend">
+                                                    <div class="legend-item">
+                                                        <div class="legend-color" style="background: #667eea;"></div>
+                                                        <div class="legend-info">
+                                                            <span class="legend-label">实施项目</span>
+                                                            <span class="legend-value" id="implementValue">65%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="legend-item">
+                                                        <div class="legend-color" style="background: #764ba2;"></div>
+                                                        <div class="legend-info">
+                                                            <span class="legend-label">公司项目</span>
+                                                            <span class="legend-value" id="companyValue">35%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -4928,6 +5555,97 @@
             }
         }
         
+        // 采购付款时间切换功能
+        function switchProcurementTab(timeType) {
+            // 移除所有active类
+            document.querySelectorAll('.procurement-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 添加active类到当前选中的tab
+            event.target.classList.add('active');
+            
+            // 根据时间类型更新统计数据
+            const procurementStats = document.getElementById('procurementStats');
+            
+            if (timeType === 'month') {
+                // 更新本月数据
+                procurementStats.innerHTML = `
+                    <div class="stat-item">
+                        <div class="stat-label">合同总额</div>
+                        <div class="stat-value">¥ 2,850,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">已付款总额</div>
+                        <div class="stat-value">¥ 1,680,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">未付款总额</div>
+                        <div class="stat-value">¥ 1,170,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">审批总进度</div>
+                        <div class="stat-value">58.9%</div>
+                    </div>
+                `;
+            } else if (timeType === 'year') {
+                // 更新本年度数据
+                procurementStats.innerHTML = `
+                    <div class="stat-item">
+                        <div class="stat-label">合同总额</div>
+                        <div class="stat-value">¥ 18,500,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">已付款总额</div>
+                        <div class="stat-value">¥ 12,800,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">未付款总额</div>
+                        <div class="stat-value">¥ 5,700,000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">审批总进度</div>
+                        <div class="stat-value">69.2%</div>
+                    </div>
+                `;
+            }
+            
+            showToast(`切换到${timeType === 'month' ? '本月' : '本年度'}采购数据`);
+        }
+        
+        // 展开/折叠付款卡片记录
+        function togglePaymentCards() {
+            const collapsedSection = document.getElementById('paymentCardsCollapsed');
+            const toggleBtn = document.getElementById('paymentCardsToggleBtn');
+            
+            if (collapsedSection.style.display === 'none') {
+                // 展开
+                collapsedSection.style.display = 'block';
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> 收起';
+                
+                // 重新初始化付款卡片样式，确保新显示的卡片也有绿色样式
+                setTimeout(() => {
+                    initPaymentCardStyles();
+                }, 100);
+            } else {
+                // 折叠
+                collapsedSection.style.display = 'none';
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> 展开更多';
+            }
+        }
+        
+        // 付款详情查看
+        function showPaymentDetail(contractId) {
+            const contractNames = {
+                'contract-001': '宁陵智慧城市设备采购合同详情',
+                'contract-002': '淮滨数字政务平台硬件合同详情',
+                'contract-003': '商丘产业园区网络设备合同详情',
+                'contract-004': '开封科技园服务器采购合同详情'
+            };
+            
+            showToast(`正在查看：${contractNames[contractId] || '合同详情'}`);
+        }
+        
         // 初始化聊天界面
         function initChatMessages() {
             document.getElementById('chatMessages').innerHTML = `
@@ -5211,12 +5929,18 @@
         document.addEventListener('DOMContentLoaded', function() {
             initChatMessages();
             initChartInteraction();
+            initHorizontalBarChart();
+            initPaymentCardStyles();
+            initPieChart();
         });
         
         // 初始化图表交互功能
         function initChartInteraction() {
             const interactivePoints = document.querySelectorAll('.interactive-point');
             const tooltip = document.getElementById('chartTooltip');
+            
+            // 初始化横向条形图交互
+            initHorizontalBarChart();
             
             interactivePoints.forEach(point => {
                 // 鼠标进入显示提示框
@@ -5256,6 +5980,252 @@
                     
                     // 这里可以添加更复杂的交互，比如弹出详细的数据面板
                     console.log(`查看详情: ${month} ${type} - ¥${value}万`);
+                });
+            });
+        }
+        
+        // 初始化横向条形图交互功能
+        function initHorizontalBarChart() {
+            const horizontalBars = document.querySelectorAll('.horizontal-bar');
+            const chartContainer = document.querySelector('.horizontal-bar-chart-container');
+            
+            // 添加图表容器的鼠标离开事件，确保提示框被清除
+            if (chartContainer) {
+                chartContainer.addEventListener('mouseleave', function() {
+                    document.querySelectorAll('.bar-tooltip').forEach(tooltip => {
+                        tooltip.remove();
+                    });
+                    // 重置所有条形图的样式
+                    horizontalBars.forEach(bar => {
+                        bar.style.transform = 'scaleY(1)';
+                        bar.style.boxShadow = 'none';
+                        bar.tooltipElement = null;
+                    });
+                });
+            }
+            
+            horizontalBars.forEach(bar => {
+                const barItem = bar.closest('.horizontal-bar-item');
+                const projectName = barItem.querySelector('.horizontal-bar-label').textContent;
+                const value = bar.getAttribute('data-value');
+                
+                // 鼠标悬停效果
+                bar.addEventListener('mouseenter', function() {
+                    // 清除所有现有的提示框
+                    document.querySelectorAll('.bar-tooltip').forEach(tooltip => {
+                        tooltip.remove();
+                    });
+                    
+                    this.style.transform = 'scaleY(1.1)';
+                    this.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.3)';
+                    
+                    // 显示详细信息提示
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'bar-tooltip';
+                    tooltip.innerHTML = `
+                        <div style="font-weight: bold; color: #333;">${projectName}</div>
+                        <div style="color: #667eea; font-size: 12px;">已付款总额：${value}</div>
+                    `;
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        background: white;
+                        border: 1px solid #e9ecef;
+                        border-radius: 6px;
+                        padding: 8px 12px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                        font-size: 11px;
+                        z-index: 1000;
+                        pointer-events: none;
+                        white-space: nowrap;
+                        top: -5px;
+                        left: 50%;
+                        transform: translate(-50%, -100%);
+                        opacity: 0;
+                        transition: opacity 0.2s ease;
+                    `;
+                    
+                    barItem.style.position = 'relative';
+                    barItem.appendChild(tooltip);
+                    this.tooltipElement = tooltip;
+                    
+                    // 添加淡入效果
+                    setTimeout(() => {
+                        tooltip.style.opacity = '1';
+                    }, 10);
+                });
+                
+                bar.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scaleY(1)';
+                    this.style.boxShadow = 'none';
+                    
+                    if (this.tooltipElement) {
+                        this.tooltipElement.remove();
+                        this.tooltipElement = null;
+                    }
+                });
+                
+                // 点击显示项目详情
+                bar.addEventListener('click', function() {
+                    showProjectExpenseDetail(projectName, value);
+                });
+            });
+        }
+        
+        // 显示项目已付款总额详情
+        function showProjectExpenseDetail(projectName, totalExpense) {
+            const details = {
+                '淮滨项目': {
+                    description: '智慧城市建设项目',
+                    startDate: '2024-01-15',
+                    expectedEnd: '2024-12-30',
+                    progress: '68%',
+                    expenses: [
+                        { category: '人力成本', amount: '125万', percentage: '44%' },
+                        { category: '设备采购', amount: '85万', percentage: '30%' },
+                        { category: '软件许可', amount: '45万', percentage: '16%' },
+                        { category: '其他费用', amount: '30万', percentage: '10%' }
+                    ]
+                },
+                '智慧园区': {
+                    description: '产业园区数字化改造',
+                    startDate: '2024-02-01',
+                    expectedEnd: '2024-11-15',
+                    progress: '55%',
+                    expenses: [
+                        { category: '人力成本', amount: '98万', percentage: '42%' },
+                        { category: '设备采购', amount: '78万', percentage: '33%' },
+                        { category: '软件许可', amount: '35万', percentage: '15%' },
+                        { category: '其他费用', amount: '24万', percentage: '10%' }
+                    ]
+                },
+                '数字化转型': {
+                    description: '企业数字化转型升级',
+                    startDate: '2024-03-01',
+                    expectedEnd: '2024-10-31',
+                    progress: '72%',
+                    expenses: [
+                        { category: '人力成本', amount: '82万', percentage: '44%' },
+                        { category: '设备采购', amount: '58万', percentage: '31%' },
+                        { category: '软件许可', amount: '28万', percentage: '15%' },
+                        { category: '其他费用', amount: '17万', percentage: '10%' }
+                    ]
+                }
+            };
+            
+            const projectDetail = details[projectName] || {
+                description: '项目详情',
+                startDate: '2024-01-01',
+                expectedEnd: '2024-12-31',
+                progress: '50%',
+                expenses: [
+                    { category: '人力成本', amount: '60万', percentage: '40%' },
+                    { category: '设备采购', amount: '50万', percentage: '35%' },
+                    { category: '软件许可', amount: '25万', percentage: '15%' },
+                    { category: '其他费用', amount: '15万', percentage: '10%' }
+                ]
+            };
+            
+            showToast(`📊 ${projectName} 详情\n已付款总额：${totalExpense}\n进度：${projectDetail.progress}\n${projectDetail.description}`);
+        }
+        
+        // 初始化付款卡片样式
+        function initPaymentCardStyles() {
+            // 获取所有付款详情项
+            const paymentDetailItems = document.querySelectorAll('.payment-detail-item');
+            
+            paymentDetailItems.forEach(item => {
+                // 检查是否包含"已付款金额"文本
+                if (item.textContent.includes('已付款金额')) {
+                    item.classList.add('payment-amount-paid');
+                }
+            });
+        }
+        
+        // 饼状图时间切换功能
+        function switchPieChartTab(timeType) {
+            // 更新标签样式
+            const tabs = document.querySelectorAll('.chart-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 更新数据
+            const pieData = {
+                month: {
+                    total: '520万',
+                    implement: { percentage: '65%', amount: '338万' },
+                    company: { percentage: '35%', amount: '182万' }
+                },
+                year: {
+                    total: '2,850万',
+                    implement: { percentage: '58%', amount: '1,653万' },
+                    company: { percentage: '42%', amount: '1,197万' }
+                }
+            };
+            
+            const data = pieData[timeType];
+            
+            // 更新总计（带动画效果）
+            const totalElement = document.getElementById('pieTotal');
+            const implementElement = document.getElementById('implementValue');
+            const companyElement = document.getElementById('companyValue');
+            
+            // 添加更新动画
+            [totalElement, implementElement, companyElement].forEach(element => {
+                element.style.opacity = '0.5';
+                element.style.transform = 'scale(0.8)';
+            });
+            
+            setTimeout(() => {
+                totalElement.textContent = data.total;
+                implementElement.textContent = data.implement.percentage;
+                companyElement.textContent = data.company.percentage;
+                
+                [totalElement, implementElement, companyElement].forEach(element => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'scale(1)';
+                });
+            }, 150);
+            
+            // 更新饼状图
+            const pieChart = document.querySelector('.pie-chart');
+            const implementPercentage = parseInt(data.implement.percentage);
+            const companyPercentage = parseInt(data.company.percentage);
+            
+            const implementDegrees = (implementPercentage / 100) * 360;
+            const companyDegrees = (companyPercentage / 100) * 360;
+            
+            pieChart.style.background = `conic-gradient(
+                #667eea 0deg ${implementDegrees}deg,
+                #764ba2 ${implementDegrees}deg 360deg
+            )`;
+            
+            // 添加切换动画
+            pieChart.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                pieChart.style.transform = 'scale(1)';
+            }, 150);
+        }
+        
+        // 初始化饼状图
+        function initPieChart() {
+            // 为图例项添加点击事件
+            const legendItems = document.querySelectorAll('.legend-item');
+            legendItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    // 高亮效果
+                    legendItems.forEach(i => i.classList.remove('highlighted'));
+                    this.classList.add('highlighted');
+                    
+                    // 显示详细信息
+                    const label = this.querySelector('.legend-label').textContent;
+                    const value = this.querySelector('.legend-value').textContent;
+                    showToast(`📊 ${label}: ${value}`);
+                    
+                    setTimeout(() => {
+                        this.classList.remove('highlighted');
+                    }, 2000);
                 });
             });
         }
