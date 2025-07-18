@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目详情 - 驾驶舱</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .demo-container {
+            display: flex;
+            gap: 30px;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+        
+        /* 左侧导航 */
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            left: 10px;
+            top: 20px;
+            height: calc(100vh - 40px);
+            z-index: 100;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .sidebar.collapsed {
+            width: 70px;
+            padding: 20px 10px;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar h2 {
+            color: #333;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar.collapsed h2 {
+            opacity: 0;
+        }
+        
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+        
+        .sidebar-toggle:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+        
+        .sidebar.collapsed .sidebar-toggle i {
+            transform: rotate(180deg);
+        }
+        
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-item {
+            margin-bottom: 8px;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            transform: translateX(4px);
+        }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-link i {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .nav-link-text {
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar.collapsed .nav-link-text {
+            opacity: 0;
+        }
+        
+        .sidebar.collapsed .nav-link {
+            justify-content: center;
+            padding: 12px 8px;
+        }
+        
+        .sidebar.collapsed .nav-link:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 1;
+            pointer-events: none;
+        }
+        
+        .sidebar.collapsed .nav-link:hover::before {
+            content: '';
+            position: absolute;
+            left: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-right-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        /* 固定的展开按钮 */
+        .sidebar-expand-btn {
+            position: fixed;
+            top: 30px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            z-index: 200;
+            transition: all 0.3s ease;
+            display: none;
+            animation: breathe 3s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            }
+        }
+        
+        .sidebar-expand-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            animation-play-state: paused;
+        }
+        
+        .sidebar-expand-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* 手机壳 */
+        .phone-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 375px;
+            height: 753px;
+            background: #000;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 手机状态栏 */
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* 顶部标题栏 */
+        .app-header {
+            background: #667eea;
+            padding: 12px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .app-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .back-btn-header {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-btn-header:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-spacer {
+            width: 36px;
+            height: 36px;
+        }
+        
+        /* 页面内容区域 */
+        .page-content {
+            height: calc(100% - 88px);
+            overflow-y: auto;
+            background: #f8f9fa;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .page-content::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* 项目详情页面样式 */
+        .project-detail-page {
+            padding: 20px;
+        }
+        
+        /* 项目头部卡片 */
+        .project-header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-status-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #52c41a;
+            color: white;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            transform: rotate(45deg);
+            transform-origin: center;
+            width: 80px;
+            text-align: center;
+            top: 15px;
+            right: -20px;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            padding-right: 30px;
+            line-height: 1.3;
+        }
+        
+        .project-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .project-basic-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* 项目功能卡片 */
+        .project-feature-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .feature-functions {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .function-item {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 12px;
+        }
+        
+        .function-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .function-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 18px;
+        }
+        
+        .function-name {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* 项目统计卡片 */
+        .project-stats-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stats-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px 10px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* 快速操作区域 */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .action-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .action-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .action-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .action-btn.primary:hover {
+            background: #5a67d8;
+        }
+        
+        /* 项目描述卡片 */
+        .project-description-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .description-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .description-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- 固定的展开按钮 -->
+        <button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="toggleSidebar()" style="display: none;">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- 左侧导航 -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-compass"></i>页面导航</h2>
+                <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link" data-tooltip="首页">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-link-text">首页</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#projects" class="nav-link" data-tooltip="项目管理">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="nav-link-text">项目管理</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#finance" class="nav-link" data-tooltip="财务分析">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="nav-link-text">财务分析</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#procurement" class="nav-link" data-tooltip="采购供应链">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="nav-link-text">采购供应链</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#hr" class="nav-link" data-tooltip="人力效能">
+                        <i class="fas fa-users"></i>
+                        <span class="nav-link-text">人力效能</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#ai-report" class="nav-link" data-tooltip="AI经营报告">
+                        <i class="fas fa-robot"></i>
+                        <span class="nav-link-text">AI经营报告</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#new-projects-list" class="nav-link" data-tooltip="本月新增项目">
+                        <i class="fas fa-plus-circle"></i>
+                        <span class="nav-link-text">本月新增项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#pending-start-projects" class="nav-link" data-tooltip="待启动项目">
+                        <i class="fas fa-clock"></i>
+                        <span class="nav-link-text">待启动项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#pending-acceptance-projects" class="nav-link" data-tooltip="待验收项目">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="nav-link-text">待验收项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#acceptance-in-progress-projects" class="nav-link" data-tooltip="验收中项目">
+                        <i class="fas fa-tasks"></i>
+                        <span class="nav-link-text">验收中项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#acceptance-passed-projects" class="nav-link" data-tooltip="验收通过项目">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="nav-link-text">验收通过项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#archived-projects" class="nav-link" data-tooltip="已归档项目">
+                        <i class="fas fa-archive"></i>
+                        <span class="nav-link-text">已归档项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-tooltip="项目详情">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="nav-link-text">项目详情</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 手机壳 -->
+        <div class="phone-container">
+        <div class="phone-screen">
+            <!-- 状态栏 -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span>14:19</span>
+                </div>
+                <div class="status-right">
+                    <i class="fas fa-signal"></i>
+                    <i class="fas fa-wifi"></i>
+                    <span>84%</span>
+                    <i class="fas fa-battery-three-quarters"></i>
+                </div>
+            </div>
+            
+            <!-- 顶部标题栏 -->
+            <div class="app-header">
+                <button class="back-btn-header" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="app-title">项目详情</h1>
+                <div class="header-spacer"></div>
+            </div>
+            
+            <!-- 页面内容 -->
+            <div class="page-content">
+                <div class="project-detail-page">
+                    <!-- 项目头部信息 -->
+                    <div class="project-header-card">
+                        <div class="project-status-badge">进行中</div>
+                        <h2 class="project-title">淮滨智慧城市建设项目</h2>
+                        <div class="project-amount">¥850万</div>
+                        
+                        <div class="project-basic-info">
+                            <div class="info-item">
+                                <span class="info-label">创建时间</span>
+                                <span class="info-value">2024-07-15</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">项目经理</span>
+                                <span class="info-value">张经理</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">客户</span>
+                                <span class="info-value">淮滨县政府</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">预计完成</span>
+                                <span class="info-value">2024-12-30</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目功能卡片 -->
+                    <div class="project-feature-card">
+                        <div class="feature-header">
+                            <div class="feature-title">
+                                <i class="fas fa-cube"></i>
+                                项目工作台
+                            </div>
+                            <div class="feature-badge">99+</div>
+                        </div>
+                        
+                        <div class="feature-functions">
+                            <div class="function-item" onclick="showFunction('tasks')">
+                                <div class="function-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="function-name">任务</div>
+                            </div>
+                            <div class="function-item" onclick="showFunction('monitor')">
+                                <div class="function-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="function-name">监察</div>
+                            </div>
+                            <div class="function-item" onclick="showFunction('log')">
+                                <div class="function-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="function-name">施工日志</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目统计 -->
+                    <div class="project-stats-card">
+                        <div class="stats-title">
+                            <i class="fas fa-chart-bar"></i>
+                            项目统计
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item" onclick="showTasks()">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">总任务</div>
+                            </div>
+                            <div class="stat-item" onclick="showOngoingTasks()">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">进行中</div>
+                            </div>
+                            <div class="stat-item" onclick="showCompletedTasks()">
+                                <div class="stat-number">7</div>
+                                <div class="stat-label">已完成</div>
+                            </div>
+                            <div class="stat-item" onclick="showTeamMembers()">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">团队成员</div>
+                            </div>
+                            <div class="stat-item" onclick="showProgress()">
+                                <div class="stat-number">68%</div>
+                                <div class="stat-label">完成度</div>
+                            </div>
+                            <div class="stat-item" onclick="showFiles()">
+                                <div class="stat-number">45</div>
+                                <div class="stat-label">文件</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 快速操作 -->
+                    <div class="quick-actions">
+                        <button class="action-btn primary" onclick="createTask()">
+                            <i class="fas fa-plus"></i> 创建任务
+                        </button>
+                        <button class="action-btn" onclick="viewReports()">
+                            <i class="fas fa-chart-line"></i> 查看报告
+                        </button>
+                    </div>
+                    
+                    <!-- 项目描述 -->
+                    <div class="project-description-card">
+                        <div class="description-title">
+                            <i class="fas fa-info-circle"></i>
+                            项目描述
+                        </div>
+                        <div class="description-content">
+                            智慧城市综合建设项目，包含智慧政务、智慧交通、智慧环保等多个子系统。通过物联网、大数据、人工智能等技术，构建城市大脑，提升城市管理效率和居民生活质量。项目涵盖政务服务数字化、交通智能化管理、环境监测系统、公共安全防控等核心功能模块。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 返回上一页
+        function goBack() {
+            window.history.back();
+        }
+        
+        // 显示功能模块
+        function showFunction(type) {
+            const functionNames = {
+                'tasks': '任务管理',
+                'monitor': '项目监察',
+                'log': '施工日志'
+            };
+            
+            alert(`正在跳转到${functionNames[type]}模块...`);
+        }
+        
+        // 显示任务列表
+        function showTasks() {
+            alert('正在跳转到任务列表页面...');
+        }
+        
+        // 显示进行中任务
+        function showOngoingTasks() {
+            alert('正在跳转到进行中任务页面...');
+        }
+        
+        // 显示已完成任务
+        function showCompletedTasks() {
+            alert('正在跳转到已完成任务页面...');
+        }
+        
+        // 显示团队成员
+        function showTeamMembers() {
+            alert('正在跳转到团队成员页面...');
+        }
+        
+        // 显示项目进度
+        function showProgress() {
+            alert('正在跳转到项目进度页面...');
+        }
+        
+        // 显示项目文件
+        function showFiles() {
+            alert('正在跳转到项目文件页面...');
+        }
+        
+        // 创建任务
+        function createTask() {
+            alert('正在跳转到创建任务页面...');
+        }
+        
+        // 查看报告
+        function viewReports() {
+            alert('正在跳转到项目报告页面...');
+        }
+        
+        // 页面加载时获取项目ID并显示对应信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            
+            if (projectId) {
+                loadProjectDetail(projectId);
+            }
+        });
+        
+        // 加载项目详情
+        function loadProjectDetail(projectId) {
+            const projectDetails = {
+                'project-001': {
+                    name: '淮滨智慧城市建设项目',
+                    amount: '¥850万',
+                    client: '淮滨县政府',
+                    manager: '张经理',
+                    createTime: '2024-07-15',
+                    expectedEnd: '2024-12-30',
+                    totalTasks: 15,
+                    ongoingTasks: 8,
+                    completedTasks: 7,
+                    teamMembers: 12,
+                    progress: '68%',
+                    files: 45,
+                    description: '智慧城市综合建设项目，包含智慧政务、智慧交通、智慧环保等多个子系统。通过物联网、大数据、人工智能等技术，构建城市大脑，提升城市管理效率和居民生活质量。项目涵盖政务服务数字化、交通智能化管理、环境监测系统、公共安全防控等核心功能模块。'
+                },
+                'project-002': {
+                    name: '宁陵数字政务平台',
+                    amount: '¥650万',
+                    client: '宁陵县政府',
+                    manager: '李经理',
+                    createTime: '2024-07-12',
+                    expectedEnd: '2024-11-30',
+                    totalTasks: 12,
+                    ongoingTasks: 6,
+                    completedTasks: 6,
+                    teamMembers: 8,
+                    progress: '55%',
+                    files: 32,
+                    description: '数字政务服务平台建设，提升政府服务效率。包含在线办事、政务公开、便民服务等功能模块。'
+                }
+            };
+            
+            const project = projectDetails[projectId];
+            if (project) {
+                // 更新页面内容
+                document.querySelector('.project-title').textContent = project.name;
+                document.querySelector('.project-amount').textContent = project.amount;
+                
+                const infoItems = document.querySelectorAll('.info-value');
+                infoItems[0].textContent = project.createTime;
+                infoItems[1].textContent = project.manager;
+                infoItems[2].textContent = project.client;
+                infoItems[3].textContent = project.expectedEnd;
+                
+                const statNumbers = document.querySelectorAll('.stat-number');
+                statNumbers[0].textContent = project.totalTasks;
+                statNumbers[1].textContent = project.ongoingTasks;
+                statNumbers[2].textContent = project.completedTasks;
+                statNumbers[3].textContent = project.teamMembers;
+                statNumbers[4].textContent = project.progress;
+                statNumbers[5].textContent = project.files;
+                
+                document.querySelector('.description-content').textContent = project.description;
+            }
+        }
+        
+        // 导航菜单功能
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const expandBtn = document.getElementById('sidebarExpandBtn');
+            
+            sidebar.classList.toggle('collapsed');
+            
+            // 更新按钮显示状态
+            if (sidebar.classList.contains('collapsed')) {
+                expandBtn.style.display = 'flex';
+                localStorage.setItem('sidebarCollapsed', 'true');
+            } else {
+                expandBtn.style.display = 'none';
+                localStorage.setItem('sidebarCollapsed', 'false');
+            }
+        }
+        
+        // 页面加载时恢复侧边栏状态
+        document.addEventListener('DOMContentLoaded', function() {
+            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            const sidebar = document.getElementById('sidebar');
+            const expandBtn = document.getElementById('sidebarExpandBtn');
+            
+            if (isCollapsed) {
+                sidebar.classList.add('collapsed');
+                expandBtn.style.display = 'flex';
+            } else {
+                sidebar.classList.remove('collapsed');
+                expandBtn.style.display = 'none';
+            }
+        });
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'b') {
+                event.preventDefault();
+                toggleSidebar();
+            }
+        });
+    </script>
+    </div>
+</body>
+</html> 

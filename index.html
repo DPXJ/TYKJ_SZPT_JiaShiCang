@@ -311,6 +311,9 @@
             padding: 12px 20px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
         .app-title {
@@ -318,6 +321,33 @@
             font-size: 18px;
             font-weight: 600;
             margin: 0;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .back-btn-header {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-btn-header:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-spacer {
+            width: 36px;
+            height: 36px;
         }
         
         /* 轮播消息样式 */
@@ -4001,6 +4031,194 @@
         .quick-question:hover i {
             color: white;
         }
+        
+        /* 本月新增项目列表页面样式 */
+        .new-projects-page {
+            padding: 15px;
+            background: #f8f9fa;
+            min-height: 100%;
+        }
+        
+        .page-header-with-back {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #667eea;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .page-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .search-filter-section {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-btn {
+            padding: 10px 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+        
+        .project-stats {
+            text-align: center;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .stats-text {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .project-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-status-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #52c41a;
+            color: white;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            transform: rotate(45deg);
+            transform-origin: center;
+            width: 80px;
+            text-align: center;
+            top: 15px;
+            right: -20px;
+        }
+        
+        .project-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding-right: 30px;
+        }
+        
+        .project-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+            flex: 1;
+            line-height: 1.3;
+        }
+        
+        .project-amount {
+            font-size: 16px;
+            font-weight: 700;
+            color: #667eea;
+            margin-left: 10px;
+        }
+        
+        .project-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .project-info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .project-info-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .info-value {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -4055,6 +4273,48 @@
                         <span class="nav-link-text">AI经营报告</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="new-projects-list" data-tooltip="本月新增项目">
+                        <i class="fas fa-plus-circle"></i>
+                        <span class="nav-link-text">本月新增项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="pending-start-projects" data-tooltip="待启动项目">
+                        <i class="fas fa-clock"></i>
+                        <span class="nav-link-text">待启动项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="pending-acceptance-projects" data-tooltip="待验收项目">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="nav-link-text">待验收项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="acceptance-in-progress-projects" data-tooltip="验收中项目">
+                        <i class="fas fa-tasks"></i>
+                        <span class="nav-link-text">验收中项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="acceptance-passed-projects" data-tooltip="验收通过项目">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="nav-link-text">验收通过项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="archived-projects" data-tooltip="已归档项目">
+                        <i class="fas fa-archive"></i>
+                        <span class="nav-link-text">已归档项目</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="project-detail.html?id=project-001" class="nav-link" data-tooltip="项目详情">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="nav-link-text">项目详情</span>
+                    </a>
+                </li>
             </ul>
         </div>
         
@@ -4074,10 +4334,7 @@
                     </div>
                 </div>
                 
-                <!-- 顶部标题栏 -->
-                <div class="app-header">
-                    <h1 class="app-title">经营驾驶舱</h1>
-                </div>
+                <!-- 顶部标题栏已移除，避免重复 -->
                 
                 <!-- 页面内容 -->
                 <div class="page-content">
@@ -4165,33 +4422,33 @@
                                 
                                 <!-- 项目状态矩阵 -->
                                 <div class="project-status-matrix">
-                                    <div class="project-status-card" onclick="showProjectCenter('new')">
+                                    <div class="project-status-card" onclick="showNewProjectsList()">
                                         <div class="project-status-label">本月新增项目</div>
                                         <div class="project-status-main">5个</div>
                                         <div class="project-status-sub">¥2,500万</div>
                                     </div>
-                                    <div class="project-status-card" onclick="showProjectCenter('ongoing')">
-                                        <div class="project-status-label">进行中项目</div>
+                                    <div class="project-status-card" onclick="showPendingStartProjects()">
+                                        <div class="project-status-label">待启动项目</div>
                                         <div class="project-status-main">25个</div>
                                         <div class="project-status-sub">¥1.2亿</div>
                                     </div>
-                                    <div class="project-status-card" onclick="showProjectCenter('acceptance')">
-                                        <div class="project-status-label">验收中项目</div>
+                                    <div class="project-status-card" onclick="showPendingAcceptanceProjects()">
+                                        <div class="project-status-label">待验收项目</div>
                                         <div class="project-status-main">3个</div>
                                         <div class="project-status-sub">¥800万</div>
                                     </div>
-                                    <div class="project-status-card" onclick="showProjectCenter('approved')">
-                                        <div class="project-status-label">验收通过项目</div>
+                                    <div class="project-status-card" onclick="showAcceptanceInProgressProjects()">
+                                        <div class="project-status-label">验收中项目</div>
                                         <div class="project-status-main">2个</div>
                                         <div class="project-status-sub">¥500万</div>
                                     </div>
-                                    <div class="project-status-card" onclick="showProjectCenter('pending-payment')">
-                                        <div class="project-status-label">待回款项目</div>
+                                    <div class="project-status-card" onclick="showAcceptancePassedProjects()">
+                                        <div class="project-status-label">验收通过项目</div>
                                         <div class="project-status-main">8个</div>
                                         <div class="project-status-sub">¥1,800万</div>
                                     </div>
-                                    <div class="project-status-card" onclick="showProjectCenter('completed-payment')">
-                                        <div class="project-status-label">已回款项目</div>
+                                    <div class="project-status-card" onclick="showArchivedProjects()">
+                                        <div class="project-status-label">已归档项目</div>
                                         <div class="project-status-main">12个</div>
                                         <div class="project-status-sub">¥3,200万</div>
                                     </div>
@@ -4948,6 +5205,527 @@
                             </div>
                             
 
+                        </div>
+                    </div>
+                    
+                    <!-- 本月新增项目列表页面 -->
+                    <div class="page" id="new-projects-list">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">本月新增项目</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="new-projects-page">
+                            <!-- 搜索和统计区域 -->
+                            <div class="search-filter-section">
+                                <div class="search-bar">
+                                    <input type="text" placeholder="搜索项目名称、客户..." class="search-input" id="projectSearchInput" onkeypress="handleSearchKeyPress(event)">
+                                    <button class="search-btn" onclick="searchProjects()">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stats-text">本月新增项目 (5个)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目列表 -->
+                            <div class="project-cards-list">
+                                <!-- 项目卡片1 -->
+                                <div class="project-card" onclick="showProjectDetail('project-001')">
+                                    <div class="project-status-badge">进行中</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">淮滨智慧城市建设项目</h3>
+                                        <div class="project-amount">¥850万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-07-15</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">张经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">淮滨县政府</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">任务</span>
+                                                <span class="info-value">总数15 / 进行中8</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 项目卡片2 -->
+                                <div class="project-card" onclick="showProjectDetail('project-002')">
+                                    <div class="project-status-badge">进行中</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">宁陵数字政务平台</h3>
+                                        <div class="project-amount">¥650万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-07-12</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">李经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">宁陵县政府</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">任务</span>
+                                                <span class="info-value">总数12 / 进行中6</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 项目卡片3 -->
+                                <div class="project-card" onclick="showProjectDetail('project-003')">
+                                    <div class="project-status-badge">进行中</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">商丘产业园区网络建设</h3>
+                                        <div class="project-amount">¥450万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-07-10</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">王经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">商丘产业园区</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">任务</span>
+                                                <span class="info-value">总数10 / 进行中5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 项目卡片4 -->
+                                <div class="project-card" onclick="showProjectDetail('project-004')">
+                                    <div class="project-status-badge">进行中</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">开封智慧教育系统</h3>
+                                        <div class="project-amount">¥320万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-07-08</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">刘经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">开封市教育局</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">任务</span>
+                                                <span class="info-value">总数8 / 进行中4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 项目卡片5 -->
+                                <div class="project-card" onclick="showProjectDetail('project-005')">
+                                    <div class="project-status-badge">进行中</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">郑州医疗信息化平台</h3>
+                                        <div class="project-amount">¥280万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-07-05</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">陈经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">郑州市卫健委</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">任务</span>
+                                                <span class="info-value">总数6 / 进行中3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 待启动项目列表页面 -->
+                    <div class="page" id="pending-start-projects">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">待启动项目</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="new-projects-page">
+                            <!-- 搜索和统计区域 -->
+                            <div class="search-filter-section">
+                                <div class="search-bar">
+                                    <input type="text" placeholder="搜索项目名称、客户..." class="search-input" id="pendingStartSearchInput" onkeypress="handleSearchKeyPress(event, 'pending-start')">
+                                    <button class="search-btn" onclick="searchProjectsByType('pending-start')">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stats-text">待启动项目 (25个)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目列表 -->
+                            <div class="project-cards-list" id="pendingStartProjectsList">
+                                <!-- 项目卡片1 -->
+                                <div class="project-card" onclick="showProjectDetail('project-002')">
+                                    <div class="project-status-badge" style="background: #faad14;">待启动</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">智慧园区管理系统</h3>
+                                        <div class="project-amount">¥1,200万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-06-15</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">王经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">XX产业园</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">预计完成</span>
+                                                <span class="info-value">2024-12-30</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 项目卡片2 -->
+                                <div class="project-card" onclick="showProjectDetail('project-003')">
+                                    <div class="project-status-badge" style="background: #faad14;">待启动</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">企业数字化转型项目</h3>
+                                        <div class="project-amount">¥800万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">创建时间</span>
+                                                <span class="info-value">2024-06-20</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">刘经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">XX制造公司</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">预计完成</span>
+                                                <span class="info-value">2024-11-15</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 待验收项目列表页面 -->
+                    <div class="page" id="pending-acceptance-projects">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">待验收项目</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="new-projects-page">
+                            <!-- 搜索和统计区域 -->
+                            <div class="search-filter-section">
+                                <div class="search-bar">
+                                    <input type="text" placeholder="搜索项目名称、客户..." class="search-input" id="pendingAcceptanceSearchInput" onkeypress="handleSearchKeyPress(event, 'pending-acceptance')">
+                                    <button class="search-btn" onclick="searchProjectsByType('pending-acceptance')">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stats-text">待验收项目 (3个)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目列表 -->
+                            <div class="project-cards-list" id="pendingAcceptanceProjectsList">
+                                <!-- 项目卡片1 -->
+                                <div class="project-card" onclick="showProjectDetail('project-004')">
+                                    <div class="project-status-badge" style="background: #1890ff;">待验收</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">智慧医疗信息系统</h3>
+                                        <div class="project-amount">¥600万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">完成时间</span>
+                                                <span class="info-value">2024-07-10</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">陈经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">XX人民医院</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">验收预期</span>
+                                                <span class="info-value">2024-08-15</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 验收中项目列表页面 -->
+                    <div class="page" id="acceptance-in-progress-projects">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">验收中项目</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="new-projects-page">
+                            <!-- 搜索和统计区域 -->
+                            <div class="search-filter-section">
+                                <div class="search-bar">
+                                    <input type="text" placeholder="搜索项目名称、客户..." class="search-input" id="acceptanceInProgressSearchInput" onkeypress="handleSearchKeyPress(event, 'acceptance-in-progress')">
+                                    <button class="search-btn" onclick="searchProjectsByType('acceptance-in-progress')">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stats-text">验收中项目 (2个)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目列表 -->
+                            <div class="project-cards-list" id="acceptanceInProgressProjectsList">
+                                <!-- 项目卡片1 -->
+                                <div class="project-card" onclick="showProjectDetail('project-005')">
+                                    <div class="project-status-badge" style="background: #722ed1;">验收中</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">智慧交通管理平台</h3>
+                                        <div class="project-amount">¥400万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">验收开始</span>
+                                                <span class="info-value">2024-07-15</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">赵经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">XX交通局</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">验收进度</span>
+                                                <span class="info-value">60%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 验收通过项目列表页面 -->
+                    <div class="page" id="acceptance-passed-projects">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">验收通过项目</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="new-projects-page">
+                            <!-- 搜索和统计区域 -->
+                            <div class="search-filter-section">
+                                <div class="search-bar">
+                                    <input type="text" placeholder="搜索项目名称、客户..." class="search-input" id="acceptancePassedSearchInput" onkeypress="handleSearchKeyPress(event, 'acceptance-passed')">
+                                    <button class="search-btn" onclick="searchProjectsByType('acceptance-passed')">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stats-text">验收通过项目 (8个)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目列表 -->
+                            <div class="project-cards-list" id="acceptancePassedProjectsList">
+                                <!-- 项目卡片1 -->
+                                <div class="project-card" onclick="showProjectDetail('project-006')">
+                                    <div class="project-status-badge" style="background: #52c41a;">验收通过</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">智慧教育管理系统</h3>
+                                        <div class="project-amount">¥350万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">验收时间</span>
+                                                <span class="info-value">2024-06-30</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">孙经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">XX教育局</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">验收评分</span>
+                                                <span class="info-value">95分</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 已归档项目列表页面 -->
+                    <div class="page" id="archived-projects">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">已归档项目</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="new-projects-page">
+                            <!-- 搜索和统计区域 -->
+                            <div class="search-filter-section">
+                                <div class="search-bar">
+                                    <input type="text" placeholder="搜索项目名称、客户..." class="search-input" id="archivedSearchInput" onkeypress="handleSearchKeyPress(event, 'archived')">
+                                    <button class="search-btn" onclick="searchProjectsByType('archived')">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="project-stats">
+                                    <span class="stats-text">已归档项目 (12个)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目列表 -->
+                            <div class="project-cards-list" id="archivedProjectsList">
+                                <!-- 项目卡片1 -->
+                                <div class="project-card" onclick="showProjectDetail('project-007')">
+                                    <div class="project-status-badge" style="background: #8c8c8c;">已归档</div>
+                                    <div class="project-card-header">
+                                        <h3 class="project-name">智慧农业监控系统</h3>
+                                        <div class="project-amount">¥280万</div>
+                                    </div>
+                                    <div class="project-card-body">
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">归档时间</span>
+                                                <span class="info-value">2024-05-20</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目经理</span>
+                                                <span class="info-value">周经理</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-info-row">
+                                            <div class="project-info-item">
+                                                <span class="info-label">客户</span>
+                                                <span class="info-value">XX农业合作社</span>
+                                            </div>
+                                            <div class="project-info-item">
+                                                <span class="info-label">项目状态</span>
+                                                <span class="info-value">完结</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -6460,6 +7238,163 @@
                     toggleSidebar();
                 }
             });
+        }
+        
+        // 显示本月新增项目列表
+        function showNewProjectsList() {
+            showPage('new-projects-list');
+        }
+        
+        // 显示待启动项目列表
+        function showPendingStartProjects() {
+            showPage('pending-start-projects');
+        }
+        
+        // 显示待验收项目列表
+        function showPendingAcceptanceProjects() {
+            showPage('pending-acceptance-projects');
+        }
+        
+        // 显示验收中项目列表
+        function showAcceptanceInProgressProjects() {
+            showPage('acceptance-in-progress-projects');
+        }
+        
+        // 显示验收通过项目列表
+        function showAcceptancePassedProjects() {
+            showPage('acceptance-passed-projects');
+        }
+        
+        // 显示已归档项目列表
+        function showArchivedProjects() {
+            showPage('archived-projects');
+        }
+        
+        // 显示项目详情
+        function showProjectDetail(projectId) {
+            // 在当前页面内跳转到项目详情页面
+            window.location.href = `project-detail.html?id=${projectId}`;
+        }
+        
+        // 搜索项目功能
+        function searchProjects() {
+            const searchInput = document.getElementById('projectSearchInput');
+            const searchTerm = searchInput.value.toLowerCase();
+            const projectCards = document.querySelectorAll('#new-projects-list .project-card');
+            let visibleCount = 0;
+            
+            projectCards.forEach(card => {
+                const projectName = card.querySelector('.project-name').textContent.toLowerCase();
+                const clientElements = card.querySelectorAll('.info-value');
+                const client = clientElements.length > 2 ? clientElements[2].textContent.toLowerCase() : '';
+                
+                if (projectName.includes(searchTerm) || client.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // 更新统计信息
+            const statsText = document.querySelector('#new-projects-list .stats-text');
+            if (searchTerm) {
+                statsText.textContent = `搜索结果 (${visibleCount}个)`;
+            } else {
+                statsText.textContent = `本月新增项目 (5个)`;
+            }
+        }
+        
+        // 根据项目类型搜索
+        function searchProjectsByType(projectType) {
+            const searchInputId = getSearchInputId(projectType);
+            const searchInput = document.getElementById(searchInputId);
+            const searchTerm = searchInput.value.toLowerCase();
+            const projectListId = getProjectListId(projectType);
+            const projectCards = document.querySelectorAll(`#${projectListId} .project-card`);
+            let visibleCount = 0;
+            
+            projectCards.forEach(card => {
+                const projectName = card.querySelector('.project-name').textContent.toLowerCase();
+                const clientElements = card.querySelectorAll('.info-value');
+                const client = clientElements.length > 2 ? clientElements[2].textContent.toLowerCase() : '';
+                
+                if (projectName.includes(searchTerm) || client.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // 更新统计信息
+            const pageId = getPageId(projectType);
+            const statsText = document.querySelector(`#${pageId} .stats-text`);
+            if (searchTerm) {
+                statsText.textContent = `搜索结果 (${visibleCount}个)`;
+            } else {
+                const originalText = getOriginalStatsText(projectType);
+                statsText.textContent = originalText;
+            }
+        }
+        
+        // 获取搜索输入框ID
+        function getSearchInputId(projectType) {
+            const inputIds = {
+                'pending-start': 'pendingStartSearchInput',
+                'pending-acceptance': 'pendingAcceptanceSearchInput',
+                'acceptance-in-progress': 'acceptanceInProgressSearchInput',
+                'acceptance-passed': 'acceptancePassedSearchInput',
+                'archived': 'archivedSearchInput'
+            };
+            return inputIds[projectType] || 'projectSearchInput';
+        }
+        
+        // 获取项目列表ID
+        function getProjectListId(projectType) {
+            const listIds = {
+                'pending-start': 'pendingStartProjectsList',
+                'pending-acceptance': 'pendingAcceptanceProjectsList',
+                'acceptance-in-progress': 'acceptanceInProgressProjectsList',
+                'acceptance-passed': 'acceptancePassedProjectsList',
+                'archived': 'archivedProjectsList'
+            };
+            return listIds[projectType] || 'new-projects-list';
+        }
+        
+        // 获取页面ID
+        function getPageId(projectType) {
+            const pageIds = {
+                'pending-start': 'pending-start-projects',
+                'pending-acceptance': 'pending-acceptance-projects',
+                'acceptance-in-progress': 'acceptance-in-progress-projects',
+                'acceptance-passed': 'acceptance-passed-projects',
+                'archived': 'archived-projects'
+            };
+            return pageIds[projectType] || 'new-projects-list';
+        }
+        
+        // 获取原始统计文本
+        function getOriginalStatsText(projectType) {
+            const originalTexts = {
+                'pending-start': '待启动项目 (25个)',
+                'pending-acceptance': '待验收项目 (3个)',
+                'acceptance-in-progress': '验收中项目 (2个)',
+                'acceptance-passed': '验收通过项目 (8个)',
+                'archived': '已归档项目 (12个)'
+            };
+            return originalTexts[projectType] || '本月新增项目 (5个)';
+        }
+        
+        // 处理搜索输入框回车键
+        function handleSearchKeyPress(event, projectType) {
+            if (event.key === 'Enter') {
+                if (projectType) {
+                    searchProjectsByType(projectType);
+                } else {
+                    searchProjects();
+                }
+            }
         }
         
         // 客户洞察模块交互功能
