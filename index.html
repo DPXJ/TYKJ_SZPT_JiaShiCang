@@ -282,6 +282,226 @@
             display: none;
         }
         
+        /* 内部项目详情页面样式 */
+        .project-detail-page {
+            padding: 20px;
+            background: #f5f7fa;
+            min-height: calc(100vh - 100px);
+        }
+        
+        .project-info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-status-badge-detail {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #52c41a;
+            color: white;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            transform: rotate(45deg);
+            transform-origin: center;
+            width: 80px;
+            text-align: center;
+            top: 15px;
+            right: -20px;
+        }
+        
+        .project-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .project-title h2 {
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            flex: 1;
+        }
+        
+        .project-amount-large {
+            color: #1890ff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .project-basic-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .info-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .info-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .project-workspace {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .workspace-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workspace-header h3 {
+            color: #333;
+            font-size: 16px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .workspace-progress {
+            color: #52c41a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .workspace-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .action-item {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 16px 12px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .action-item i {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .action-item span {
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .action-count {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        
+        .project-stats-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stats-header {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .stats-header h3 {
+            color: #333;
+            font-size: 16px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 16px 8px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1890ff;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .project-description {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .description-header {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .description-header h3 {
+            color: #333;
+            font-size: 16px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .description-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
         /* 固定的展开按钮 */
         .sidebar-expand-btn {
             position: fixed;
@@ -4354,7 +4574,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="project-detail.html?id=project-001" class="nav-link" data-tooltip="项目详情">
+                            <a href="#" class="nav-link" data-page="project-detail-internal" data-tooltip="项目详情">
                                 <i class="fas fa-file-alt"></i>
                                 <span class="nav-link-text">项目详情</span>
                             </a>
@@ -6054,6 +6274,122 @@
                         </div>
                     </div>
                     
+                    <!-- 内部项目详情页面 -->
+                    <div class="page" id="project-detail-internal">
+                        <!-- 独立的标题栏 -->
+                        <div class="app-header">
+                            <button class="back-btn-header" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1 class="app-title">项目详情</h1>
+                            <div class="header-spacer"></div>
+                        </div>
+                        
+                        <div class="project-detail-page">
+                            <!-- 项目基本信息卡片 -->
+                            <div class="project-info-card">
+                                <div class="project-status-badge-detail" style="background: #52c41a;">进行中</div>
+                                <div class="project-title">
+                                    <h2>淮滨数字政务平台</h2>
+                                    <div class="project-amount-large">¥650万</div>
+                                </div>
+                                
+                                <div class="project-basic-info">
+                                    <div class="info-row">
+                                        <div class="info-item">
+                                            <span class="info-label">创建时间</span>
+                                            <span class="info-value">2024-07-12</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">项目经理</span>
+                                            <span class="info-value">李经理</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-row">
+                                        <div class="info-item">
+                                            <span class="info-label">客户</span>
+                                            <span class="info-value">淮滨县政府</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">预计完成</span>
+                                            <span class="info-value">2024-11-30</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目工作台 -->
+                            <div class="project-workspace">
+                                <div class="workspace-header">
+                                    <h3><i class="fas fa-desktop"></i> 项目工作台</h3>
+                                    <span class="workspace-progress">完成度 39%</span>
+                                </div>
+                                
+                                <div class="workspace-actions">
+                                    <div class="action-item" onclick="showToast('任务管理功能开发中...')">
+                                        <i class="fas fa-tasks"></i>
+                                        <span>任务</span>
+                                        <div class="action-count">总数12 / 进行中6</div>
+                                    </div>
+                                    <div class="action-item" onclick="showToast('监督管理功能开发中...')">
+                                        <i class="fas fa-eye"></i>
+                                        <span>监督</span>
+                                        <div class="action-count">待处理3</div>
+                                    </div>
+                                    <div class="action-item" onclick="showToast('章工日志功能开发中...')">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>章工日志</span>
+                                        <div class="action-count">本周5篇</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目统计 -->
+                            <div class="project-stats-section">
+                                <div class="stats-header">
+                                    <h3><i class="fas fa-chart-bar"></i> 项目统计</h3>
+                                </div>
+                                
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <div class="stat-number">12</div>
+                                        <div class="stat-label">总任务</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">6</div>
+                                        <div class="stat-label">进行中</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">5</div>
+                                        <div class="stat-label">已完成</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">1</div>
+                                        <div class="stat-label">延期</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">39%</div>
+                                        <div class="stat-label">完成度</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number">25</div>
+                                        <div class="stat-label">文件数</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 项目描述 -->
+                            <div class="project-description">
+                                <div class="description-header">
+                                    <h3><i class="fas fa-info-circle"></i> 项目描述</h3>
+                                </div>
+                                <div class="description-content">
+                                    淮滨数字政务平台是一个综合性的政府数字化服务平台，旨在提升政务服务效率，优化民众办事体验。平台集成了多个政府部门的业务流程，实现了一站式服务。项目包含用户管理、业务流程管理、数据分析等多个模块，采用现代化的技术架构，确保系统的稳定性和可扩展性。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- 项目管理页面 -->
                     <div class="page" id="projects">
                         <div class="detail-page">
@@ -7652,10 +7988,18 @@
             showPage('archived-projects');
         }
         
+        // 显示内部项目详情页面
+        function showInternalProjectDetail() {
+            showPage('project-detail-internal');
+        }
+        
         // 显示项目详情
         function showProjectDetail(projectId) {
-            // 在当前页面内跳转到项目详情页面
-            window.location.href = `project-detail.html?id=${projectId}`;
+            // 显示内部项目详情页面
+            showPage('project-detail-internal');
+            
+            // 可以根据projectId更新页面内容（这里暂时显示固定内容）
+            console.log('显示项目详情:', projectId);
         }
         
         // 搜索项目功能
