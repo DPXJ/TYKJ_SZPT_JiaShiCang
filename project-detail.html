@@ -232,6 +232,72 @@
             transform: scale(0.95);
         }
         
+        /* 二级菜单样式 */
+        .nav-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-left: 0;
+        }
+        
+        .nav-submenu.expanded {
+            max-height: 500px;
+        }
+        
+        .nav-submenu .nav-item {
+            margin-bottom: 4px;
+        }
+        
+        .nav-submenu .nav-link {
+            padding: 10px 16px 10px 40px;
+            font-size: 13px;
+            color: #888;
+            border-radius: 8px;
+        }
+        
+        .nav-submenu .nav-link:hover, 
+        .nav-submenu .nav-link.active {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            transform: translateX(3px);
+        }
+        
+        .nav-submenu .nav-link i {
+            width: 14px;
+            font-size: 12px;
+        }
+        
+        .nav-item.has-submenu > .nav-link {
+            position: relative;
+        }
+        
+        .nav-item.has-submenu > .nav-link::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-item.has-submenu.expanded > .nav-link::after {
+            transform: rotate(180deg);
+        }
+        
+        /* 折叠状态下的二级菜单样式 */
+        .sidebar.collapsed .nav-submenu {
+            display: none;
+        }
+        
+        .sidebar.collapsed .nav-item.has-submenu > .nav-link::after {
+            display: none;
+        }
+        
+        /* 隐藏的菜单项 */
+        .nav-item.hidden {
+            display: none;
+        }
+        
         /* 手机壳 */
         .phone-container {
             position: absolute;
@@ -627,24 +693,79 @@
                         <span class="nav-link-text">首页</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                
+                <!-- 项目价值洞察一级菜单 -->
+                <li class="nav-item has-submenu" id="projectInsightMenu">
+                    <a href="#" class="nav-link" data-tooltip="项目价值洞察" onclick="toggleSubmenu('projectInsightMenu')">
+                        <i class="fas fa-eye"></i>
+                        <span class="nav-link-text">项目价值洞察</span>
+                    </a>
+                    <ul class="nav-submenu" id="projectInsightSubmenu">
+                        <li class="nav-item">
+                            <a href="index.html#new-projects-list" class="nav-link" data-tooltip="本月新增项目">
+                                <i class="fas fa-plus-circle"></i>
+                                <span class="nav-link-text">本月新增项目</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#all-projects-list" class="nav-link" data-tooltip="累计全部项目">
+                                <i class="fas fa-list"></i>
+                                <span class="nav-link-text">累计全部项目</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#pending-start-projects" class="nav-link" data-tooltip="待启动项目">
+                                <i class="fas fa-clock"></i>
+                                <span class="nav-link-text">待启动项目</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#in-progress-projects" class="nav-link" data-tooltip="进行中项目">
+                                <i class="fas fa-play-circle"></i>
+                                <span class="nav-link-text">进行中项目</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#acceptance-passed-projects" class="nav-link" data-tooltip="验收通过项目">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="nav-link-text">验收通过项目</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#archived-projects" class="nav-link" data-tooltip="已归档项目">
+                                <i class="fas fa-archive"></i>
+                                <span class="nav-link-text">已归档项目</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active" data-tooltip="项目详情">
+                                <i class="fas fa-file-alt"></i>
+                                <span class="nav-link-text">项目详情</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- 隐藏的菜单项 -->
+                <li class="nav-item hidden">
                     <a href="index.html#projects" class="nav-link" data-tooltip="项目管理">
                         <i class="fas fa-project-diagram"></i>
                         <span class="nav-link-text">项目管理</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item hidden">
                     <a href="index.html#finance" class="nav-link" data-tooltip="财务分析">
                         <i class="fas fa-chart-line"></i>
                         <span class="nav-link-text">财务分析</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item hidden">
                     <a href="index.html#procurement" class="nav-link" data-tooltip="采购供应链">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="nav-link-text">采购供应链</span>
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a href="index.html#hr" class="nav-link" data-tooltip="人力效能">
                         <i class="fas fa-users"></i>
@@ -655,48 +776,6 @@
                     <a href="index.html#ai-report" class="nav-link" data-tooltip="AI经营报告">
                         <i class="fas fa-robot"></i>
                         <span class="nav-link-text">AI经营报告</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#new-projects-list" class="nav-link" data-tooltip="本月新增项目">
-                        <i class="fas fa-plus-circle"></i>
-                        <span class="nav-link-text">本月新增项目</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#pending-start-projects" class="nav-link" data-tooltip="待启动项目">
-                        <i class="fas fa-clock"></i>
-                        <span class="nav-link-text">待启动项目</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#pending-acceptance-projects" class="nav-link" data-tooltip="待验收项目">
-                        <i class="fas fa-clipboard-check"></i>
-                        <span class="nav-link-text">待验收项目</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#acceptance-in-progress-projects" class="nav-link" data-tooltip="验收中项目">
-                        <i class="fas fa-tasks"></i>
-                        <span class="nav-link-text">验收中项目</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#acceptance-passed-projects" class="nav-link" data-tooltip="验收通过项目">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="nav-link-text">验收通过项目</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#archived-projects" class="nav-link" data-tooltip="已归档项目">
-                        <i class="fas fa-archive"></i>
-                        <span class="nav-link-text">已归档项目</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" data-tooltip="项目详情">
-                        <i class="fas fa-file-alt"></i>
-                        <span class="nav-link-text">项目详情</span>
                     </a>
                 </li>
             </ul>
@@ -991,6 +1070,50 @@
             }
         }
         
+        // 切换二级菜单
+        function toggleSubmenu(menuId) {
+            const menuItem = document.getElementById(menuId);
+            const submenu = menuItem.querySelector('.nav-submenu');
+            
+            // 关闭其他展开的二级菜单
+            const allSubmenus = document.querySelectorAll('.nav-item.has-submenu');
+            allSubmenus.forEach(item => {
+                if (item.id !== menuId) {
+                    item.classList.remove('expanded');
+                    const otherSubmenu = item.querySelector('.nav-submenu');
+                    if (otherSubmenu) {
+                        otherSubmenu.classList.remove('expanded');
+                    }
+                }
+            });
+            
+            // 切换当前二级菜单
+            menuItem.classList.toggle('expanded');
+            submenu.classList.toggle('expanded');
+            
+            // 保存展开状态
+            const isExpanded = menuItem.classList.contains('expanded');
+            localStorage.setItem(`submenu_${menuId}`, isExpanded);
+        }
+        
+        // 初始化二级菜单状态
+        function initSubmenuState() {
+            const submenuItems = document.querySelectorAll('.nav-item.has-submenu');
+            submenuItems.forEach(item => {
+                const menuId = item.id;
+                const savedState = localStorage.getItem(`submenu_${menuId}`);
+                const isExpanded = savedState === 'true';
+                
+                if (isExpanded) {
+                    item.classList.add('expanded');
+                    const submenu = item.querySelector('.nav-submenu');
+                    if (submenu) {
+                        submenu.classList.add('expanded');
+                    }
+                }
+            });
+        }
+        
         // 页面加载时恢复侧边栏状态
         document.addEventListener('DOMContentLoaded', function() {
             const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
@@ -1004,6 +1127,9 @@
                 sidebar.classList.remove('collapsed');
                 expandBtn.style.display = 'none';
             }
+            
+            // 初始化二级菜单状态
+            initSubmenuState();
         });
         
         // 键盘快捷键
